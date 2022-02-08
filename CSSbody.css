@@ -140,8 +140,8 @@ img {
 nav {
   position: fixed;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 15%;
+  right: 15%;
   max-height: var(--navbarHeight);
   background: hsl(var(--bgcBackground));
   color: hsl(var(--txtBackground));
@@ -166,8 +166,10 @@ nav {
 footer {
   position: fixed;
   bottom: 0;
-  left: var(--padding);
-  right: var(--padding);
+  left: 15%;
+  right: 15%;
+  /* left: var(--padding); */
+  /* right: var(--padding); */
   height: calc(var(--navbarHeight)*1.2);
   background: hsl(var(--bgcBackground));
   color: hsl(var(--txtBackground));
@@ -390,6 +392,10 @@ section {
 
 .cl_konzertPosition {
   grid-column: 1 / -1;
+}
+
+.cl_Line {
+  border-bottom: var(--UIBorderThick);
 }
 
 #idDiv_footer_Spacer {
