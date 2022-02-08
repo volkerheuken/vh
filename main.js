@@ -320,7 +320,7 @@ function sortArrayByKey(arr, key, inverse = false) {
 const colScheme = {
   lightmode: {
     txtMain: [0, 100, 0], // Akzentfarbe light:'#c2bebc'
-    bgcBackground: [60, 0, 90], //light:'#e6e6e6'
+    bgcBackground: [0, 0, 93], //light:'#e6e6e6'
     txtBackground: [0, 100, 0]
   },
   darkmode: {
