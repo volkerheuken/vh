@@ -145,8 +145,8 @@ img {
 nav {
   position: fixed;
   top: 0;
-  left: var(--padding);
-  right: var(--padding);
+  left: 10%;
+  right: 10%;
   max-height: var(--navbarHeight);
   background: hsl(var(--bgcBackground));
   color: hsl(var(--txtBackground));
@@ -154,10 +154,7 @@ nav {
   display: -ms-grid;
   display: grid;
   grid-gap: var(--padding);
-  -ms-grid-columns: auto var(--padding) 1fr var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto;
-  grid-template-columns: auto 1fr repeat(7, auto);
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
+  grid-auto-flow: column;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -169,51 +166,6 @@ nav {
   -o-transition: all var(--trT-medium) ease-in;
   transition: all var(--trT-medium) ease-in;
   z-index: 100;
-}
-
-nav>*:nth-child(1) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-}
-
-nav>*:nth-child(2) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-}
-
-nav>*:nth-child(3) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 5;
-}
-
-nav>*:nth-child(4) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 7;
-}
-
-nav>*:nth-child(5) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 9;
-}
-
-nav>*:nth-child(6) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 11;
-}
-
-nav>*:nth-child(7) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 13;
-}
-
-nav>*:nth-child(8) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 15;
-}
-
-nav>*:nth-child(9) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 17;
 }
 
 footer {
@@ -241,41 +193,6 @@ footer {
   -o-transition: all var(--trT-long) ease;
   transition: all var(--trT-long) ease;
   z-index: 100;
-}
-
-footer>*:nth-child(1) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-}
-
-footer>*:nth-child(2) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-}
-
-footer>*:nth-child(3) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-}
-
-footer>*:nth-child(4) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 4;
-}
-
-footer>*:nth-child(5) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 5;
-}
-
-footer>*:nth-child(6) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 6;
-}
-
-footer>*:nth-child(7) {
-  -ms-grid-row: 1;
-  -ms-grid-column: 7;
 }
 
 .cl_navElements, .cl_footerElements {
@@ -320,8 +237,8 @@ footer>*:nth-child(7) {
 }
 
 .cl_spotifySmall {
-  width: 150px;
-  height: 40px;
+  width: 12.5rem;
+  height: 3.333rem;
   -webkit-transform: scale(0.5);
   -ms-transform: scale(0.5);
   transform: scale(0.5);
@@ -390,11 +307,11 @@ section {
   display: -ms-grid;
   display: grid;
   grid-gap: var(--cardGap);
-  width: 100%;
+  max-width: min(100%, 100vw);
   height: 100%;
   padding: var(--cardGap);
-  background: transparent;
-  background: hsla(var(--bgcCard) / 0.3);
+  /* background: transparent;
+  background: hsla(var(--bgcCard) / 0.3); */
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: start;
@@ -403,8 +320,8 @@ section {
   justify-content: center;
   -ms-grid-column-align: center;
   justify-self: center;
-  border: var(--UIBorderThick);
-  border-radius: var(--radius);
+  /* border: var(--UIBorderThick);
+  border-radius: var(--radius); */
   grid-template-areas:
     "cardTitle cardDate"
     "cardImageParent cardImageParent"
@@ -458,6 +375,7 @@ section {
   display: -ms-grid;
   display: grid;
   grid-gap: var(--cardGap);
+  max-width: min(100%, 100vw);
   -ms-grid-columns: auto var(--cardGap) auto var(--cardGap) auto var(--cardGap) auto var(--cardGap) auto;
   grid-template-columns: repeat(5, auto);
   -webkit-box-pack: center;
@@ -511,6 +429,10 @@ section {
 
 /* screens smaller than 375px --> hide Images in BIO, Kontakt, Unterricht */
 @media screen and (max-width: 665px) {
+  :root {
+    --fs-Base: 12px;
+  }
+
   .cl_pageImg {
     display: none;
   }
