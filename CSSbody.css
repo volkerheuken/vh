@@ -42,12 +42,10 @@
   --fw-600: 600;
 }
 
-@import url(//db.onlinewebfonts.com/c/55c4f556836775174bfac94178a3fe82?family=ProximaNW01-Reg);
-
 @font-face {
-  font-family: "ProximaNW01-Reg";
-  src: url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.eot");
-  src: url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.woff") format("woff"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.svg#ProximaNW01-Reg") format("svg");
+  font-family: "HKGrotesk";
+  src: url("/font/HKGrotesk-Regular.woff2") format("woff2"),
+    url("/font/HKGrotesk-Regular.woff") format("woff");
 }
 
 * {
