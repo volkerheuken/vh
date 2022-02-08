@@ -1,0 +1,654 @@
+:root {
+  /* Farben */
+  /* light:'#c2bebc' dark: '#c2bebc'*/
+  --bgcMain: 20 5% 75%;
+  --txtMain: 0 100% 0%;
+  /* light:'#e6e6e6' dark: '#1a1a1a'*/
+  --bgcBackground: 60 0% 90%;
+  --txtBackground: 0 100% 0%;
+  /* Card Background  light:'#e6e6e6' dark: '#1a1a1a'*/
+  --bgcCard: 0 100% 100%;
+  /* UserInterface SIZES */
+  --navbarHeight: 3rem;
+  --radius: 0.5rem;
+  --padding: 0.5rem;
+  --gridGap: 1.5rem;
+  --cardGap: 0.5rem;
+  --paddingVertical: 0.167rem;
+  --UIPadding: 0.167rem;
+  --UIHeight: 1.667rem;
+  --UIHeightDouble: 3.333rem;
+  --UIHeightTriple: 10rem;
+  --UIWidthSmall: 5rem;
+  --UIWidthMedium: 6.667rem;
+  --UIWidthNorm: 10rem;
+  --UIWidthWide: 20rem;
+  --CardsMinWidth: 25rem;
+  --CardsMaxWidth: 35rem;
+  --gridColumns-num: 10;
+  /* Borders */
+  --UIBorderThin: 0.042rem solid hsl(var(--bgcMain));
+  --UIBorderThick: 0.067rem solid hsl(var(--bgcMain));
+  /* Fonts and Timedelays */
+  --trT-short: 0.3s;
+  --trT-medium: 0.5s;
+  --trT-long: 0.8s;
+  --fs-Base: 16px;
+  --fs-Medium: 1.1rem;
+  --fs-Large: 1.2rem;
+  --fw-Base: 200;
+  --fw-300: 300;
+  --fw-500: 500;
+  --fw-600: 600;
+}
+
+@import url(//db.onlinewebfonts.com/c/55c4f556836775174bfac94178a3fe82?family=ProximaNW01-Reg);
+
+@font-face {
+  font-family: "ProximaNW01-Reg";
+  src: url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.eot");
+  src: url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.woff") format("woff"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/55c4f556836775174bfac94178a3fe82.svg#ProximaNW01-Reg") format("svg");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "ProximaNW01-Reg", arial;
+  font-size: var(--fs-Base);
+  font-weight: var(--fw-Base);
+}
+
+*::after, *::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: hsl(var(--bgcBackground));
+  color: hsl(var(--txtBackground));
+  -webkit-transition: all var(--trT-long) ease-in-out;
+  -o-transition: all var(--trT-long) ease-in-out;
+  transition: all var(--trT-long) ease-in-out;
+}
+
+input, textarea, button, div {
+  margin: var(--UIPadding);
+  padding: var(--UIPadding);
+  border-radius: var(--radius);
+  border: var(--UIBorderThin);
+}
+
+h1 {
+  font-size: var(--fs-Large);
+  font-weight: var(--fw-600);
+  text-align: center;
+  text-justify: center;
+}
+
+h2 {
+  font-size: var(--fs-Medium);
+  font-weight: var(--fw-500);
+  text-align: center;
+  padding-bottom: var(--padding);
+}
+
+h3 {
+  font-size: var(--fs-Medium);
+  font-weight: var(--fw-600);
+  text-align: justify;
+  padding: var(--padding);
+  /* padding-bottom: var(--padding); */
+}
+
+div, a {
+  font-size: var(--fs-Base);
+  font-weight: var(--fw-Base);
+  border: none;
+  color: hsl(var(--txtBackground));
+}
+
+input, button {
+  width: var(--UIWidthWide);
+  height: var(--UIHeight);
+}
+
+button {
+  background: hsla(var(--bgcMain) / 0.7);
+}
+
+textarea {
+  width: var(--UIWidthWide);
+  height: var(--UIHeightTriple);
+}
+
+p {
+  text-align: left;
+  padding-top: var(--UIPadding);
+  /* padding-bottom: var(--UIPadding); */
+}
+
+span {
+  display: block;
+}
+
+li {
+  margin-left: 1rem;
+}
+
+img {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: var(--padding);
+  right: var(--padding);
+  max-height: var(--navbarHeight);
+  background: hsl(var(--bgcBackground));
+  color: hsl(var(--txtBackground));
+  border-bottom: var(--UIBorderThick);
+  display: -ms-grid;
+  display: grid;
+  grid-gap: var(--padding);
+  -ms-grid-columns: auto var(--padding) 1fr var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto;
+  grid-template-columns: auto 1fr repeat(7, auto);
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-transition: all var(--trT-medium) ease-in;
+  -o-transition: all var(--trT-medium) ease-in;
+  transition: all var(--trT-medium) ease-in;
+  z-index: 100;
+}
+
+nav>*:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+nav>*:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+
+nav>*:nth-child(3) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+}
+
+nav>*:nth-child(4) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 7;
+}
+
+nav>*:nth-child(5) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 9;
+}
+
+nav>*:nth-child(6) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 11;
+}
+
+nav>*:nth-child(7) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 13;
+}
+
+nav>*:nth-child(8) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 15;
+}
+
+nav>*:nth-child(9) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 17;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: var(--padding);
+  right: var(--padding);
+  height: var(--navbarHeight);
+  background: hsl(var(--bgcBackground));
+  color: hsl(var(--txtBackground));
+  border-top: var(--UIBorderThick);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[7];
+  grid-template-columns: repeat(7, auto);
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all var(--trT-long) ease;
+  -o-transition: all var(--trT-long) ease;
+  transition: all var(--trT-long) ease;
+  z-index: 100;
+}
+
+footer>*:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+
+footer>*:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+}
+
+footer>*:nth-child(3) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+
+footer>*:nth-child(4) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+}
+
+footer>*:nth-child(5) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+}
+
+footer>*:nth-child(6) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+}
+
+footer>*:nth-child(7) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 7;
+}
+
+.cl_navElements, .cl_footerElements {
+  color: hsl(var(--txtMain));
+  padding: var(--padding);
+  font-size: var(--fs-Medium);
+  border-radius: var(--radius);
+  -webkit-transition: all var(--trT-short) ease;
+  -o-transition: all var(--trT-short) ease;
+  transition: all var(--trT-short) ease;
+  cursor: pointer;
+}
+
+.cl_navElements:hover,
+.cl_navElements:focus {
+  background: hsla(var(--bgcMain) / 0.3);
+}
+
+.navbarActive {
+  background: hsla(var(--bgcMain) / 0.7);
+}
+
+.navbarDropActive {
+  max-height: 512px;
+}
+
+.cl_nav_hidables {
+  display: none;
+}
+
+.cl_footer_hidables {
+  display: initial;
+}
+
+.highlight {
+  background: hsla(var(--bgcMain) / 0.3);
+  cursor: pointer;
+}
+
+.highlight:hover, .highlight:focus {
+  background: hsla(var(--bgcMain) / 0.7);
+}
+
+.cl_spotifySmall {
+  width: 150px;
+  height: 40px;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: all var(--trT-short) ease;
+  -o-transition: all var(--trT-short) ease;
+  transition: all var(--trT-short) ease;
+}
+
+.cl_spotifySmall:hover, .cl_spotifySmall:focus {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transform: translateY(-60%);
+  -ms-transform: translateY(-60%);
+  transform: translateY(-60%);
+}
+
+main {
+  width: 100%;
+  min-height: calc(100vh - 2 * var(--navbarHeight));
+  top: var(--navbarHeight);
+  position: absolute;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+  padding-top: var(--padding);
+  padding-bottom: calc(var(--navbarHeight) * 2);
+  z-index: 1;
+}
+
+section {
+  color: hsl(var(--txtGridtitle));
+  font-size: var(--fs-Medium);
+  background: transparent;
+}
+
+.cl_pageTitle {
+  -ms-grid-row-align: center;
+  align-self: center;
+  -ms-grid-column-align: center;
+  justify-self: center;
+  grid-column: 1 / -1;
+}
+
+.cl_mainGrid {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  /* grid-template-columns: repeat(auto-fill, var(--CardsMinWidth)); */
+  grid-template-columns: repeat(auto-fill, max(var(--CardsMaxWidth), calc(100% / var(--gridColumns-num))));
+  grid-auto-rows: minmax(var(--navbarHeight), auto);
+  grid-gap: var(--cardGap);
+}
+
+.cl_card {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: var(--cardGap);
+  width: 100%;
+  height: 100%;
+  padding: var(--cardGap);
+  background: transparent;
+  background: hsla(var(--bgcCard) / 0.3);
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-grid-column-align: center;
+  justify-self: center;
+  border: var(--UIBorderThick);
+  border-radius: var(--radius);
+  grid-template-areas:
+    "cardTitle cardDate"
+    "cardImageParent cardImageParent"
+    "cardText cardText"
+    "cardCast cardCast"
+    "cardLinks cardLinks";
+  -ms-grid-columns: 1fr var(--cardGap) auto;
+  grid-template-columns: 1fr auto;
+  -ms-grid-rows: auto var(--cardGap) auto var(--cardGap) 1fr var(--cardGap) auto var(--cardGap) auto;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+
+.cl_cardText {
+  max-width: var(--CardsMaxWidth);
+}
+
+.cl_cardLinks {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: var(--cardGap);
+  grid-auto-flow: column;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: end;
+  -ms-grid-row-align: end;
+  align-self: end;
+  cursor: pointer;
+}
+
+.cl_cardImageLink {
+  max-width: var(--navbarHeight);
+}
+
+.cl_footerLinks {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: var(--cardGap);
+  grid-auto-flow: column;
+  background: hsla(var(--bgcMain) / 0.7);
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cl_footerImageLink {
+  width: calc(var(--navbarHeight)*0.5);
+}
+
+.cl_konzertGrid {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: var(--cardGap);
+  -ms-grid-columns: auto var(--cardGap) auto var(--cardGap) auto var(--cardGap) auto var(--cardGap) auto;
+  grid-template-columns: repeat(5, auto);
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.cl_konzertPosition {
+  grid-column: 1 / -1;
+}
+
+#idDiv_footer_Spacer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.cl_darkmodeBtn {
+  width: calc(var(--navbarHeight)*0.4);
+  aspect-ratio: 1;
+}
+
+.cl_pageText {
+  grid-column: 1 / -2;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.cl_pageTextFull {
+  grid-column: 1 / -1;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.cl_pageImg {
+  max-width: var(--CardsMinWidth);
+  height: auto;
+  grid-column: -2 / -1;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+/* screens smaller than 375px --> hide Images in BIO, Kontakt, Unterricht */
+@media screen and (max-width: 665px) {
+  .cl_pageImg {
+    display: none;
+  }
+}
+
+/* screens smaller than 800px --> use Dropdown Navbar */
+@media screen and (max-width: 800px) {
+  nav {
+    -ms-grid-columns: auto;
+    grid-template-columns: auto;
+    -ms-grid-rows: auto var(--padding) 1fr var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto var(--padding) auto;
+    grid-template-rows: auto 1fr repeat(8, auto);
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  nav>*:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(2) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(3) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(4) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(5) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(6) {
+    -ms-grid-row: 11;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(7) {
+    -ms-grid-row: 13;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(8) {
+    -ms-grid-row: 15;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(9) {
+    -ms-grid-row: 17;
+    -ms-grid-column: 1;
+  }
+
+  nav>*:nth-child(10) {
+    -ms-grid-row: 19;
+    -ms-grid-column: 1;
+  }
+
+  .cl_spotifySmall:hover, .cl_spotifySmall:focus {
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transform: translate(30%, -60%);
+    -ms-transform: translate(30%, -60%);
+    transform: translate(30%, -60%);
+  }
+
+  .cl_nav_hidables {
+    display: initial;
+  }
+
+  .cl_footer_hidables {
+    display: none;
+  }
+}
+
+/* -------------alignment templates -------------------- */
+[uiTextAlign~="left"] {
+  text-align: left;
+}
+
+[uiTextAlign~="center"] {
+  -ms-grid-column-align: center;
+  justify-self: center;
+}
+
+[uiTextAlign~="block"] {
+  display: block;
+  text-align: justify;
+}
+
+[uiTextAlign~="right"] {
+  text-align: right;
+}
+
+/*  */
+[uiAlign~="left"] {
+  -ms-grid-column-align: start;
+  justify-self: start;
+}
+
+[uiAlign~="middle"] {
+  -ms-grid-column-align: stretch;
+  justify-self: stretch;
+}
+
+[uiAlign~="right"] {
+  -ms-grid-column-align: end;
+  justify-self: end;
+}
+
+/*  */
+[uiAlign~="top"] {
+  -ms-flex-item-align: start;
+  -ms-grid-row-align: start;
+  align-self: start;
+}
+
+[uiAlign~="center"] {
+  -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-self: stretch;
+}
+
+[uiAlign~="bottom"] {
+  -ms-flex-item-align: end;
+  -ms-grid-row-align: end;
+  align-self: end;
+}
