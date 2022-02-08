@@ -75,13 +75,7 @@ function createKonzerte() {
     const convDate = convertDate(d, true)
     konzert.date = convDate;
     const year = d.getFullYear();
-    if (lastYear != year) {
-      lastYear = year;
-      const h2Year = document.createElement("h2");
-      h2Year.textContent = `Spielzeit ${lastYear}`;
-      h2Year.classList.add("cl_konzertPosition");
-      parent.appendChild(h2Year)
-    }
+
 
     if (konzert.UTC < new Date() && !pastConcertTitle) {
       pastConcertTitle = true;
@@ -92,6 +86,13 @@ function createKonzerte() {
       pastC.textContent = ` `;
       pastC.classList.add("cl_konzertPosition");
       parent.appendChild(pastC)
+    }
+    if (lastYear != year) {
+      lastYear = year;
+      const h2Year = document.createElement("h2");
+      h2Year.textContent = `Spielzeit ${lastYear}`;
+      h2Year.classList.add("cl_konzertPosition");
+      parent.appendChild(h2Year)
     }
 
     const date = document.createElement("p");
@@ -313,7 +314,7 @@ function sortArrayByKey(arr, key, inverse = false) {
 const colScheme = {
   lightmode: {
     txtMain: [0, 100, 0], // Akzentfarbe light:'#c2bebc'
-    bgcBackground: [0, 0, 93], //light:'#e6e6e6'
+    bgcBackground: [0, 0, 99], //light:'#e6e6e6'
     txtBackground: [0, 100, 0]
   },
   darkmode: {
