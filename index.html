@@ -23,9 +23,8 @@
 
 <body>
 	<nav id="idNav_navElements">
-		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Menu" onclick="navbarDropdownClick()" onmouseover="navbarDropdownClick()">&#9776;</div>
-		<!-- <div class="cl_footer_hidables" id="idDiv_navBar_Spacer"></div> -->
-		<div class="cl_navElements cl_footer_hidables" id="idDiv_navBar_News" data-type="News" onclick="navClick(this)">Home</div>
+		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Menu" onclick="navbarDropdownClick()" onmouseover="navbarDropdownClick()"></div>
+		<div class="cl_navElements cl_footer_hidables" id="idDiv_navBar_Home" data-type="Home" onclick="navClick(this)">Home</div>
 		<div class="cl_navElements" id="idDiv_navBar_Konzerte" data-type="Konzerte" onclick="navClick(this)">Konzerte</div>
 		<div class="cl_navElements" id="idDiv_navBar_Ensembles" data-type="Ensembles" onclick="navClick(this)">Ensembles</div>
 		<div class="cl_navElements" id="idDiv_navBar_Medien" data-type="Medien" onclick="navClick(this)">Disko</div>
@@ -34,155 +33,131 @@
 		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Impressum" data-type="Impressum" onclick="navClick(this)">Impressum</div>
 	</nav>
 	<main>
-		<section class="cl_mainGrid " id="id_News" style="display:none;">
-			<h1 class="cl_pageTitle ">News</h1>
-			<!-- <div class="cl_spotify cl_card" id="idDiv_spotify">
-				<h3 class="cl_cardTitle">Spotify</h3>
-				<div class="cl_cardText" style="grid-area:cardText;">
-					<iframe src="https://open.spotify.com/embed/artist/7pv0ZlsoLsO02h38vM8wVq" width="100%" height="450" frameBorder="1" allowtransparency="false" allow="encrypted-media"></iframe>
+		<section id="id_Home" style="display:none;">
+			<div class="cl_mainFlex cl_flexDir_column">
+				<div class="cl_pageImg">
+					<img src="Images/Kontakt.jpg" alt="" uiAlign="center">
 				</div>
-			</div> -->
-		</section>
-		<section class="cl_mainGrid " id="id_Konzerte" style="display:none;">
-			<h1 class="cl_pageTitle ">Konzerte</h1>
-			<div class="cl_konzertGrid cl_konzertPosition" id="id_KonzertListe" uiAlign="center top">
-				<!-- wird automatisch geleert und in "main.js createKonzerte()" neu gefüllt -->
+				<h1 class="cl_pageTitle" uiAlign="center">Volker Heuken - Vibraphon</h1>
 			</div>
 		</section>
-		<section class="cl_mainGrid" id="id_Ensembles" style="display:none;">
-			<!-- Inhalt wird aus "Data.js -> EnsemblesCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Ensembles")" gefüllt-->
-		</section>
-		<section class="cl_mainGrid" id="id_Medien" style="display:none;">
-			<!-- Inhalt wird aus "Data.js -> MedienCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Medien")" gefüllt-->
-		</section>
-		<section class="cl_mainGrid" id="id_Unterricht" style="display:none;">
-			<h1 class="cl_pageTitle ">Unterricht im Raum Leipzig</h1>
-			<div class="cl_pageImg" uiAlign="left top">
-				<img src="Images/Unterricht.jpg" alt="">
-			</div>
-			<div class="cl_pageText" uiAlign="right top" uiTextAlign="block">
-				<h3>Unterricht:</h3>
-				<ul>
-					<li>Vibraphon / Marimba / Schlagzeug für Anfänger und Fortgeschrittene</li>
-					<li>Vorbereitungskurse für Aufnahmeprüfungen</li>
-					<li>Jazzimprovisation für alle Instrumente.</li>
-				</ul>
-				<br>
-				<h3>Musikrichtungen:</h3>
-				<span>Jazz / Pop / Klassik</span>
-				<span>Mir ist wichtig, schnell Musik zu machen und auch mit Anfängern sofort kreativ an das Instrument heranzugehen. Dabei gehe ich voll auf deine Vorlieben und Wünsche ein.</span>
-				<span>Es sind sowohl wöchentlicher Unterricht als auch Einzelstunden in unregelmäßigen Abständen möglich. Eine Unterrichtseinheit dauert zwischen 30 min und 60 min. Für regelmäßigen Unterricht empfehle ich 60min.</span>
-				<span>Für Berufstätige, die zwar regelmäßig kommen möchten, aber keinen festen Termin einhalten können, biete ich 10er-Karten an.</span>
-				<br>
-				<h3>Ort:</h3>
-				<span>Leipzig-Großzschocher oder bei dir zu Hause.</span>
-				<br>
-				<span>Verkehrsanbindung zu mir:</span>
-				<ul>
-					<li>U-Bahn: Linie 3 (Knautkleeberg)</li>
-					<li>Auto von außerhalb: ca 5 Min zur A38</li>
-				</ul>
-				<br>
-				<span>Preise auf Anfrage.</span>
-				<br>
-				<span>Bei Interesse oder Fragen zu den Konditionen schicke mir eine E-Mail oder ruf mich unter der <a href="tel:+4915778220214">+49 1577 8220214</a> an</span>
+		<section id="id_Konzerte" style="display:none;">
+			<div class="cl_mainFlex cl_flexDir_column">
+				<div class="cl_konzertGrid cl_konzertPosition" id="id_KonzertListe" uiAlign="center top">
+					<!-- wird automatisch geleert und in "main.js createKonzerte()" neu gefüllt -->
+				</div>
 			</div>
 		</section>
-		<section class="cl_mainGrid" id="id_Biographie" style="display:none;">
-			<h1 class="cl_pageTitle">Biographie</h1>
-			<div class="cl_pageImg" uiAlign="left top">
-				<img src="Images/Biographie.webp" alt="">
-			</div>
-			<div class="cl_pageText" uiAlign="center top" uiTextAlign="block">
-				<span>Volker Heuken, geboren 1990 in Leverkusen, startete mit sechs Jahren seine Ausbildung am Schlagzeug an der Musikschule in Leverkusen.</span>
-				<br>
-				<span>Mit 17 Jahren entdeckte er das Vibraphon und den Jazz für sich. Er nahm Jazz-Unterricht bei David Friedman, Matthias Goebel und Mathias Haus. Weitere Workshops ergänzten seine Ausbildung: Mathias Haus, Tony Lakatos, John Ruocco,
-					Antonio
-					Farao, Jim Snidero, Matt Penman, Eric Alexander.</span>
-				<br>
-				<span>Ab 2011 studierte er Jazz-Mallets an der HfM Nürnberg bei Roland Neffe. Er war Mitglied des Landesjugendjazzorchesters Bayern. Volker Heuken ist Preisträger des Bruno Rother Gedächtnis Wettbewerbs 2014.</span>
-				<span>Er wirkte bei verschiedenen Combos und Bigbands mit, tourte durch Deutschland und spielte in zahlreichen großen Jazzclubs (Jazzstudio Nürnberg, Leerer Beutel Regensburg, BIX Stuttgart, Unterfahrt München, etc.) und war zu Gast bei
-					einigen Jazzfestivals in Deutschland (Jazztage Leverkusen, Jazztage Mainz, Jazzfest Bonn, etc.)</span>
-				<span>Zusammen mit Izabella Effenberg war er künstlerischer Leiter des deutschen Vibraphonfestivals „Vibraphonissimo“. Mit Jan F. Brill betreute er die Konzertreihe Brozzijazz ebenfalls mit künstlerischer Leitung. Er ist Mitglied des
-					Metropolvereins Nürnberg.</span>
-				<br>
-				<span>Ab 2016 studierte er bei Prof. Michael Wollny Master in Komposition in Leipzig und schloss das Studium 2019 ab.</span>
-				<span>2019 erhielt er den Nachwuchsjazzpreis der Stadt Leipzig mit dem Trio Heuken/Stadtfeld/Heigenhuber und eröffnete damit die Leipziger Jazztage.</span>
-				<span>In Leipzig betreute Volker Heuken ebenfalls verschiedene Jazzreihen.</span>
+		<section id="id_Ensembles" style="display:none;">
+			<div class="cl_mainGrid" id="id_Content_Ensembles">
+				<!-- Inhalt wird aus "Data.js -> EnsemblesCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Ensembles")" gefüllt-->
 			</div>
 		</section>
-		<section class="cl_mainGrid" id="id_Kontakt" style="display:none;">
-			<div class="cl_pageImg" uiAlign="left top">
-				<img src="Images/Kontakt.jpg" alt="">
-			</div>
-			<div class="cl_pageText" uiAlign="center top" uiTextAlign="center">
-				<h3> Volker Heuken </h3>
-				<br>
-				<div>E-Mail: <a href="mailto:VolkerHeuken@web.de">VolkerHeuken@web.de</a></div>
-				<div>Tel: <a href="tel:+4915778220214">+49 1577 8220214</a></div>
-				<br>
-				<br>
-				<h3>Schick mir eine Nachricht per Whatsapp:</h3>
-				<input type="text" id="idVin_Kontakt_Name" placeholder="Dein Name" value=""></input>
-				<br>
-				<textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht" style="resize:none;"></textarea>
-				<br>
-				<button type="button" id="idArea_Kontakt_SendWA" onclick="sendWA()">Chat öffnen</button>
-				<p>(Öffnet die App oder die WebApp)</p>
+		<section id="id_Medien" style="display:none;">
+			<div class="cl_mainGrid" id="id_Content_Medien">
+				<!-- Inhalt wird aus "Data.js -> MedienCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Medien")" gefüllt-->
 			</div>
 		</section>
-		<section class="cl_mainGrid cl_textGrid" id="id_Impressum" style="display:none;">
-			<h1 class="cl_pageTitle">Impressum</h1>
-			<div class="cl_pageTextFull" uiAlign="center top" uiTextAlign="block">
-				<h3>Angaben gemäß § 5 TMG:</h3>
-				<span>Volker Heuken</span>
-				<span>04229 Leipzig</span>
-				<span>phone: +49 1577 8220214</span>
-				<span>email: mail@volkerheuken.com</span>
-				<span>Berufsbezeichnung: Musiker</span>
-				<br>
-				<h3>Fotos</h3>
-				<span>All by Lukas Diller, except:</span>
-				<span>Shepherd Moon: Peter Brill</span>
-				<span>Heuken/Stadtfeld/Heigenhuber: Robert Strehler</span>
-				<span>Kontakt: Chris Civitillo</span>
-				​<br>
-				<h3>Haftungsausschluss (Disclaimer)</h3>
-				​<br>
-				<h3>Haftung für Inhalte</h3>
-				<span>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
-					gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
-					bleiben hiervon
-					unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</span>
-				<br>
-				<h3>Haftung für Links</h3>
-				<span>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
-					jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine
-					permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</span>
-				<br>
-				<h3>Urheberrecht</h3>
-				<span>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
-					Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom
-					Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
-					entsprechenden
-					Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</span>
-				<br>
-				<h3>Datenschutz</h3>
-				<span>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
-					Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit
-					möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
-					Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</span>
-				​<br>
-				<h3>Datenschutzerklärung für die Nutzung von YouTube</h3>
-				<span>Unsere Webseite nutzt Plugins der von Google betriebenen Seite YouTube. Betreiber der Seiten ist die YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. Wenn Sie eine unserer mit einem YouTube-Plugin ausgestatteten Seiten
-					besuchen, wird eine Verbindung zu den Servern von YouTube hergestellt. Dabei wird dem Youtube-Server mitgeteilt, welche unserer Seiten Sie besucht haben. Wenn Sie in Ihrem YouTube-Account eingeloggt sind ermöglichen Sie YouTube, Ihr
-					Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube- Account ausloggen. Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von
-					YouTube
-					unter: <a href="https://www.google.de/intl/de/policies/privacy">https://www.google.de/intl/de/policies/privacy</a></span>
-				​<br>
-				<h3>Widerspruch Werbe-Mails</h3>
-				<span>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich
-					ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</span>
+		<section id="id_Biographie" style="display:none;">
+			<div class="cl_mainFlex cl_flexDir_rows">
+				<div class="cl_pageText" uiAlign="center top" uiTextAlign="block">
+					<span>Volker Heuken, geboren 1990 in Leverkusen, startete mit sechs Jahren seine Ausbildung am Schlagzeug an der Musikschule in Leverkusen.</span>
+					<br>
+					<span>Mit 17 Jahren entdeckte er das Vibraphon und den Jazz für sich. Er nahm Jazz-Unterricht bei David Friedman, Matthias Goebel und Mathias Haus. Weitere Workshops ergänzten seine Ausbildung: Mathias Haus, Tony Lakatos, John Ruocco,
+						Antonio
+						Farao, Jim Snidero, Matt Penman, Eric Alexander.</span>
+					<br>
+					<span>Ab 2011 studierte er Jazz-Mallets an der HfM Nürnberg bei Roland Neffe. Er war Mitglied des Landesjugendjazzorchesters Bayern. Volker Heuken ist Preisträger des Bruno Rother Gedächtnis Wettbewerbs 2014.</span>
+					<span>Er wirkte bei verschiedenen Combos und Bigbands mit, tourte durch Deutschland und spielte in zahlreichen großen Jazzclubs (Jazzstudio Nürnberg, Leerer Beutel Regensburg, BIX Stuttgart, Unterfahrt München, etc.) und war zu Gast bei
+						einigen Jazzfestivals in Deutschland (Jazztage Leverkusen, Jazztage Mainz, Jazzfest Bonn, etc.)</span>
+					<span>Zusammen mit Izabella Effenberg war er künstlerischer Leiter des deutschen Vibraphonfestivals „Vibraphonissimo“. Mit Jan F. Brill betreute er die Konzertreihe Brozzijazz ebenfalls mit künstlerischer Leitung. Er ist Mitglied des
+						Metropolvereins Nürnberg.</span>
+					<br>
+					<span>Ab 2016 studierte er bei Prof. Michael Wollny Master in Komposition in Leipzig und schloss das Studium 2019 ab.</span>
+					<span>2019 erhielt er den Nachwuchsjazzpreis der Stadt Leipzig mit dem Trio Heuken/Stadtfeld/Heigenhuber und eröffnete damit die Leipziger Jazztage.</span>
+					<span>In Leipzig betreute Volker Heuken ebenfalls verschiedene Jazzreihen.</span>
+				</div>
+				<div class="cl_pageImg" uiAlign="left top">
+					<img src="Images/Biographie.webp" alt="">
+				</div>
+			</div>
+		</section>
+		<section id="id_Kontakt" style="display:none;">
+			<div class="cl_mainFlex cl_flexDir_rows">
+				<div class="cl_pageText" uiAlign="center top" uiTextAlign="center">
+					<h3> Volker Heuken </h3>
+					<br>
+					<div>E-Mail: <a href="mailto:VolkerHeuken@web.de">VolkerHeuken@web.de</a></div>
+					<div>Tel: <a href="tel:+4915778220214">+49 1577 8220214</a></div>
+					<br>
+					<br>
+					<h3>Schick mir eine Nachricht per Whatsapp:</h3>
+					<input type="text" id="idVin_Kontakt_Name" placeholder="Dein Name" value=""></input>
+					<br>
+					<textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht" style="resize:none;"></textarea>
+					<br>
+					<button type="button" id="idArea_Kontakt_SendWA" onclick="sendWA()">Chat öffnen</button>
+					<p>(Öffnet die App oder die WebApp)</p>
+				</div>
+				<div class="cl_pageImg" uiAlign="left top">
+					<img src="Images/Kontakt.jpg" alt="">
+				</div>
+			</div>
+		</section>
+		<section id="id_Impressum" style="display:none;">
+			<div class="cl_textGrid">
+				<h1 class="cl_pageTitle">Impressum</h1>
+				<div class="cl_pageTextFull" uiAlign="center top" uiTextAlign="block">
+					<h3>Angaben gemäß § 5 TMG:</h3>
+					<span>Volker Heuken</span>
+					<span>04229 Leipzig</span>
+					<span>phone: +49 1577 8220214</span>
+					<span>email: mail@volkerheuken.com</span>
+					<span>Berufsbezeichnung: Musiker</span>
+					<br>
+					<h3>Fotos</h3>
+					<span>All by Lukas Diller, except:</span>
+					<span>Shepherd Moon: Peter Brill</span>
+					<span>Heuken/Stadtfeld/Heigenhuber: Robert Strehler</span>
+					<span>Kontakt: Chris Civitillo</span>
+					​<br>
+					<h3>Haftungsausschluss (Disclaimer)</h3>
+					​<br>
+					<h3>Haftung für Inhalte</h3>
+					<span>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
+						gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
+						bleiben hiervon
+						unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</span>
+					<br>
+					<h3>Haftung für Links</h3>
+					<span>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
+						jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine
+						permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</span>
+					<br>
+					<h3>Urheberrecht</h3>
+					<span>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+						Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom
+						Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
+						entsprechenden
+						Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</span>
+					<br>
+					<h3>Datenschutz</h3>
+					<span>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+						Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit
+						möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
+						Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</span>
+					​<br>
+					<h3>Datenschutzerklärung für die Nutzung von YouTube</h3>
+					<span>Unsere Webseite nutzt Plugins der von Google betriebenen Seite YouTube. Betreiber der Seiten ist die YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. Wenn Sie eine unserer mit einem YouTube-Plugin ausgestatteten Seiten
+						besuchen, wird eine Verbindung zu den Servern von YouTube hergestellt. Dabei wird dem Youtube-Server mitgeteilt, welche unserer Seiten Sie besucht haben. Wenn Sie in Ihrem YouTube-Account eingeloggt sind ermöglichen Sie YouTube, Ihr
+						Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube- Account ausloggen. Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von
+						YouTube
+						unter: <a href="https://www.google.de/intl/de/policies/privacy">https://www.google.de/intl/de/policies/privacy</a></span>
+					​<br>
+					<h3>Widerspruch Werbe-Mails</h3>
+					<span>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich
+						ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</span>
+				</div>
 			</div>
 		</section>
 	</main>

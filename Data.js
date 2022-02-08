@@ -121,32 +121,6 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
   }
 ];
 
-const News = [{
-    title: `Nach der Coronapause...`,
-    datum: "18.08.2020",
-    description: `Wie bei allen Musikern in der freien Szene waren meine Konzerte und Vorhaben von der Coronakrise stark betroffen. Langsam kehren Veranstaltungen aber zurück. In den nächsten Wochen gibt es außerdem eine Veröffentlichung von einem Song von mir mit Leipziger Musikern.`,
-    links: [{
-      type: "youtube",
-      link: "https://www.youtube.com/watch?v=ilXAYWhwWu8&feature=youtu.be"
-    }]
-  },
-  {
-    title: `Neue CD "Shepherd Moon"`,
-    datum: "28.01.2020",
-    picName: "N_ShepherdMoon.webp",
-    description: `Von meiner Band der Zikaden von 2019 gibt es bei nun eine neue CD "Shepherd Moon" bei Peter Fuldas "Label11". Die Aufnahme entstand während den Zikaden und wurde aufgenommen von Michael Fingerhut. Ab sofort erhältlich!`,
-    links: [{
-      type: "youtube",
-      link: "https://www.youtube.com/watch?v=ilXAYWhwWu8&feature=youtu.be"
-    }]
-  },
-  {
-    title: `Neue Website`,
-    datum: "10.01.2020",
-    description: `Ab jetzt ist die neue Website von mir online! Auch gleich mit neuen Videos von Heuken/Stadtfeld/Heigenhuber und vom neuen Duo mit Olga Reznichenko namens VOLGA.`
-  }
-]
-
 const Ensembles = [{
     title: `Heuken/Stadtfeld/Heigenhuber`,
     picName: "E_HeukenStadtfeldHeigenhuber.webp",

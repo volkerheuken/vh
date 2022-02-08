@@ -10,7 +10,6 @@
   --bgcCard: 0 100% 100%;
   /* UserInterface SIZES */
   --navbarHeight: 3rem;
-  --radius: 0rem;
   --padding: 0.5rem;
   --gridGap: 1.5rem;
   --cardGap: 0.5rem;
@@ -25,7 +24,7 @@
   --UIWidthWide: 20rem;
   --CardsMinWidth: 25rem;
   --CardsMaxWidth: 35rem;
-  --gridColumns-num: 10;
+  --gridColumns-num: 4;
   /* Borders */
   --UIBorderThin: 0.042rem solid hsl(var(--bgcMain));
   --UIBorderThick: 0.067rem solid hsl(var(--bgcMain));
@@ -74,7 +73,6 @@ body {
 input, textarea, button, div {
   margin: var(--UIPadding);
   padding: var(--UIPadding);
-  border-radius: var(--radius);
   border: var(--UIBorderThin);
 }
 
@@ -137,7 +135,6 @@ li {
 
 img {
   width: 100%;
-  border-radius: var(--radius);
 }
 
 nav {
@@ -171,7 +168,7 @@ footer {
   bottom: 0;
   left: var(--padding);
   right: var(--padding);
-  height: var(--navbarHeight);
+  height: calc(var(--navbarHeight)*1.2);
   background: hsl(var(--bgcBackground));
   color: hsl(var(--txtBackground));
   border-top: var(--UIBorderThick);
@@ -197,7 +194,6 @@ footer {
   color: hsl(var(--txtMain));
   padding: var(--padding);
   font-size: var(--fs-Medium);
-  border-radius: var(--radius);
   -webkit-transition: all var(--trT-short) ease;
   -o-transition: all var(--trT-short) ease;
   transition: all var(--trT-short) ease;
@@ -205,12 +201,9 @@ footer {
 }
 
 .cl_navElements:hover,
-.cl_navElements:focus {
-  background: hsla(var(--bgcMain) / 0.3);
-}
-
+.cl_navElements:focus,
 .navbarActive {
-  background: hsla(var(--bgcMain) / 0.7);
+  background: hsla(var(--bgcMain) / 0.3);
 }
 
 .navbarDropActive {
@@ -225,13 +218,11 @@ footer {
   display: initial;
 }
 
-.highlight {
+.highlight,
+.highlight:hover,
+.highlight:focus {
   background: hsla(var(--bgcMain) / 0.3);
   cursor: pointer;
-}
-
-.highlight:hover, .highlight:focus {
-  background: hsla(var(--bgcMain) / 0.7);
 }
 
 .cl_spotifySmall {
@@ -279,6 +270,7 @@ section {
   color: hsl(var(--txtGridtitle));
   font-size: var(--fs-Medium);
   background: transparent;
+  justify-content: center;
 }
 
 .cl_pageTitle {
@@ -301,6 +293,20 @@ section {
   grid-gap: var(--cardGap);
 }
 
+.cl_mainFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cl_flexDir_column {
+  flex-direction: column;
+}
+
+.cl_flexDir_rows {
+  flex-direction: row;
+}
+
 .cl_card {
   display: -ms-grid;
   display: grid;
@@ -318,8 +324,6 @@ section {
   justify-content: center;
   -ms-grid-column-align: center;
   justify-self: center;
-  /* border: var(--UIBorderThick);
-  border-radius: var(--radius); */
   grid-template-areas:
     "cardTitle cardDate"
     "cardImageParent cardImageParent"
@@ -511,7 +515,7 @@ section {
   }
 
   .cl_nav_hidables {
-    display: initial;
+    display: block;
   }
 
   .cl_footer_hidables {

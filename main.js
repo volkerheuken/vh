@@ -7,7 +7,6 @@ const globalValues = {
 function mainSetup() {
   //add the Grid-Area-Names to all divs inside the sections
   colToggleColormode();
-  createLanding();
   createCardSection("Ensembles");
   createCardSection("Medien");
   createKonzerte();
@@ -17,38 +16,37 @@ function mainSetup() {
 }
 
 function navClick(obj = null) {
-  globalValues.nextSection = (obj != null) ? obj.dataset.type : "News"; // default  first Site
-
+  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Home"; // default  first Site
+  console.log(globalValues.nextSection);
   // set "gridColumns-num" so the Grid stays centered
-  if (["News", "Ensembles", "Medien"].includes(globalValues.nextSection)) {
-    const Data = eval(globalValues.nextSection);
-    setCssRoot(`gridColumns-num`, Data.length + 1);
-  } else {
-    setCssRoot(`gridColumns-num`, 10); //default length
-  }
+  // if (["Ensembles", "Medien"].includes(globalValues.nextSection)) {
+  //   const Data = eval(globalValues.nextSection);
+  //   setCssRoot(`gridColumns-num`, 4) // Data.length + 1);
+  // } else {
+  //   setCssRoot(`gridColumns-num`, 3); //default length
+  // }
 
   if (globalValues.prevSection != globalValues.nextSection) {
     let selectedID = `idDiv_navBar_${globalValues.nextSection}`;
     //set the CSS-Active class to highlight the clicked Menu
     const clArr = dbCL("cl_navElements")
     for (const item of clArr) {
-      if (item.id === selectedID && selectedID != "idDiv_navBar_Title") {
+      if (item.id === selectedID) {
         item.classList.add("navbarActive");
+        dbID("idDiv_navBar_Menu").innerHTML = `&#9776;  ${item.textContent}`;
       } else {
         item.classList.remove("navbarActive");
       }
     }
-    if (selectedID === "idDiv_navBar_Title") {
-      dbID(selectedID).classList.add("navbarActive");
-    }
+
     //hide all Grid-Items except the selected
-    const mainGridItems = dbCL("cl_mainGrid")
+    const mainGridItems = document.querySelectorAll("section")
     for (let i = 0; i < mainGridItems.length; i++) {
       const item = mainGridItems[i];
       prevID = `id_${globalValues.prevSection}`
       nextID = `id_${globalValues.nextSection}`
       const state = (nextID === item.id) ? true : false;
-      item.style.display = state ? "grid" : "none";
+      item.style.display = state ? "initial" : "none";
       item.pointerEvents = state ? "auto" : "none";
     }
   }
@@ -64,17 +62,6 @@ function navClick(obj = null) {
   dbID("idNav_navElements").classList.remove("navbarDropActive")
 }
 
-function createLanding() {
-  const parent = dbID(`id_News`);
-  parent.classList.add("cl_newsGrid");
-  News.forEach((data) => {
-    data.date = new Date(Date.parse(data.datum.replace(/\./g, "/")));
-  });
-  const newsArray = sortArrayByKey(News, "date", true);
-  newsArray.forEach((data, index) => {
-    createSingleCard(data, index, parent, "News");
-  });
-}
 
 function createKonzerte() {
   let parent = dbID(`id_KonzertListe`);
@@ -125,13 +112,13 @@ function createKonzerte() {
 function createCardSection(type = null) {
   if (type === null) return
   const Data = eval(type);
-  const parent = dbID(`id_${type}`)
+  const parent = dbID(`id_Content_${type}`)
   parent.innerHTML = "";
-  //create PageTitle
-  const parentTitle = document.createElement("h1");
-  parentTitle.classList.add("cl_pageTitle");
-  parentTitle.textContent = type;
-  parent.appendChild(parentTitle)
+  // //create PageTitle
+  // const parentTitle = document.createElement("h1");
+  // parentTitle.classList.add("cl_pageTitle");
+  // parentTitle.textContent = type;
+  // parent.appendChild(parentTitle)
   Data.forEach((data, index) => {
     createSingleCard(data, index, parent, type);
   });
