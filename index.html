@@ -13,10 +13,14 @@
 	<meta name="copyright" content="" />
 
 	<title>Volker Heuken - Vibraphon</title>
-	<!-- <link rel="icon" type="image/png" href="Images/Logo.png">
-	<link rel="apple-touch-icon" sizes="57x57" href="Images/Logo.png"> -->
+
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="hsl(0, 0%, 99%)">
+	<meta name="msapplication-TileColor" content="hsl(60, 0%, 99%)">
+	<meta name="theme-color" content="hsl(0, 0%, 99%)" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="hsl(60, 0%, 10%)" media="(prefers-color-scheme: dark)">
+
 	<link href="CSSbody.css" rel="stylesheet" type="text/css">
-	<link href="//db.onlinewebfonts.com/c/55c4f556836775174bfac94178a3fe82?family=ProximaNW01-Reg" rel="stylesheet" type="text/css">
 	<script src="Data.js"></script>
 	<script src="main.js"></script>
 </head>
@@ -28,7 +32,7 @@
 		<div class="cl_navElements" id="idDiv_navBar_Konzerte" data-type="Konzerte" onclick="navClick(this)">Konzerte</div>
 		<div class="cl_navElements" id="idDiv_navBar_Ensembles" data-type="Ensembles" onclick="navClick(this)">Ensembles</div>
 		<div class="cl_navElements" id="idDiv_navBar_Medien" data-type="Medien" onclick="navClick(this)">Disko</div>
-		<div class="cl_navElements" id="idDiv_navBar_Biographie" data-type="Biographie" onclick="navClick(this)">Bio</div>
+		<div class="cl_navElements" id="idDiv_navBar_Bio" data-type="Bio" onclick="navClick(this)">Bio</div>
 		<div class="cl_navElements" id="idDiv_navBar_Kontakt" data-type="Kontakt" onclick="navClick(this)">Kontakt</div>
 		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Impressum" data-type="Impressum" onclick="navClick(this)">Impressum</div>
 	</nav>
@@ -36,14 +40,14 @@
 		<section id="id_Home" style="display:none;">
 			<div class="cl_mainFlex cl_flexDir_column">
 				<div class="cl_pageImg">
-					<img src="Images/Kontakt.jpg" alt="" uiAlign="center">
+					<img src="Images/Kontakt.jpg" uiAlign="center">
 				</div>
 				<h1 class="cl_pageTitle" uiAlign="center">Volker Heuken - Vibraphon</h1>
 			</div>
 		</section>
 		<section id="id_Konzerte" style="display:none;">
 			<div class="cl_mainFlex cl_flexDir_column">
-				<div class="cl_konzertGrid cl_konzertPosition" id="id_KonzertListe" uiAlign="center top">
+				<div class="cl_konzertGrid" id="id_KonzertListe" uiAlign="center top">
 					<!-- wird automatisch geleert und in "main.js createKonzerte()" neu gefüllt -->
 				</div>
 			</div>
@@ -58,19 +62,19 @@
 				<!-- Inhalt wird aus "Data.js -> MedienCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Medien")" gefüllt-->
 			</div>
 		</section>
-		<section id="id_Biographie" style="display:none;">
+		<section id="id_Bio" style="display:none;">
 			<div class="cl_mainFlex cl_flexDir_rows">
 				<div class="cl_pageText" uiAlign="center top" uiTextAlign="block">
 					<span>
 						Volker Heuken (Vibraphon, Marimba, Komposition) studierte von 2011 bis 2016 an der HfM Nürnberg Jazz-Mallets bei Roland Neffe.<span>
-						In dieser Zeit gründete er verschiedene Formationen, u.a. das Volker Heuken Sextett, mit dem er zwei CDs veröffentlicht hat.<span>
-						Er ist seit dieser Zeit Mitglied im Metropolmusik e.V. Nürnberg. 2016-2019 studierte er bei Prof Michael Wollny an der HMT in Leipzig Jazz-Komposition.<span>
-						Er ist Mitglied im Philipp Rumsch Ensemble und der Big Band Spielvereinigung Sued in Leipzig.<span><br>
-						Mit seinem Trio Heuken/Stadtfeld/Heigenhuber war er 2019 Preisträger des Leipziger Jazznachwuchspreises und die Gruppe veröffentlichte 2020 die CD "Hallungen Tapes".<span>
-						Volker Heuken war zu Gast auf diversen Jazzfestivals (Jazzfest Berlin, Jazztage Leipzig, Jazzfest Bonn, Leverkusener Jazztage, etc.).</span>
+							In dieser Zeit gründete er verschiedene Formationen, u.a. das Volker Heuken Sextett, mit dem er zwei CDs veröffentlicht hat.<span>
+								Er ist seit dieser Zeit Mitglied im Metropolmusik e.V. Nürnberg. 2016-2019 studierte er bei Prof Michael Wollny an der HMT in Leipzig Jazz-Komposition.<span>
+									Er ist Mitglied im Philipp Rumsch Ensemble und der Big Band Spielvereinigung Sued in Leipzig.<span><br>
+										Mit seinem Trio Heuken/Stadtfeld/Heigenhuber war er 2019 Preisträger des Leipziger Jazznachwuchspreises und die Gruppe veröffentlichte 2020 die CD "Hallungen Tapes".<span>
+											Volker Heuken war zu Gast auf diversen Jazzfestivals (Jazzfest Berlin, Jazztage Leipzig, Jazzfest Bonn, Leverkusener Jazztage, etc.).</span>
 				</div>
 				<div class="cl_pageImg" uiAlign="left top">
-					<img src="Images/Biographie.webp" alt="">
+					<img src="Images/Bio.webp" alt="">
 				</div>
 			</div>
 		</section>

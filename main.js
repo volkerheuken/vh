@@ -16,7 +16,7 @@ function mainSetup() {
 }
 
 function navClick(obj = null) {
-  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Home"; // default  first Site
+  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Ensembles"; // default  first Site
   // set "gridColumns-num" so the Grid stays centered
   // if (["Ensembles", "Medien"].includes(globalValues.nextSection)) {
   //   const Data = eval(globalValues.nextSection);
@@ -45,7 +45,7 @@ function navClick(obj = null) {
       prevID = `id_${globalValues.prevSection}`
       nextID = `id_${globalValues.nextSection}`
       const state = (nextID === item.id) ? true : false;
-      item.style.display = state ? "initial" : "none";
+      item.style.display = state ? "flex" : "none";
       item.pointerEvents = state ? "auto" : "none";
     }
   }
@@ -80,18 +80,18 @@ function createKonzerte() {
     if (konzert.UTC < new Date() && !pastConcertTitle) {
       pastConcertTitle = true;
       const spacer = document.createElement("h2");
-      spacer.classList.add("cl_konzertPosition", "cl_Line");
+      spacer.classList.add("cl_konzertFullRow", "cl_Line");
       parent.appendChild(spacer)
       const pastC = document.createElement("h2");
       pastC.textContent = ` `;
-      pastC.classList.add("cl_konzertPosition");
+      pastC.classList.add("cl_konzertFullRow");
       parent.appendChild(pastC)
     }
     if (lastYear != year) {
       lastYear = year;
       const h2Year = document.createElement("h2");
       h2Year.textContent = `Spielzeit ${lastYear}`;
-      h2Year.classList.add("cl_konzertPosition");
+      h2Year.classList.add("cl_konzertFullRow");
       parent.appendChild(h2Year)
     }
 
@@ -106,8 +106,8 @@ function createKonzerte() {
     parent.appendChild(Titel)
     const Location = document.createElement("p");
     Location.textContent = konzert.Location;
-    //add specifiy link only if upcomming show
-    if (d >= new Date() && konzert.link != undefined) {
+    // Link zur Veranstaltung nur wenn bevorstehend, da alte Links ggf. verschwinden und man dann auf einer fehlerseite raus kommt, was echt uncool ist.
+    if (d >= new Date() && konzert.link != undefined && konzert.link != "") {
       Location.classList.add("highlight");
       Location.onclick = () => {
         window.open(konzert.link);
@@ -116,7 +116,6 @@ function createKonzerte() {
     parent.appendChild(Location)
     const Stadt = document.createElement("p");
     Stadt.textContent = konzert.Stadt;
-
     parent.appendChild(Stadt)
   }
 }
@@ -213,7 +212,7 @@ function createButtons(btnsArr, parentID, size = null) {
     linkBtn.src = `Images/Icons/i_${type}.svg`
     linkBtn.onclick = () => {
       if (type === "order") {
-        window.location.href = `mailto:KlausHeuken@gmx.de?subject=${"CD Bestellung"}&body=${encodeURI(link)}`;
+        window.location.href = `mailto:VolkerHeuken@web.de?subject=${"CD Bestellung"}&body=${encodeURI(link)}`;
       } else {
         window.open(link)
       }
@@ -361,6 +360,7 @@ function colToggleColormode(btn = null) {
   setCssRoot(`bgcBackground`, colBG);
   setCssRoot(`txtBackground`, colTxt);
   setCssRoot(`txtMain`, mainTxt);
+  setCssRoot(`filter`, colScheme.darkmodeOn ? 1 : 0);
 }
 
 //----- Toggle Navbar Dropdown -----------s
