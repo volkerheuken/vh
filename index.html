@@ -1,3 +1,4 @@
+Disko
 <!DOCTYPE html>
 <html>
 
@@ -31,7 +32,7 @@
 		<div class="cl_navElements cl_footer_hidables" id="idDiv_navBar_Home" data-type="Home" onclick="navClick(this)">Home</div>
 		<div class="cl_navElements" id="idDiv_navBar_Konzerte" data-type="Konzerte" onclick="navClick(this)">Konzerte</div>
 		<div class="cl_navElements" id="idDiv_navBar_Ensembles" data-type="Ensembles" onclick="navClick(this)">Ensembles</div>
-		<div class="cl_navElements" id="idDiv_navBar_Medien" data-type="Medien" onclick="navClick(this)">Disko</div>
+		<div class="cl_navElements" id="idDiv_navBar_Disko" data-type="Disko" onclick="navClick(this)">Disko</div>
 		<div class="cl_navElements" id="idDiv_navBar_Bio" data-type="Bio" onclick="navClick(this)">Bio</div>
 		<div class="cl_navElements" id="idDiv_navBar_Kontakt" data-type="Kontakt" onclick="navClick(this)">Kontakt</div>
 		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Impressum" data-type="Impressum" onclick="navClick(this)">Impressum</div>
@@ -43,6 +44,8 @@
 					<img src="Images/Kontakt.jpg" uiAlign="center">
 				</div>
 				<h1 class="cl_pageTitle" uiAlign="center">Volker Heuken - Vibraphon</h1>
+				<div class="cl_newsGrid" id="id_NewsListe" uiAlign="center top">
+				</div>
 			</div>
 		</section>
 		<section id="id_Konzerte" style="display:none;">
@@ -57,9 +60,9 @@
 				<!-- Inhalt wird aus "Data.js -> EnsemblesCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Ensembles")" gefüllt-->
 			</div>
 		</section>
-		<section id="id_Medien" style="display:none;">
-			<div class="cl_mainGrid" id="id_Content_Medien">
-				<!-- Inhalt wird aus "Data.js -> MedienCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Medien")" gefüllt-->
+		<section id="id_Disko" style="display:none;">
+			<div class="cl_mainGrid" id="id_Content_Disko">
+				<!-- Inhalt wird aus "Data.js -> DiskoCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Disko")" gefüllt-->
 			</div>
 		</section>
 		<section id="id_Bio" style="display:none;">
@@ -83,17 +86,17 @@
 				<div class="cl_pageText" uiAlign="center top" uiTextAlign="center">
 					<h3> Volker Heuken </h3>
 					<br>
-					<div>E-Mail: <a href="mailto:VolkerHeuken@web.de">VolkerHeuken@web.de</a></div>
-					<div>Tel: <a href="tel:+4915778220214">+49 1577 8220214</a></div>
+					<p title="Öffnet eine Mail-App">E-Mail: <a href="mailto:VolkerHeuken@web.de">VolkerHeuken@web.de</a></p>
+					<p title="Öffnet eine Telefon-App">Tel: <a href="tel:+4915778220214">+49 1577 8220214</a></p>
 					<br>
 					<br>
-					<h3>Schick mir eine Nachricht per Whatsapp:</h3>
+					<p>Schick eine Nachricht per Whatsapp:</p>
 					<input type="text" id="idVin_Kontakt_Name" placeholder="Dein Name" value=""></input>
 					<br>
-					<textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht" style="resize:none;"></textarea>
+					<textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht"></textarea>
 					<br>
 					<button type="button" id="idArea_Kontakt_SendWA" onclick="sendWA()">Chat öffnen</button>
-					<p>(Öffnet die App oder die WebApp)</p>
+					<p>(Öffnet die Mobile-App oder die WebApp)</p>
 				</div>
 				<div class="cl_pageImg" uiAlign="left top">
 					<img src="Images/Kontakt.jpg" alt="">

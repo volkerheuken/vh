@@ -7,18 +7,20 @@ const globalValues = {
 function mainSetup() {
   //add the Grid-Area-Names to all divs inside the sections
   colToggleColormode();
-  createCardSection("Ensembles");
-  createCardSection("Medien");
+  createNews();
   createKonzerte();
+  createCardSection("Ensembles");
+  createCardSection("Disko");
+  // createDisko();
   createButtons(FooterButtons, "idDiv_footerCredits", 0.5)
   navClick();
   handleTabletChange(checkMediaQuery); // Initial check
 }
 
 function navClick(obj = null) {
-  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Ensembles"; // default  first Site
+  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Disko"; // default  first Site
   // set "gridColumns-num" so the Grid stays centered
-  // if (["Ensembles", "Medien"].includes(globalValues.nextSection)) {
+  // if (["Ensembles", "Disko"].includes(globalValues.nextSection)) {
   //   const Data = eval(globalValues.nextSection);
   //   setCssRoot(`gridColumns-num`, 4) // Data.length + 1);
   // } else {
@@ -61,6 +63,16 @@ function navClick(obj = null) {
   dbID("idNav_navElements").classList.remove("navbarDropActive")
 }
 
+function createNews() {
+  const parent = dbID("id_NewsListe");
+  parent.innerHTML = "";
+  for (let news of News) {
+    const text = document.createElement("p");
+    text.textContent = news.text;
+    text.style.borderBottom = getCssRoot("UIBorderThin");
+    parent.appendChild(text)
+  }
+}
 
 function createKonzerte() {
   let parent = dbID(`id_KonzertListe`);
@@ -109,6 +121,7 @@ function createKonzerte() {
     // Link zur Veranstaltung nur wenn bevorstehend, da alte Links ggf. verschwinden und man dann auf einer fehlerseite raus kommt, was echt uncool ist.
     if (d >= new Date() && konzert.link != undefined && konzert.link != "") {
       Location.classList.add("highlight");
+      Location.title = `Öffnet die Website von\n"${konzert.Location}"`
       Location.onclick = () => {
         window.open(konzert.link);
       }

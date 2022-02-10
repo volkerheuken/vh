@@ -1,3 +1,9 @@
+const News = [
+  {text:"News Nummer 1"},
+  {text:"News Nummer 2"},
+  {text:"3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+]
+
 const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
 {
     datum: "2022.02.18",
@@ -102,7 +108,8 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
   },
 ];
 
-const Ensembles = [{
+const Ensembles = [
+  {
     title: `Heuken/Stadtfeld/Heigenhuber`,
     picName: "E_HeukenStadtfeldHeigenhuber.webp",
     cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
@@ -186,7 +193,8 @@ const Ensembles = [{
   }
 ];
 
-const Medien = [{
+const Disko = [
+  {
     title: `Volker Heuken\nShepherd Moon`,
     datum: "2020",
     picName: "D_ShepherdMoon.webp",

@@ -3,9 +3,10 @@ _erledigtes_ , __dringendes__ und ___kritisches___
 
 ## technisches (Javascriptfehler, neue Funktionen, etc.)
 _- Konzerte: Links werden nicht angezeigt wenn nicht ausgefüllt._
-- News als Liste unter Bild auf Startseite "Home" --> als Einzeiler?
+_- News als Liste unter Bild auf Startseite "Home"_
+- News können mehrzeilig sein, wenn andere styles oder sowas wie n Datum oder sowas dazu kommen soll können wir das noch nachpflegen
 - Cursor an allen Stellen prüfen
-- ungenutzte Fonts löschen
+_- ungenutzte Fonts löschen_
 - herausfinden, warum immer nur eine Card pro Reihe erscheint -->"Ensembles/Medien"
 
 ## Design (Abstände und Layout)
@@ -24,6 +25,7 @@ _- Bilder auch bei Handyansicht vorhanden, aber dann untereinander_
 - Logo für Browser erstellen --> da würde ich einfach " VH " in der passenden Schriftart mal als Logo verwenden. Kommt dann aber auch nicht auf die Seite selbst.
 - den Websiteeintrag im HTML-header "description" korrigieren! (den hier benutzen oder so was: "https://www.onsite.org/metatag_generator.html")
 - in "function createButtons()" die __Mailadresse__ prüfen!
+- Tooltips (title) und aria-labels bei Bildern und wichtigen Stellen einfügen für bessere Barrierefreiheit
 
 
 ### "Ensembles"
@@ -36,5 +38,5 @@ _- Bilder auch bei Handyansicht vorhanden, aber dann untereinander_
 - bei Klick wird eine Art "Karte" über allem anderen gezeigt
 
 ### Impressum
-- Bilderrechte korrigieren
 - __Anschrift überprüfen__
+- Bilderrechte korrigieren
