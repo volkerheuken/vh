@@ -1,4 +1,3 @@
-Disko
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +28,7 @@ Disko
 <body>
 	<nav id="idNav_navElements">
 		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Menu" onclick="navbarDropdownClick()" onmouseover="navbarDropdownClick()"></div>
-		<div class="cl_navElements cl_footer_hidables" id="idDiv_navBar_Home" data-type="Home" onclick="navClick(this)">Home</div>
+		<div class="cl_navElements" id="idDiv_navBar_Home" data-type="Home" onclick="navClick(this)">Home</div>
 		<div class="cl_navElements" id="idDiv_navBar_Konzerte" data-type="Konzerte" onclick="navClick(this)">Konzerte</div>
 		<div class="cl_navElements" id="idDiv_navBar_Ensembles" data-type="Ensembles" onclick="navClick(this)">Ensembles</div>
 		<div class="cl_navElements" id="idDiv_navBar_Disko" data-type="Disko" onclick="navClick(this)">Disko</div>
@@ -38,125 +37,125 @@ Disko
 		<div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Impressum" data-type="Impressum" onclick="navClick(this)">Impressum</div>
 	</nav>
 	<main>
-		<section id="id_Home" style="display:none;">
-			<div class="cl_mainFlex cl_flexDir_column">
-				<div class="cl_pageImg">
-					<img src="Images/Kontakt.jpg" uiAlign="center">
-				</div>
-				<h1 class="cl_pageTitle" uiAlign="center">Volker Heuken - Vibraphon</h1>
-				<div class="cl_newsGrid" id="id_NewsListe" uiAlign="center top">
-				</div>
+		<section class="cl_section_vertical" id="id_Home">
+			<div class="cl_imageCenter">
+				<img id="id_imgHome" src="Images/Kontakt.jpg" uiAlign="center" uiSize="big">
+			</div>
+			<h1 class="cl_pageTitle" uiTextAlign="center"> Volker Heuken - Vibraphon - Leipzig</h1>
+			<br>
+			<div class="cl_newsGrid" id="id_NewsListe" uiAlign="center top">
+				<!-- wird automatisch geleert und in "main.js createNews()" neu gefüllt -->
 			</div>
 		</section>
-		<section id="id_Konzerte" style="display:none;">
-			<div class="cl_mainFlex cl_flexDir_column">
-				<div class="cl_konzertGrid" id="id_KonzertListe" uiAlign="center top">
-					<!-- wird automatisch geleert und in "main.js createKonzerte()" neu gefüllt -->
-				</div>
+		<section class="" id="id_Konzerte">
+			<div class="cl_konzertGrid" id="id_KonzertListe" uiAlign="center top">
+				<!-- wird automatisch geleert und in "main.js createKonzerte()" neu gefüllt -->
 			</div>
 		</section>
-		<section id="id_Ensembles" style="display:none;">
-			<div class="cl_mainGrid" id="id_Content_Ensembles">
+		<section class="" id="id_Ensembles">
+			<div class="cl_Ensembles">
 				<!-- Inhalt wird aus "Data.js -> EnsemblesCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Ensembles")" gefüllt-->
 			</div>
 		</section>
-		<section id="id_Disko" style="display:none;">
-			<div class="cl_mainGrid" id="id_Content_Disko">
-				<!-- Inhalt wird aus "Data.js -> DiskoCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Disko")" gefüllt-->
-			</div>
-		</section>
-		<section id="id_Bio" style="display:none;">
-			<div class="cl_mainFlex cl_flexDir_rows">
-				<div class="cl_pageText" uiAlign="center top" uiTextAlign="block">
-					<span>
-						Volker Heuken (Vibraphon, Marimba, Komposition) studierte von 2011 bis 2016 an der HfM Nürnberg Jazz-Mallets bei Roland Neffe.<span>
-							In dieser Zeit gründete er verschiedene Formationen, u.a. das Volker Heuken Sextett, mit dem er zwei CDs veröffentlicht hat.<span>
-								Er ist seit dieser Zeit Mitglied im Metropolmusik e.V. Nürnberg. 2016-2019 studierte er bei Prof Michael Wollny an der HMT in Leipzig Jazz-Komposition.<span>
-									Er ist Mitglied im Philipp Rumsch Ensemble und der Big Band Spielvereinigung Sued in Leipzig.<span><br>
-										Mit seinem Trio Heuken/Stadtfeld/Heigenhuber war er 2019 Preisträger des Leipziger Jazznachwuchspreises und die Gruppe veröffentlichte 2020 die CD "Hallungen Tapes".<span>
-											Volker Heuken war zu Gast auf diversen Jazzfestivals (Jazzfest Berlin, Jazztage Leipzig, Jazzfest Bonn, Leverkusener Jazztage, etc.).</span>
+		<section class="" id="id_Disko">
+			<!-- Inhalt wird aus "Data.js -> DiskoCards" mit Hilfe der Funktion -> main.js -> "function createCardSection("Disko")" gefüllt-->
+			<div class="cl_Disko">
+				<div class="cl_diskoWrapper">
+					<div class="cl_Disko_PreviewGrid" id="id_Disko_Preview">
+					</div>
 				</div>
-				<div class="cl_pageImg" uiAlign="left top">
-					<img src="Images/Bio.webp" alt="">
+				<div class="cl_Disko_CardGrid" id="id_Disko_Cards">
 				</div>
 			</div>
 		</section>
-		<section id="id_Kontakt" style="display:none;">
-			<div class="cl_mainFlex cl_flexDir_rows">
-				<div class="cl_pageText" uiAlign="center top" uiTextAlign="center">
-					<h3> Volker Heuken </h3>
-					<br>
-					<p title="Öffnet eine Mail-App">E-Mail: <a href="mailto:VolkerHeuken@web.de">VolkerHeuken@web.de</a></p>
-					<p title="Öffnet eine Telefon-App">Tel: <a href="tel:+4915778220214">+49 1577 8220214</a></p>
-					<br>
-					<br>
-					<p>Schick eine Nachricht per Whatsapp:</p>
-					<input type="text" id="idVin_Kontakt_Name" placeholder="Dein Name" value=""></input>
-					<br>
-					<textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht"></textarea>
-					<br>
-					<button type="button" id="idArea_Kontakt_SendWA" onclick="sendWA()">Chat öffnen</button>
-					<p>(Öffnet die Mobile-App oder die WebApp)</p>
-				</div>
-				<div class="cl_pageImg" uiAlign="left top">
-					<img src="Images/Kontakt.jpg" alt="">
-				</div>
+		<section class="cl_section_horizontal" id="id_Bio">
+			<div class="cl_pageText" uiAlign="center top" uiTextAlign="block">
+				<span>
+					Volker Heuken (Vibraphon, Marimba, Komposition) studierte von 2011 bis 2016 an der HfM Nürnberg Jazz-Mallets bei Roland Neffe.<span>
+						In dieser Zeit gründete er verschiedene Formationen, u.a. das Volker Heuken Sextett, mit dem er zwei CDs veröffentlicht hat.<span>
+							Er ist seit dieser Zeit Mitglied im Metropolmusik e.V. Nürnberg. 2016-2019 studierte er bei Prof Michael Wollny an der HMT in Leipzig Jazz-Komposition.<span>
+								Er ist Mitglied im Philipp Rumsch Ensemble und der Big Band Spielvereinigung Sued in Leipzig.<span><br>
+									Mit seinem Trio Heuken/Stadtfeld/Heigenhuber war er 2019 Preisträger des Leipziger Jazznachwuchspreises und die Gruppe veröffentlichte 2020 die CD "Hallungen Tapes".<span>
+										Volker Heuken war zu Gast auf diversen Jazzfestivals (Jazzfest Berlin, Jazztage Leipzig, Jazzfest Bonn, Leverkusener Jazztage, etc.).</span>
+			</div>
+			<div class="cl_imageCenter">
+				<img src="Images/Bio.webp" uiSize="big">
 			</div>
 		</section>
-		<section id="id_Impressum" style="display:none;">
-			<div class="cl_textGrid">
-				<h1 class="cl_pageTitle">Impressum</h1>
-				<div class="cl_pageTextFull" uiAlign="center top" uiTextAlign="block">
-					<h3>Angaben gemäß § 5 TMG:</h3>
-					<span>Volker Heuken</span>
-					<span>04229 Leipzig</span>
-					<span>phone: +49 1577 8220214</span>
-					<span>email: mail@volkerheuken.com</span>
-					<span>Berufsbezeichnung: Musiker</span>
-					<br>
-					<h3>Fotos</h3>
-					<span>All by Lukas Diller, except:</span>
-					<span>Shepherd Moon: Peter Brill</span>
-					<span>Heuken/Stadtfeld/Heigenhuber: Robert Strehler</span>
-					<span>Kontakt: Chris Civitillo</span>
-					​<br>
-					<h3>Haftungsausschluss (Disclaimer)</h3>
-					​<br>
-					<h3>Haftung für Inhalte</h3>
-					<span>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
-						gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
-						bleiben hiervon
-						unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</span>
-					<br>
-					<h3>Haftung für Links</h3>
-					<span>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
-						jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine
-						permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</span>
-					<br>
-					<h3>Urheberrecht</h3>
-					<span>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
-						Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom
-						Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
-						entsprechenden
-						Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</span>
-					<br>
-					<h3>Datenschutz</h3>
-					<span>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
-						Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit
-						möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
-						Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</span>
-					​<br>
-					<h3>Datenschutzerklärung für die Nutzung von YouTube</h3>
-					<span>Unsere Webseite nutzt Plugins der von Google betriebenen Seite YouTube. Betreiber der Seiten ist die YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. Wenn Sie eine unserer mit einem YouTube-Plugin ausgestatteten Seiten
-						besuchen, wird eine Verbindung zu den Servern von YouTube hergestellt. Dabei wird dem Youtube-Server mitgeteilt, welche unserer Seiten Sie besucht haben. Wenn Sie in Ihrem YouTube-Account eingeloggt sind ermöglichen Sie YouTube, Ihr
-						Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube- Account ausloggen. Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von
-						YouTube
-						unter: <a href="https://www.google.de/intl/de/policies/privacy">https://www.google.de/intl/de/policies/privacy</a></span>
-					​<br>
-					<h3>Widerspruch Werbe-Mails</h3>
-					<span>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich
-						ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</span>
+		<section class="cl_section_horizontal" id="id_Kontakt">
+			<div class="cl_pageText" uiAlign="center top" uiTextAlign="center">
+				<h3 data-name></h3>
+				<br>
+				<p title="Öffnet eine Mail-App">E-Mail: <a data-mailRef data-mail></a></p>
+				<p title="Öffnet eine Telefon-App">Tel: <a data-phoneRef data-phoneString></a></p>
+				<br>
+				<br>
+				<div uiTextAlign="left">
+					<span>Schick eine Nachricht per Whatsapp:</span>
+					<!-- <input type="text" id="idVin_Kontakt_Name" placeholder="Dein Name" value=""></input> -->
+					<!-- <br> -->
+					<!-- <textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht"></textarea> -->
+					<!-- <br> -->
+					<button type="button" id="idArea_Kontakt_SendWA" onclick="sendWA()">Whatsapp öffnen</button>
+					<!-- <p>(Öffnet die Mobile-App oder die WebApp)</p> -->
 				</div>
+			</div>
+			<div class="" uiAlign="left top" uiSize="big">
+				<img src="Images/Kontakt.jpg" alt="">
+			</div>
+		</section>
+		<section class="" id="id_Impressum">
+			<h1 class="cl_pageTitle">Impressum</h1>
+			<div class="cl_pageTextFull" uiAlign="center top" uiTextAlign="block">
+				<h3>Angaben gemäß § 5 TMG:</h3>
+				<span data-name></span>
+				<span data-cityFull></span>
+				<span data-phoneText></span>
+				<span data-mailText></span>
+				<span>Berufsbezeichnung: Musiker</span>
+				<br>
+				<h3>Fotos</h3>
+				<span>All by Lukas Diller, except:</span>
+				<span>Shepherd Moon: Peter Brill</span>
+				<span>Heuken/Stadtfeld/Heigenhuber: Robert Strehler</span>
+				<span>Kontakt: Chris Civitillo</span>
+				​<br>
+				<h3>Haftungsausschluss (Disclaimer)</h3>
+				​<br>
+				<h3>Haftung für Inhalte</h3>
+				<span>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
+					gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
+					bleiben hiervon
+					unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</span>
+				<br>
+				<h3>Haftung für Links</h3>
+				<span>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
+					jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine
+					permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</span>
+				<br>
+				<h3>Urheberrecht</h3>
+				<span>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+					Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom
+					Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
+					entsprechenden
+					Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</span>
+				<br>
+				<h3>Datenschutz</h3>
+				<span>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+					Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit
+					möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
+					Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</span>
+				​<br>
+				<h3>Datenschutzerklärung für die Nutzung von YouTube</h3>
+				<span>Unsere Webseite nutzt Plugins der von Google betriebenen Seite YouTube. Betreiber der Seiten ist die YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. Wenn Sie eine unserer mit einem YouTube-Plugin ausgestatteten Seiten
+					besuchen, wird eine Verbindung zu den Servern von YouTube hergestellt. Dabei wird dem Youtube-Server mitgeteilt, welche unserer Seiten Sie besucht haben. Wenn Sie in Ihrem YouTube-Account eingeloggt sind ermöglichen Sie YouTube, Ihr
+					Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube- Account ausloggen. Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von
+					YouTube
+					unter: <a href="https://www.google.de/intl/de/policies/privacy">https://www.google.de/intl/de/policies/privacy</a></span>
+				​<br>
+				<h3>Widerspruch Werbe-Mails</h3>
+				<span>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich
+					ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</span>
 			</div>
 		</section>
 	</main>
@@ -167,10 +166,7 @@ Disko
 		<div class="cl_footerElements" style="pointer-events:none;">&#8214;</div>
 		<div class="cl_navElements cl_footer_hidables" id="idDiv_footerBar_Impressum" data-type="Impressum" onclick="navClick(this)">Impressum</div>
 		<div class="cl_footerElements cl_footer_hidables" style="pointer-events:none;">&#8214;</div>
-		<div class="cl_spotifySmall">
-			<!-- https://codepen.io/mikony/pen/WWOOVa -->
-			<!-- <iframe id="spotify" src="https://open.spotify.com/embed/artist/7pv0ZlsoLsO02h38vM8wVq" width="80" height="80" frameBorder="1" allowtransparency="false" allow="encrypted-media"></iframe> -->
-		</div>
+		<div class="cl_spotifySmall"></div>
 		<div class="cl_footerElements" style="pointer-events:none;">&#8214;</div>
 		<div class="cl_footerElements cl_footerLinks" id="idDiv_footerCredits"></div>
 

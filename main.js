@@ -7,26 +7,31 @@ const globalValues = {
 function mainSetup() {
   //add the Grid-Area-Names to all divs inside the sections
   colToggleColormode();
+  createContactData();
   createNews();
   createKonzerte();
-  createCardSection("Ensembles");
-  createCardSection("Disko");
-  // createDisko();
+  createEnsembles();
+  createDisko();
   createButtons(FooterButtons, "idDiv_footerCredits", 0.5)
   navClick();
   handleTabletChange(checkMediaQuery); // Initial check
 }
 
-function navClick(obj = null) {
-  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Disko"; // default  first Site
-  // set "gridColumns-num" so the Grid stays centered
-  // if (["Ensembles", "Disko"].includes(globalValues.nextSection)) {
-  //   const Data = eval(globalValues.nextSection);
-  //   setCssRoot(`gridColumns-num`, 4) // Data.length + 1);
-  // } else {
-  //   setCssRoot(`gridColumns-num`, 3); //default length
-  // }
+function createContactData() {
+  for (const [key, value] of Object.entries(Contact)) {
+    const html = document.querySelectorAll(`[data-${key}]`)
+    for (const inst of html) {
+      if (key.includes("Ref")) {
+        inst.href = value;
+      } else {
+        inst.textContent = value;
+      }
+    }
+  }
+}
 
+function navClick(obj = null) {
+  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Ensembles"; // default  first Site
   if (globalValues.prevSection != globalValues.nextSection) {
     let selectedID = `idDiv_navBar_${globalValues.nextSection}`;
     //set the CSS-Active class to highlight the clicked Menu
@@ -39,17 +44,18 @@ function navClick(obj = null) {
         item.classList.remove("navbarActive");
       }
     }
-
     //hide all Grid-Items except the selected
     const mainGridItems = document.querySelectorAll("section")
-    for (let i = 0; i < mainGridItems.length; i++) {
-      const item = mainGridItems[i];
+    let selected;
+    for (let item of mainGridItems) {
       prevID = `id_${globalValues.prevSection}`
       nextID = `id_${globalValues.nextSection}`
-      const state = (nextID === item.id) ? true : false;
-      item.style.display = state ? "flex" : "none";
-      item.pointerEvents = state ? "auto" : "none";
+      item.setAttribute("hidden", true);
+      if (nextID === item.id) {
+        selected = item;
+      }
     }
+    selected.removeAttribute("hidden");
   }
   //always scroll to the top
   const scrollOptions = {
@@ -69,7 +75,7 @@ function createNews() {
   for (let news of News) {
     const text = document.createElement("p");
     text.textContent = news.text;
-    text.style.borderBottom = getCssRoot("UIBorderThin");
+    text.style.borderTop = getCssRoot("UIBorderThin");
     parent.appendChild(text)
   }
 }
@@ -87,8 +93,6 @@ function createKonzerte() {
     const convDate = convertDate(d, true)
     konzert.date = convDate;
     const year = d.getFullYear();
-
-
     if (konzert.UTC < new Date() && !pastConcertTitle) {
       pastConcertTitle = true;
       const spacer = document.createElement("h2");
@@ -133,17 +137,56 @@ function createKonzerte() {
   }
 }
 
-function createCardSection(type = null) {
-  if (type === null) return
-  const Data = eval(type);
-  const parent = dbID(`id_Content_${type}`)
+function createDisko() {
+  //select Section (parent)
+  const diskoPreview = dbID(`id_Disko_Preview`)
+  diskoPreview.innerHTML = "";
+  //container for all Cards, they overlay
+  const cardContainer = dbID(`id_Disko_Cards`)
+  cardContainer.innerHTML = "";
+
+  for (let [index, data] of Disko.entries()) {
+    // create images with container
+    const diskoPreviewContainer = document.createElement("div");
+    diskoPreviewContainer.setAttribute("uiSize", "small");
+    const diskoPreviewImage = document.createElement("img");
+    diskoPreviewImage.src = `Images/Disko/${data.picName}`;
+    //create actual Card
+    const card = createSingleCard(data, index, "Disko");
+    card.id = `id_diskoCard_card${index}`
+    card.classList.add("cl_cardDisko");
+    cardContainer.appendChild(card);
+
+    //logic to show the card
+    diskoPreviewContainer.onclick = () => {
+      const state = card.classList.contains("cl_cardDiskoActive");
+      diskoHideCard();
+      if (!state) card.classList.add("cl_cardDiskoActive");
+    }
+    diskoPreviewContainer.appendChild(diskoPreviewImage);
+    diskoPreview.appendChild(diskoPreviewContainer);
+  }
+  //activate first Card
+  const randIndex = Math.floor(Math.random()*Disko.length);
+  dbID(`id_diskoCard_card${randIndex}`).classList.add("cl_cardDiskoActive");
+}
+
+function diskoHideCard() {
+  for (const item of dbCL("cl_cardDisko")) {
+    item.classList.remove("cl_cardDiskoActive");
+  }
+}
+
+function createEnsembles() {
+  const parent = dbCL(`cl_Ensembles`)[0];
   parent.innerHTML = "";
-  Data.forEach((data, index) => {
-    createSingleCard(data, index, parent, type);
+  Ensembles.forEach((data, index) => {
+    const card = createSingleCard(data, index, "Ensembles");
+    parent.appendChild(card)
   });
 }
 
-function createSingleCard(data, index = 0, parent, type) {
+function createSingleCard(data, index = 0, type) {
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("cl_card");
 
@@ -207,7 +250,7 @@ function createSingleCard(data, index = 0, parent, type) {
     cardContainer.appendChild(links);
     createButtons(data.links, links)
   }
-  parent.appendChild(cardContainer)
+  return cardContainer;
 }
 
 function createButtons(btnsArr, parentID, size = null) {
@@ -225,7 +268,7 @@ function createButtons(btnsArr, parentID, size = null) {
     linkBtn.src = `Images/Icons/i_${type}.svg`
     linkBtn.onclick = () => {
       if (type === "order") {
-        window.location.href = `mailto:VolkerHeuken@web.de?subject=${"CD Bestellung"}&body=${encodeURI(link)}`;
+        window.location.href = `${Contact.mailRef}?subject=${"CD Bestellung"}&body=${encodeURI(link)}`;
       } else {
         window.open(link)
       }
@@ -234,26 +277,27 @@ function createButtons(btnsArr, parentID, size = null) {
   });
 }
 
-
 function sendWA() {
-  let url = "https://wa.me/4915778220214?text="
-  let name = dbID("idVin_Kontakt_Name").value.trim();
-  let text = dbID("idArea_Kontakt_Nachricht").value.trim();
-  while (name == "") {
-    name = prompt("Bitte gib deinen Name ein.").trim();
-    dbID("idVin_Kontakt_Name").value = name;
-  }
-  while (text == "") {
-    text = prompt("Bitte gib einen Text ein.").trim();
-    dbID("idArea_Kontakt_Nachricht").value = text;
-  }
-  if (name != "" && text != "") {
-    const msgText = `${url}${name}:${text}`
-    const msgTextEnc = encodeURI(msgText);
-    window.open(msgTextEnc);
-    dbID("idVin_Kontakt_Name").value = "";
-    dbID("idArea_Kontakt_Nachricht").value = "";
-  }
+  let url = `https://wa.me/${Contact.phone}`
+  window.open(url);
+  // let url = `https://wa.me/${Contact.phone}?text=`
+  // let name = dbID("idVin_Kontakt_Name").value.trim();
+  // let text = dbID("idArea_Kontakt_Nachricht").value.trim();
+  // while (name == "") {
+  //   name = prompt("Bitte gib deinen Name ein.").trim();
+  //   dbID("idVin_Kontakt_Name").value = name;
+  // }
+  // while (text == "") {
+  //   text = prompt("Bitte gib einen Text ein.").trim();
+  //   dbID("idArea_Kontakt_Nachricht").value = text;
+  // }
+  // if (name != "" && text != "") {
+    // const msgText = `${url}${name}:${text}`
+    // const msgTextEnc = encodeURI(msgText);
+    // window.open(url);
+    // dbID("idVin_Kontakt_Name").value = "";
+    // dbID("idArea_Kontakt_Nachricht").value = "";
+  // }
 }
 
 //------------ Helperfunctions --------------
@@ -322,35 +366,20 @@ function sortArrayByKey(arr, key, inverse = false) {
   });
 };
 
-// Colors for the niceness of the page
-const colScheme = {
-  lightmode: {
-    txtMain: [0, 100, 0], // Akzentfarbe light:'#c2bebc'
-    bgcBackground: [0, 0, 99], //light:'#e6e6e6'
-    txtBackground: [0, 100, 0]
-  },
-  darkmode: {
-    txtMain: [0, 100, 100], // Akzentfarbe dark: '#c2bebc'
-    bgcBackground: [60, 0, 10], // General Background dark: '#1a1a1a'
-    txtBackground: [0, 100, 100]
-  },
-  darkmodeOn: false
-}
-
-colScheme.darkmodeOn = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+ColorScheme.darkmodeOn = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 darkModeMediaQuery.addListener((e) => {
-  colScheme.darkmodeOn = e.matches;
+  ColorScheme.darkmodeOn = e.matches;
   colToggleColormode();
 });
 
 function colToggleColormode(btn = null) {
-  if (btn != null) colScheme.darkmodeOn = !colScheme.darkmodeOn;
+  if (btn != null) ColorScheme.darkmodeOn = !ColorScheme.darkmodeOn;
   let colBG, colTxt, mainTxt;
-  if (colScheme.darkmodeOn) {
-    const bg = colScheme.darkmode.bgcBackground;
-    const txt = colScheme.darkmode.txtBackground;
-    const mTxt = colScheme.darkmode.txtMain;
+  if (ColorScheme.darkmodeOn) {
+    const bg = ColorScheme.darkmode.bgcBackground;
+    const txt = ColorScheme.darkmode.txtBackground;
+    const mTxt = ColorScheme.darkmode.txtMain;
     colBG = `${bg[0]} ${bg[1]}% ${bg[2]}%`
     colTxt = `${txt[0]} ${txt[1]}% ${txt[2]}%`
     mainTxt = `${mTxt[0]} ${mTxt[1]}% ${mTxt[2]}%`
@@ -359,9 +388,9 @@ function colToggleColormode(btn = null) {
       dbIDStyle("idImg_footer_Spacer").filter = "invert(100%)";
     }
   } else {
-    const bg = colScheme.lightmode.bgcBackground;
-    const txt = colScheme.lightmode.txtBackground;
-    const mTxt = colScheme.lightmode.txtMain;
+    const bg = ColorScheme.lightmode.bgcBackground;
+    const txt = ColorScheme.lightmode.txtBackground;
+    const mTxt = ColorScheme.lightmode.txtMain;
     colBG = `${bg[0]} ${bg[1]}% ${bg[2]}%`
     colTxt = `${txt[0]} ${txt[1]}% ${txt[2]}%`
     mainTxt = `${mTxt[0]} ${mTxt[1]}% ${mTxt[2]}%`
@@ -370,10 +399,12 @@ function colToggleColormode(btn = null) {
       dbIDStyle("idImg_footer_Spacer").filter = "invert(0%)";
     }
   }
+  //change HomeImage
+  dbID("id_imgHome").src = ColorScheme.darkmodeOn ? "Images/Home/Home_dark.jpg" : "Images/Home/Home_light.jpg";
   setCssRoot(`bgcBackground`, colBG);
   setCssRoot(`txtBackground`, colTxt);
   setCssRoot(`txtMain`, mainTxt);
-  setCssRoot(`filter`, colScheme.darkmodeOn ? 1 : 0);
+  setCssRoot(`filter`, ColorScheme.darkmodeOn ? 1 : 0);
 }
 
 //----- Toggle Navbar Dropdown -----------s

@@ -1,5 +1,7 @@
 .atom-live-server.json
 .DS_Store
+.gitignore
+__Kram
 
 # General
 # Icon must end with two \r

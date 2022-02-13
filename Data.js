@@ -1,11 +1,41 @@
-const News = [
-  {text:"News Nummer 1"},
-  {text:"News Nummer 2"},
-  {text:"3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+const Contact = {
+  name: "Volker Heuken",
+  mail: "VolkerHeuken@web.de",
+  phone: "+4915778220214",
+  phoneString: "0157 78220214",
+  street: "Oststrasse",
+  zip: 04229,
+  city: "Leipzig",
+  get mailRef() {
+    return `mailto:${this.mail}`
+  },
+  get mailText() {
+    return `Mail: ${this.mail}`
+  },
+  get cityFull(){
+    return `${this.zip} ${this.city}`
+  },
+  get phoneText() {
+    return `Phone :${this.phone}`
+  },
+  get phoneRef() {
+    return `tel:${this.phone}`
+  }
+}
+
+const News = [{
+    text: "News Nummer 1"
+  },
+  {
+    text: "News Nummer 2"
+  },
+  {
+    text: "3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
 ]
 
 const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
-{
+  {
     datum: "2022.02.18",
     Startzeit: "19:30",
     Titel: "Volker Heuken Sextett",
@@ -92,7 +122,7 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
     Location: "Mon Ami",
     Stadt: "Weimar",
     link: "https://www.monami-weimar.de/"
-  },{
+  }, {
     datum: "2022.07.23",
     Startzeit: "20",
     Titel: "Oper Carmen",
@@ -108,8 +138,7 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
   },
 ];
 
-const Ensembles = [
-  {
+const Ensembles = [{
     title: `Heuken/Stadtfeld/Heigenhuber`,
     picName: "E_HeukenStadtfeldHeigenhuber.webp",
     cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
@@ -193,8 +222,7 @@ const Ensembles = [
   }
 ];
 
-const Disko = [
-  {
+const Disko = [{
     title: `Volker Heuken\nShepherd Moon`,
     datum: "2020",
     picName: "D_ShepherdMoon.webp",
@@ -291,3 +319,18 @@ const FooterButtons = [{
     link: "https://www.facebook.com/volker.heuken"
   }
 ];
+
+// Colors for the niceness of the page
+const ColorScheme = {
+  lightmode: {
+    txtMain: [0, 100, 0], // Akzentfarbe light:'#c2bebc'
+    bgcBackground: [0, 0, 99], //light:'#e6e6e6'
+    txtBackground: [0, 100, 0]
+  },
+  darkmode: {
+    txtMain: [0, 100, 100], // Akzentfarbe dark: '#c2bebc'
+    bgcBackground: [60, 0, 10], // General Background dark: '#1a1a1a'
+    txtBackground: [0, 100, 100]
+  },
+  darkmodeOn: false
+}

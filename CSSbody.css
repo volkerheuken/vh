@@ -1,16 +1,17 @@
 :root {
   /* Farben */
-  /* light:'#c2bebc' dark: '#c2bebc'*/
   --bgcMain: 20 5% 75%;
-  --txtMain: 0 100% 0%;
-  --bgcBackground: 0 0% 99%;
-  --txtBackground: 0 100% 0%;
+  --txtMain: 0 100% 100%;
+  --bgcBackground: 60 0% 10%;
+  --txtBackground: 0 100% 100%;
   /* UserInterface SIZES */
   --navbarHeight: 3rem;
+  --footerHeight: calc(var(--navbarHeight)*1.2);
   --padding: 0.5rem;
   --gridGap: 1.5rem;
   --cardGap: 0.5rem;
   --paddingVertical: 0.167rem;
+  --mainMargin: auto 10rem;
   --UIPadding: 0.2rem;
   --UIHeight: 1.667rem;
   --UIHeightDouble: 3.333rem;
@@ -20,9 +21,8 @@
   --UIWidthNorm: 10rem;
   --UIWidthWide: 20rem;
   --CardsMinWidth: 25rem;
-  --CardsMaxWidth: 35rem;
-  --gridColumns-num: 3;
-  --mainMargin: auto 10rem;
+  --CardsMaxWidth: 30rem;
+  --ImgPreviewWidth: 15rem;
   --filter: 1;
   /* Borders */
   --UIBorderThin: 0.042rem solid hsl(var(--bgcMain));
@@ -39,6 +39,7 @@
   --fw-600: 600;
 }
 
+/* ----------------- FONTS ----------------- */
 @font-face {
   font-family: "HKGrotesk";
   src:
@@ -68,7 +69,6 @@
   src:
     url("/font/HKGrotesk-SemiBold.woff2") format("woff2");
   font-weight: 600;
-  /* font-style: bold; */
 }
 
 * {
@@ -88,7 +88,7 @@
 
 body {
   display: flex;
-  background: hsl(var(--bgcBackground));
+  background-color: hsl(var(--bgcBackground));
   color: hsl(var(--txtBackground));
   -webkit-transition: all var(--trT-long) ease-in-out;
   -o-transition: all var(--trT-long) ease-in-out;
@@ -121,7 +121,6 @@ h3 {
   font-weight: var(--fw-600);
   text-align: justify;
   padding: var(--padding);
-  /* padding-bottom: var(--padding); */
 }
 
 div, a {
@@ -165,6 +164,7 @@ img {
   transition: all var(--trT-long) ease-in-out;
 }
 
+/*-----------------NAVBAR -----------------*/
 nav {
   position: fixed;
   top: 0;
@@ -174,7 +174,6 @@ nav {
   max-height: var(--navbarHeight);
   background: hsl(var(--bgcBackground));
   border-bottom: var(--UIBorderThick);
-  display: -ms-grid;
   display: grid;
   grid-gap: var(--padding);
   grid-auto-flow: column;
@@ -195,7 +194,7 @@ footer {
   left: 0;
   right: 0;
   margin: var(--mainMargin);
-  height: calc(var(--navbarHeight)*1.2);
+  height: var(--footerHeight);
   background: hsl(var(--bgcBackground));
   border-top: var(--UIBorderThick);
   display: grid;
@@ -236,15 +235,30 @@ footer {
   display: none;
 }
 
-.cl_footer_hidables {
-  display: initial;
-}
-
 .highlight,
 .highlight:hover,
 .highlight:focus {
   background: hsla(var(--bgcMain) / 0.3);
   cursor: pointer;
+}
+
+/*----------------- FOOTER -----------------*/
+.cl_footer_hidables {
+  display: initial;
+}
+
+.cl_footerLinks {
+  display: grid;
+  grid-gap: var(--cardGap);
+  grid-auto-flow: column;
+  background: hsla(var(--bgcMain) / 0.7);
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cl_footerImageLink {
+  width: calc(var(--navbarHeight)*0.5);
 }
 
 .cl_spotifySmall {
@@ -270,80 +284,175 @@ footer {
   transform: translateY(-60%);
 }
 
+#idDiv_footer_Spacer {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.cl_darkmodeBtn {
+  width: calc(var(--footerHeight)*0.4);
+  aspect-ratio: 1;
+}
+
+/* -----------------main AREA -----------------*/
 main {
-  /* width: 100%; */
-  min-height: calc(100vh - 2 * var(--navbarHeight));
+  display: flex;
+  width: 100%;
+  position: relative;
   top: var(--navbarHeight);
-  position: absolute;
-  padding-bottom: calc(var(--navbarHeight) * 2);
+  min-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
+  justify-content: center;
   margin: var(--mainMargin);
-  z-index: 1;
+  padding-bottom: var(--footerHeight);
 }
 
 section {
-  display: flex;
+  margin: var(--padding);
+  justify-content: center;
   width: 100%;
-  color: hsl(var(--txtGridtitle));
-  font-size: var(--fs-Medium);
-  background: transparent;
+}
+
+.cl_section_horizontal {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 
-.cl_pageTitle {
-  align-self: center;
-  justify-self: center;
+.cl_section_vertical {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+/*----------------- News -----------------*/
+.cl_newsGrid {
+  display: grid;
+  grid-gap: var(--cardGap);
+  grid-auto-columns: var(--CardsMaxWidth);
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+/* -----------------Konzerte -----------------*/
+.cl_konzertGrid {
+  display: grid;
+  grid-gap: var(--cardGap);
+  max-width: min(100%, 100vw);
+  grid-template-columns: repeat(5, auto);
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.cl_konzertFullRow {
   grid-column: 1 / -1;
 }
 
-.cl_mainGrid {
+/* -----------------Ensembles -----------------*/
+.cl_Ensembles {
   display: grid;
-  width: 100%;
+  width: auto;
   -webkit-box-pack: center;
   justify-content: center;
-  /* grid-template-columns: repeat(auto-fill, var(--CardsMinWidth)); */
-  grid-template-columns: auto;
-  /* repeat(auto-fill, max(var(--CardsMaxWidth), calc(100% / var(--gridColumns-num)))); */
-  grid-auto-rows: minmax(var(--navbarHeight), auto);
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, var(--CardsMinWidth));
   grid-gap: var(--cardGap);
 }
 
-.cl_mainFlex {
-  display: flex;
-  align-content: center;
+/* -----------------DISKO -----------------*/
+.cl_Disko {
+  display: grid;
+  width: 100%;
+  max-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
+  grid-auto-flow: column;
+  grid-auto-columns: auto min-content;
+  grid-gap: var(--cardGap);
+}
+
+.cl_diskoWrapper {
+  max-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.cl_Disko_PreviewGrid {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, minmax(var(--ImgPreviewWidth), 1fr));
+  grid-gap: var(--cardGap);
+  overflow-y: scroll;
+  -webkit-box-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
-.cl_flexDir_column {
-  flex-direction: column;
+.cl_Disko_CardGrid {
+  position: relative;
+  width: var(--CardsMinWidth);
 }
 
-.cl_flexDir_rows {
-  flex-direction: row;
+.cl_cardDisko {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: all var(--trT-long) ease-in;
+  -o-transition: all var(--trT-long) ease-in;
+  transition: all var(--trT-long) ease-in;
+  transform: scaleY(0.9);
+  transform-origin: top;
+}
+
+.cl_cardDiskoActive {
+  opacity: 1;
+  -webkit-transition: all var(--trT-long) ease-in-out;
+  -o-transition: all var(--trT-long) ease-in-out;
+  transition: all var(--trT-long) ease-in-out;
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+/* -----------------layout allgemeines----------------- */
+.cl_Line {
+  border-bottom: var(--UIBorderThick);
+}
+
+.Text {
+  max-width: var(--CardsMaxWidth);
+}
+
+.cl_pageTitle {
+  padding-top: 2rem;
+  align-self: center;
+  grid-column: 1 / -1;
 }
 
 .cl_card {
   display: grid;
   grid-gap: var(--cardGap);
-  max-width: 30rem;
-  height: 100%;
+  min-width: var(--CardsMinWidth);
+  max-width: var(--CardsMaxWidth);
   padding: var(--cardGap);
   -webkit-box-align: start;
   align-items: start;
   -webkit-box-pack: center;
   justify-content: center;
   justify-self: center;
-  grid-template-areas:
-    "cardTitle cardDate"
+  grid-template-areas: "cardTitle cardDate"
     "cardImageParent cardImageParent"
     "cardText cardText"
     "cardCast cardCast"
     "cardLinks cardLinks";
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto 1fr auto auto;
-}
-
-.cl_cardText {
-  max-width: var(--CardsMaxWidth);
 }
 
 .cl_cardLinks {
@@ -361,65 +470,10 @@ section {
   filter: invert(var(--filter));
 }
 
-.cl_footerLinks {
-  display: grid;
-  grid-gap: var(--cardGap);
-  grid-auto-flow: column;
-  background: hsla(var(--bgcMain) / 0.7);
-  -webkit-box-pack: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.cl_footerImageLink {
-  width: calc(var(--navbarHeight)*0.5);
-}
-
-.cl_newsGrid {
-  display: grid;
-  grid-gap: var(--cardGap);
-  grid-auto-columns: var(--CardsMaxWidth);
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.cl_konzertGrid {
-  display: grid;
-  grid-gap: var(--cardGap);
-  max-width: min(100%, 100vw);
-  grid-template-columns: repeat(5, auto);
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.cl_konzertFullRow {
-  grid-column: 1 / -1;
-}
-
-.cl_Line {
-  border-bottom: var(--UIBorderThick);
-}
-
-#idDiv_footer_Spacer {
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.cl_darkmodeBtn {
-  width: calc(var(--navbarHeight)*0.4);
-  aspect-ratio: 1;
-}
-
 .cl_pageText {
   grid-column: 1 / -2;
   grid-row: 2;
+  max-width: var(--CardsMaxWidth);
 }
 
 .cl_pageTextFull {
@@ -427,26 +481,21 @@ section {
   grid-row: 2;
 }
 
-.cl_pageImg {
-  max-width: var(--CardsMaxWidth);
-  height: auto;
-  grid-column: -2 / -1;
-  grid-row: 2;
+.cl_imageCenter {
+  display: flex;
+  justify-content: center;
 }
 
+/* -----------------mobile layout-------------------- */
 @media screen and (max-width: 850px) {
   :root {
     --fs-Base: clamp(.5rem, 2vmin, 1rem);
     --mainMargin: auto clamp(2rem, 2vmin, 4rem);
   }
 
-  .cl_flexDir_rows {
-    flex-direction: column;
-  }
-
   nav {
     grid-template-columns: auto;
-    grid-template-rows: auto 1fr repeat(8, auto);
+    grid-template-rows: auto 1fr repeat(9, auto);
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: start;
@@ -467,6 +516,43 @@ section {
   .cl_footer_hidables {
     display: none;
   }
+
+  .cl_section_horizontal {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  /* Disko */
+  .cl_diskoWrapper {
+    display: none;
+  }
+
+  .cl_cardDisko {
+    position: relative;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* -------------used to hide sections! ---------------------------- */
+[hidden] {
+  display: none;
+}
+
+/* -------------image sizes ---------------------------- */
+[uiSize~="big"] {
+  max-width: var(--CardsMaxWidth);
+  max-height: calc(var(--CardsMaxWidth) * 2/3);
+  width: auto;
+  height: auto;
+}
+
+[uiSize~="medium"] {
+  max-width: var(--CardsMinWidth);
+}
+
+[uiSize~="small"] {
+  min-width: var(--ImgPreviewWidth);
 }
 
 /* -------------alignment templates -------------------- */
@@ -475,7 +561,7 @@ section {
 }
 
 [uiTextAlign~="center"] {
-  justify-self: center;
+  text-align: center;
 }
 
 [uiTextAlign~="block"] {
@@ -506,7 +592,7 @@ section {
 }
 
 [uiAlign~="center"] {
-  align-self: stretch;
+  align-items: center;
 }
 
 [uiAlign~="bottom"] {

@@ -8,6 +8,7 @@ _- News als Liste unter Bild auf Startseite "Home"_
 - News können mehrzeilig sein, wenn andere styles oder sowas wie n Datum oder sowas dazu kommen soll können wir das noch nachpflegen
 
 ## Design (Abstände und Layout)
+- Schriftarten und styles bewerten -> Größe, Fett, kurisv und so was
 - auf der "Home" Seite vielleicht ein Bild mit hellem Hintergrund für den "lightMode" und ein dunkeles für den "darkMode". Ein massives schwarzes Bild auf einer Weißen Seite ist schon mächtig, bei dunkelem Hintergrund blendet ein zu helles Bild dagegen. Ggf. ein eher "mittelhelles Bild". PS: das Bild würde dann automatisch gewechselt werden ;)
 - Bio sollte demnach sozusagen zwei karten haben
 _- Bilder auch bei Handyansicht vorhanden, aber dann untereinander_
@@ -37,7 +38,6 @@ _-Handyansicht: keine Vorschau, alle Cards sichtbar._
 - Texte in Medien / Ensemles prüfen
 - in Disko bei -links: [{type: "order",.... ist Vorlagentext für CD-Bestellungen per Mail hinterlegt auf deinen Style anpassen.
 
-
 ### Impressum
 - Bilderrechte korrigieren, wir könnten hier uach in der Data.js bei jedem Bild den Author dazu schreiben, dann kommt das hinten automatisch
 
@@ -45,12 +45,13 @@ _-Handyansicht: keine Vorschau, alle Cards sichtbar._
 
 #ToDo Klaus
 ## technisches (Javascriptfehler, neue Funktionen, etc.)
-- Kontaktdaten in globaler variable -->fixe HTML einträge?
+_- Kontaktdaten in globaler variable -->fixe HTML einträge?_
 _- Konzerte: Links werden nicht angezeigt wenn nicht ausgefüllt._
 - in Medien verschwinden die Vorschaubilder wenn kein platz da. Wahrscheinlich die min-width oder fit-content größen
 _- ungenutzte Fonts löschen_
 - Cursor an allen Stellen prüfen
 
 ## Design (Abstände und Layout)
+- Ausrichtung con BIO und KONTAKT korrigieren
 _- Der Inhalt der Seite sollte nicht weit über die Linien am Header und Footer gehen._
 _- "Responsive Design" für Handyansicht implementieren_
