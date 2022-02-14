@@ -87,12 +87,14 @@
 }
 
 body {
+  display: -webkit-box;
   display: flex;
   background-color: hsl(var(--bgcBackground));
   color: hsl(var(--txtBackground));
   -webkit-transition: all var(--trT-long) ease-in-out;
   -o-transition: all var(--trT-long) ease-in-out;
   transition: all var(--trT-long) ease-in-out;
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -286,6 +288,7 @@ footer {
 }
 
 #idDiv_footer_Spacer {
+  display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -300,11 +303,13 @@ footer {
 
 /* -----------------main AREA -----------------*/
 main {
+  display: -webkit-box;
   display: flex;
   width: 100%;
   position: relative;
   top: var(--navbarHeight);
   min-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
+  -webkit-box-pack: center;
   justify-content: center;
   margin: var(--mainMargin);
   padding-bottom: var(--footerHeight);
@@ -312,25 +317,32 @@ main {
 
 section {
   margin: var(--padding);
+  -webkit-box-pack: center;
   justify-content: center;
   width: 100%;
 }
 
 .cl_section_horizontal {
   display: grid;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   grid-template-rows: auto;
   /* das Verhältnis 3fr 2fr ist quasi: 3 Teil linke spalte(text), 2 Teil rechte Spalte(Bild). Finde ich etwas schicker, da der text ein wenig mehr platz hat*/
   grid-template-columns: 3fr 2fr;
   grid-gap: var(--cardGap);
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
 .cl_section_vertical {
   display: grid;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   grid-template-columns: 1fr;
   grid-gap: var(--cardGap);
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -397,6 +409,7 @@ section {
   width: 100%;
   max-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
   grid-auto-flow: column;
+  grid-auto-columns: auto -webkit-min-content;
   grid-auto-columns: auto min-content;
   grid-gap: var(--cardGap);
 }
@@ -411,7 +424,6 @@ section {
   display: grid;
   width: 100%;
   grid-auto-flow: row;
-  /* grid-template-columns: repeat(auto-fill, minmax(var(--ImgPreviewWidth), 1fr)); */
   grid-template-columns: repeat(auto-fill, max(var(--ImgPreviewWidth), calc(100% / 4)));
   grid-gap: var(--cardGap);
   overflow-y: scroll;
@@ -432,7 +444,9 @@ section {
   -webkit-transition: all var(--trT-long) ease-in;
   -o-transition: all var(--trT-long) ease-in;
   transition: all var(--trT-long) ease-in;
+  -webkit-transform: scaleY(0.95);
   transform: scaleY(0.95);
+  -webkit-transform-origin: top;
   transform-origin: top;
 }
 
@@ -441,7 +455,9 @@ section {
   -webkit-transition: all var(--trT-long) ease-in-out;
   -o-transition: all var(--trT-long) ease-in-out;
   transition: all var(--trT-long) ease-in-out;
+  -webkit-transform: scaleY(1);
   transform: scaleY(1);
+  -webkit-transform-origin: top;
   transform-origin: top;
 }
 
@@ -493,6 +509,7 @@ section {
 
 .cl_cardImageLink {
   height: calc(var(--navbarHeight)*0.8);
+  -webkit-filter: invert(var(--filter));
   filter: invert(var(--filter));
 }
 
@@ -508,7 +525,9 @@ section {
 }
 
 .cl_imageCenter {
+  display: -webkit-box;
   display: flex;
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -545,9 +564,12 @@ section {
 
   .cl_section_horizontal {
     display: grid;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     grid-template-columns: 1fr;
     grid-gap: var(--cardGap);
+    -webkit-box-pack: center;
     justify-content: center;
   }
 
@@ -563,6 +585,7 @@ section {
   .cl_cardDisko {
     position: relative;
     opacity: 1;
+    -webkit-transform: scaleY(1);
     transform: scaleY(1);
   }
 }
@@ -617,6 +640,7 @@ section {
 }
 
 [uiAlign~="middle"] {
+  -webkit-box-pack: center;
   justify-content: center;
   justify-self: stretch;
 }
@@ -631,6 +655,7 @@ section {
 }
 
 [uiAlign~="center"] {
+  -webkit-box-align: center;
   align-items: center;
 }
 
