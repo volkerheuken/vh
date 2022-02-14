@@ -1,10 +1,10 @@
 const Contact = {
   name: "Volker Heuken",
-  mail: "VolkerHeuken@web.de",
+  mail: "mail@volkerheuken.com",
   phone: "+4915778220214",
   phoneString: "0157 78220214",
   street: "Oststrasse",
-  zip: 04229,
+  zip: "04229",
   city: "Leipzig",
   get mailRef() {
     return `mailto:${this.mail}`
@@ -24,14 +24,8 @@ const Contact = {
 }
 
 const News = [{
-    text: "News Nummer 1"
+    text: "Neue Veröffentlichung: Hörspiel für Kinder Peterchens Mondfahrt"
   },
-  {
-    text: "News Nummer 2"
-  },
-  {
-    text: "3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  }
 ]
 
 const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
@@ -42,12 +36,6 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
     Location: "Forum, Agamsaal",
     Stadt: "Leverkusen",
     link: "https://www.leverkusen.de/events/179010100000063524.php"
-  }, {
-    datum: "2022.03.05",
-    Startzeit: "20",
-    Titel: "Metropolmusik: Gefieder",
-    Location: "Tafelhalle",
-    Stadt: "Nürnberg",
   }, {
     datum: "2022.03.14",
     Startzeit: "20",
@@ -84,6 +72,12 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
     Titel: "Volker Heuken Sextett",
     Location: "Stadthalle",
     Stadt: "Meschede",
+  }, {
+    datum: "2022.03.05",
+    Startzeit: "20",
+    Titel: "Metropolmusik: Gefieder",
+    Location: "Tafelhalle",
+    Stadt: "Nürnberg",
   }, {
     datum: "2022.03.30",
     Startzeit: "20",
@@ -142,7 +136,7 @@ const Ensembles = [{
     title: `Heuken/Stadtfeld/Heigenhuber`,
     picName: "E_HeukenStadtfeldHeigenhuber.webp",
     cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
-    description: `Ein äußerst ungewöhnliches Trio. Das Nischeninstrument Vibraphon kommt im Jazz immer nur am Rande vor. Hier steht es allerdings im Mittelpunkt. Mal als Melodie-, mal als Harmonieinstrument aber immer als Dreh und Angelpunkt dieses Leipziger Trios. Die Band erforscht zum einen mehr oder weniger bekannte Songs aus Jazz und Pop, zum anderen widmet es sich den Kompositionen von Volker Heuken, die eindeutig aus der Sprache des Jazz kommen, aber auch Ausflüchte unternehmen in konzipierte Improvisationen, Neue Musik oder konzeptionelle Komposition.`,
+    description: `Ein äußerst ungewöhnliches Trio. Das Nischeninstrument Vibraphon kommt im Jazz immer nur am Rande vor. Hier steht es allerdings im Mittelpunkt. Mal als Melodie-, mal als Harmonieinstrument aber immer als Dreh und Angelpunkt dieses Leipziger Trios. Die Band erforscht zum einen mehr oder weniger bekannte Songs aus Jazz und Pop, zum anderen widmet es sich den Kompositionen von Volker Heuken und Max Stadtfeld, die eindeutig aus der Sprache des Jazz kommen, aber auch Ausflüchte unternehmen in konzipierte Improvisationen, Neue Musik oder konzeptionelle Komposition. 2019 gewann das Trio den Leipziger Jazznachwuchspreis.`,
     links: [{
       type: "youtube",
       link: "https://www.youtube.com/watch?v=_OJRoj2s9BY"
@@ -156,7 +150,7 @@ const Ensembles = [{
     picName: "E_VolkerHeukenSextett.webp",
     cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
     description: `
-      Volker Heukens Kompositionen erzeugen mit Phantasie und Raffinesse dichte Stimmungen von arkadischer Lyrik über geistreiche Eleganz bis zum explosiven Gewitter.Mit großer Klarheit verwebt sein traumwandlerisch eingespieltes Sextett diese Stimmungen zu dichten Atmosphären und bietet dem Hörer die Erfahrung eines großen dramatischen Prozesses.
+      Volker Heukens Kompositionen erzeugen mit Phantasie und Raffinesse dichte Stimmungen von arkadischer Lyrik über geistreiche Eleganz bis zum explosiven Gewitter. Mit großer Klarheit verwebt sein traumwandlerisch eingespieltes Sextett diese Stimmungen zu dichten Atmosphären und bietet dem Hörer die Erfahrung eines großen dramatischen Prozesses.
       `,
     links: [{
         type: "youtube",
@@ -187,10 +181,10 @@ const Ensembles = [{
     picName: "E_OrganicVibes.webp",
     cast: ["Markus Harm - alt", "Volker Heuken - vibraphon", "Lukas Grossmann - orgel", "Johannes Koch - drums"],
     description: `
-      Orgeltrios mit Schlagzeug und Gitarre sind hinlänglich bekannt.Diese Band jedoch,
-      hat die Gitarre gegen ein Vibraphon getauscht und erneuert damit den klassischen Sound eines Orgeltrios.Stilistisch bewegen sich die Musiker zwischen Jazz,
-      Soul und Blues.Neben Eigenkompositionen der Bandmitglieder werden unter anderem Stücke von John Scofield oder Michael Brecker zu hören sein,
-      wobei auch der ein oder andere Jazzstandard nicht fehlen wird.Ursprünglich in Nürnberg gegründet,
+      Orgeltrios mit Schlagzeug und Gitarre sind hinlänglich bekannt. Diese Band jedoch,
+      hat die Gitarre gegen ein Vibraphon getauscht und erneuert damit den klassischen Sound eines Orgeltrios. Stilistisch bewegen sich die Musiker zwischen Jazz,
+      Soul und Blues. Neben Eigenkompositionen der Bandmitglieder werden unter anderem Stücke von John Scofield oder Michael Brecker zu hören sein,
+      wobei auch der ein oder andere Jazzstandard nicht fehlen wird. Ursprünglich in Nürnberg gegründet,
       hat sich das Trio,
       das jetzt in ganz Deutschland verteilt lebt,
       den herausragenden Saxophonisten Markus Harm mit ins Boot geholt,
@@ -204,12 +198,16 @@ const Ensembles = [{
     title: `Volga`,
     picName: "E_Volga.webp",
     cast: ["Volker Heuken - vibraphon", "Olga Reznichenko - piano"],
-    description: `In die renommierten Fußstapfen des ikonesken Duos von Gary Burton und Chick Corea tretend, gestalten die Pianistin Olga Reznichenko und der Vibraphonist Volker Heuken die Klanggestalt dieser seltenen Instrumentenkonstellation neu.Dabei spielen die beiden Musiker mit der Gegenüberstellung von konvergenten Klang und der gezielten Kontrastierung.Neben eigenen Kompositionen widmet sich VOLGA auch Stücken aus dem reichhaltigen Vorrat an Werken von anderen Musikern,
-    die für die beiden Wahl - Leipziger von persönlicher Bedeutung sind.Neben Richie Beirach und Chick Corea sind auch weniger bekannte Komponisten wie Chris Beier zu hören.VOLGA ist lyrisch verspielt,
+    description: `In die renommierten Fußstapfen des ikonesken Duos von Gary Burton und Chick Corea tretend, gestalten die Pianistin Olga Reznichenko und der Vibraphonist Volker Heuken die Klanggestalt dieser seltenen Instrumentenkonstellation neu. Dabei spielen die beiden Musiker mit der Gegenüberstellung von konvergenten Klang und der gezielten Kontrastierung. Neben eigenen Kompositionen widmet sich VOLGA auch Stücken aus dem reichhaltigen Vorrat an Werken von anderen Musikern,
+    die für die beiden Wahl - Leipziger von persönlicher Bedeutung sind. Neben Richie Beirach und Chick Corea sind auch weniger bekannte Komponisten wie Chris Beier zu hören.VOLGA ist lyrisch verspielt,
     improvisatorisch frei, aber auch vehement energisch.`,
     links: [{
       type: "soundcloud",
       link: "https://soundcloud.com/olga-reznichenko/sets/volga"
+    },
+    {
+      type: "youtube",
+      link: "https://www.facebook.com/seppmaiers2raumwohnung/videos/223780339769397"
     }]
   },
   {
@@ -271,14 +269,16 @@ const Disko = [{
     }]
   },
   {
-    title: `Vibes and Strings play Beatles`,
-    datum: "2016",
-    picName: "D_VibesAndStringsPlayBeatles.webp",
-    cast: ["Max Eisinger - violin", "Eugen Hubert - viola", "Lukas Kroczek - cello", "Volker Heuken - Vibraphon", "Victor Mang - Bass", "Johannes Koch - Drums"],
-    description: `Vibraphontrio mit Streichtrio spielen Stücke der Beatles.Die Arrangements sind von mir geschrieben worden. Aufgenommen 2016 in Kalchreuth.`,
+    title: `Peterchens Mondfahrt\nJazz für Kids`,
+    datum: "2022",
+    picName: "peterchens_mondfahrt.jpg",
+    cast: ["Stefan Kaminsky - Sprecher", "Damian dalla Torre - sax, flute", "Volker Heuken - vibraphon", "Carl Wittig - bass", "Johannes Koch - drums"],
+    description: `
+      Erschienen 2022 beim Buchfunk in Leipzig. Ein Hörspiel für Kinder, das entstanden ist aus dem Live-Programm "Peterchens Mondfahrt" für die Leipziger Jazztage 2019.
+      Regie führte Fritz Dittmann, Stefan Kaminsky und Volker Heuken.`,
     links: [{
       type: "order",
-      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Vibes and Strings play Beatles".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Peterchens Mondfahrt".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
     }]
   },
   {
@@ -286,7 +286,7 @@ const Disko = [{
     datum: "2016",
     picName: "D_Lama.webp",
     cast: ["Joachim Lenhardt - tenor", "Volker Heuken - vibraphon", "Alex Bayer- bass", "Jan F. Brill - drums"],
-    description: `Ein Live - Mitschnitt bei Brozzijazz.Stücke von Thelonious Monk und Ornette Coleman. Aufgenommen und gemixt von Michael Fingerhut.`,
+    description: `Ein Live - Mitschnitt bei der Konzertreihe Brozzijazz in Nürnberg. Stücke von Thelonious Monk und Ornette Coleman. Aufgenommen und gemixt von Michael Fingerhut.`,
     links: [{
       type: "order",
       link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "LAMA Life".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`

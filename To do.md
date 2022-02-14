@@ -23,6 +23,9 @@ _- Bilder auch bei Handyansicht vorhanden, aber dann untereinander_
 ### "Ensembles"
 - Ensembles als Liste mit ggf. kleinem Bild
 - Interaktion? Verlinkungen?
+###NEU### Die Links werden nicht angezeigt. Es kommt immer nur ein Symbol. Beim Sextett gibts aber zb. drei Links. Sind die irgendwo?
+
+
 
 ### "Medien"
 _- Coverbilder als Grid, max 3 nebeneinander_ --> Bilder max 2 nebeneineander
@@ -33,13 +36,9 @@ _-Handyansicht: keine Vorschau, alle Cards sichtbar._
 
 #ToDo Volker
 ## Inhalt (fehlendes, falsches, überflüssiges, etc.)
-- Bilder von VH im Original ggf. auf kleinere Dateigröße reduziert neu hochladen
-- Texte in Bio und Kontakt neu/prüfen
-- Texte in Medien / Ensemles prüfen
-- in Disko bei -links: [{type: "order",.... ist Vorlagentext für CD-Bestellungen per Mail hinterlegt auf deinen Style anpassen.
 
 ### Impressum
-- Bilderrechte korrigieren, wir könnten hier uach in der Data.js bei jedem Bild den Author dazu schreiben, dann kommt das hinten automatisch
+
 
 
 
@@ -52,6 +51,10 @@ _- ungenutzte Fonts löschen_
 - Cursor an allen Stellen prüfen
 
 ## Design (Abstände und Layout)
+-###NEU### Ich will in Kontakt Textzeilen einfügen. Da will ich dann auf unterricht und Instrumentenleihe hinweisen. Ich will aber nicht einfach irgendwo reintippen. Kannst du mir sone Zeile einfügen?
+- ###NEU### Die Daten bei den Konzerten sind noch in der falschen Reihenfolge. Die entferntesten sind zuerst.
+-###NEU### In den News müssten glaub ich Links auf manchen Wörtern erscheinen. Ich würde jetzt zb in meinem Beispiel "Buchfunk"  verlinken und zu deren Homepage weiterleiten. Oder in meine Diskographie...
+-###Neu### Das Foto in Bio ist mir zu klein. Frage: Ich finde die Aufteilung der Seite bei den Ensembles super. Da sind die Karten genau mittig getrennt. Ich würde das eigentlich gerne bei Kontakt als auch bei Bio so haben wollen. Bild rechts bis zur Mitte. Links Text bis zur mitte. Das finde ich schlüssiger fürs Auge.
 - Ausrichtung con BIO und KONTAKT korrigieren
 _- Der Inhalt der Seite sollte nicht weit über die Linien am Header und Footer gehen._
 _- "Responsive Design" für Handyansicht implementieren_
