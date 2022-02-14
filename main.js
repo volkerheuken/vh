@@ -1,7 +1,14 @@
 window.onload = mainSetup;
 const globalValues = {
   prevSection: "",
-  nextSection: null
+  nextSection: null,
+  get defaultStart() {
+    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Disko";
+    return dbID(`idDiv_navBar_${text}`);
+  },
+  navClick(site) {
+    navClick(dbID(`idDiv_navBar_${site}`));
+  }
 }
 
 function mainSetup() {
@@ -13,7 +20,7 @@ function mainSetup() {
   createEnsembles();
   createDisko();
   createButtons(FooterButtons, "idDiv_footerCredits", 0.5)
-  navClick();
+  navClick(globalValues.defaultStart);
   handleTabletChange(checkMediaQuery); // Initial check
 }
 
@@ -31,7 +38,8 @@ function createContactData() {
 }
 
 function navClick(obj = null) {
-  globalValues.nextSection = (obj != null) ? obj.dataset.type : "Ensembles"; // default  first Site
+  if (obj == null) return
+  globalValues.nextSection = obj.dataset.type;
   if (globalValues.prevSection != globalValues.nextSection) {
     let selectedID = `idDiv_navBar_${globalValues.nextSection}`;
     //set the CSS-Active class to highlight the clicked Menu
@@ -73,30 +81,54 @@ function createNews() {
   const parent = dbID("id_NewsListe");
   parent.innerHTML = "";
   for (let news of News) {
+    const newsContainer = document.createElement("div");
+    parent.appendChild(newsContainer)
+    const spacer = document.createElement("h2");
+    spacer.classList.add("cl_gridLine");
+    newsContainer.appendChild(spacer)
+
     const text = document.createElement("p");
     text.textContent = news.text;
-    text.style.borderTop = getCssRoot("UIBorderThin");
-    parent.appendChild(text)
+    text.classList.add("cl_newsGrid_text");
+    if (news.hasOwnProperty("link") && news.link != "") {
+      text.classList.add("cl_newsGrid_link");
+      text.onclick = () => {
+        const type = Object.keys(news.link)[0];
+        if (type === "local") globalValues.navClick(news.link.local)
+        if (type === "url") window.open(news.link.url)
+      }
+    }
+    newsContainer.appendChild(text)
   }
 }
 
 function createKonzerte() {
+  function checkUTC(UTC) {
+    if (oldOnTop) {
+      return UTC >= new Date()
+    }
+    return UTC < new Date()
+  }
+  const oldOnTop = true;
   let parent = dbID(`id_KonzertListe`);
   parent.innerHTML = "";
   let lastYear = 0;
   let pastConcertTitle = false;
-  const konzertListe = sortArrayByKey(Konzerte, "datum", true);
-  for (let konzert of konzertListe) {
+  const konzertListe = sortArrayByKey(Konzerte, "datum", !oldOnTop);
+  for (const [index, konzert] of konzertListe.entries()) {
     //convert date to usable UTC and a formated String
     const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
     konzert.UTC = d;
     const convDate = convertDate(d, true)
     konzert.date = convDate;
     const year = d.getFullYear();
-    if (konzert.UTC < new Date() && !pastConcertTitle) {
+    if (index == 0 && checkUTC(konzert.UTC)) {
+      pastConcertTitle = true;
+    }
+    if (!pastConcertTitle && checkUTC(konzert.UTC)) {
       pastConcertTitle = true;
       const spacer = document.createElement("h2");
-      spacer.classList.add("cl_konzertFullRow", "cl_Line");
+      spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
       parent.appendChild(spacer)
       const pastC = document.createElement("h2");
       pastC.textContent = ` `;
@@ -144,11 +176,12 @@ function createDisko() {
   //container for all Cards, they overlay
   const cardContainer = dbID(`id_Disko_Cards`)
   cardContainer.innerHTML = "";
-
-  for (let [index, data] of Disko.entries()) {
+  const diskoListe = sortArrayByKey(Disko, "datum", true);
+  for (const [index, data] of diskoListe.entries()) {
     // create images with container
     const diskoPreviewContainer = document.createElement("div");
     diskoPreviewContainer.setAttribute("uiSize", "small");
+    diskoPreviewContainer.style.cursor = "pointer";
     const diskoPreviewImage = document.createElement("img");
     diskoPreviewImage.src = `Images/Disko/${data.picName}`;
     //create actual Card
@@ -156,7 +189,6 @@ function createDisko() {
     card.id = `id_diskoCard_card${index}`
     card.classList.add("cl_cardDisko");
     cardContainer.appendChild(card);
-
     //logic to show the card
     diskoPreviewContainer.onclick = () => {
       const state = card.classList.contains("cl_cardDiskoActive");
@@ -167,7 +199,7 @@ function createDisko() {
     diskoPreview.appendChild(diskoPreviewContainer);
   }
   //activate first Card
-  const randIndex = Math.floor(Math.random()*Disko.length);
+  const randIndex = Math.floor(Math.random() * Disko.length);
   dbID(`id_diskoCard_card${randIndex}`).classList.add("cl_cardDiskoActive");
 }
 
@@ -255,7 +287,7 @@ function createSingleCard(data, index = 0, type) {
 
 function createButtons(btnsArr, parentID, size = null) {
   let parent = dbID(parentID);
-  parent.innerHTML = "";
+  // parent.innerHTML = "";
   btnsArr.forEach((arr, index) => {
     const type = arr.type;
     const link = arr.link;
@@ -265,7 +297,11 @@ function createButtons(btnsArr, parentID, size = null) {
     } else {
       linkBtn.classList.add("cl_footerImageLink");
     }
-    linkBtn.src = `Images/Icons/i_${type}.svg`
+    if (type == "link") {
+      linkBtn.src = `https://www.google.com/s2/favicons?domain=${link}`
+    } else {
+      linkBtn.src = `Images/Icons/i_${type}.svg`
+    }
     linkBtn.onclick = () => {
       if (type === "order") {
         window.location.href = `${Contact.mailRef}?subject=${"CD Bestellung"}&body=${encodeURI(link)}`;
@@ -275,6 +311,7 @@ function createButtons(btnsArr, parentID, size = null) {
     }
     parent.appendChild(linkBtn);
   });
+
 }
 
 function sendWA() {
@@ -292,11 +329,11 @@ function sendWA() {
   //   dbID("idArea_Kontakt_Nachricht").value = text;
   // }
   // if (name != "" && text != "") {
-    // const msgText = `${url}${name}:${text}`
-    // const msgTextEnc = encodeURI(msgText);
-    // window.open(url);
-    // dbID("idVin_Kontakt_Name").value = "";
-    // dbID("idArea_Kontakt_Nachricht").value = "";
+  // const msgText = `${url}${name}:${text}`
+  // const msgTextEnc = encodeURI(msgText);
+  // window.open(url);
+  // dbID("idVin_Kontakt_Name").value = "";
+  // dbID("idArea_Kontakt_Nachricht").value = "";
   // }
 }
 

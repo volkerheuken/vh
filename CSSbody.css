@@ -29,8 +29,8 @@
   --UIBorderThick: 0.067rem solid hsl(var(--bgcMain));
   /* Fonts and Timedelays */
   --trT-short: 0.3s;
-  --trT-medium: 0.5s;
-  --trT-long: 0.8s;
+  /* --trT-medium: 0.5s; */
+  --trT-long: 0.5s;
   --fs-Base: 16px;
   --fs-Medium: 1.1rem;
   --fs-Large: 1.2rem;
@@ -137,6 +137,7 @@ input, button {
 
 button {
   background: hsla(var(--bgcMain) / 0.7);
+  cursor: pointer;
 }
 
 textarea {
@@ -316,28 +317,51 @@ section {
 }
 
 .cl_section_horizontal {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  height: fit-content;
+  grid-template-rows: auto;
+  /* das Verhältnis 3fr 2fr ist quasi: 3 Teil linke spalte(text), 2 Teil rechte Spalte(Bild). Finde ich etwas schicker, da der text ein wenig mehr platz hat*/
+  grid-template-columns: 3fr 2fr;
+  grid-gap: var(--cardGap);
   justify-content: center;
 }
 
 .cl_section_vertical {
-  display: flex;
-  flex-direction: column;
-  width: auto;
+  display: grid;
+  height: fit-content;
+  grid-template-columns: 1fr;
+  grid-gap: var(--cardGap);
   justify-content: center;
-  align-items: center;
+}
+
+.cl_spanAll {
+  grid-column: 1 / span all;
 }
 
 /*----------------- News -----------------*/
 .cl_newsGrid {
   display: grid;
   grid-gap: var(--cardGap);
-  grid-auto-columns: var(--CardsMaxWidth);
+  grid-template-columns: var(--CardsMaxWidth);
+  /* grid-auto-columns: var(--CardsMaxWidth); */
   -webkit-box-pack: center;
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
+}
+
+.cl_newsGrid_text {
+  padding: calc(var(--padding) * 1);
+}
+
+.cl_newsGrid_link {
+  /* cursor: pointer; */
+  cursor: alias;
+}
+
+.cl_newsGrid_link:hover,
+.cl_newsGrid_link:focus {
+  background: hsla(var(--bgcMain) / 0.3);
 }
 
 /* -----------------Konzerte -----------------*/
@@ -363,7 +387,7 @@ section {
   -webkit-box-pack: center;
   justify-content: center;
   grid-auto-flow: row;
-  grid-template-columns: repeat(auto-fill, var(--CardsMinWidth));
+  grid-template-columns: repeat(auto-fill, max(var(--CardsMinWidth), calc(100% / 4)));
   grid-gap: var(--cardGap);
 }
 
@@ -387,7 +411,8 @@ section {
   display: grid;
   width: 100%;
   grid-auto-flow: row;
-  grid-template-columns: repeat(auto-fill, minmax(var(--ImgPreviewWidth), 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(var(--ImgPreviewWidth), 1fr)); */
+  grid-template-columns: repeat(auto-fill, max(var(--ImgPreviewWidth), calc(100% / 4)));
   grid-gap: var(--cardGap);
   overflow-y: scroll;
   -webkit-box-pack: center;
@@ -407,7 +432,7 @@ section {
   -webkit-transition: all var(--trT-long) ease-in;
   -o-transition: all var(--trT-long) ease-in;
   transition: all var(--trT-long) ease-in;
-  transform: scaleY(0.9);
+  transform: scaleY(0.95);
   transform-origin: top;
 }
 
@@ -421,7 +446,8 @@ section {
 }
 
 /* -----------------layout allgemeines----------------- */
-.cl_Line {
+.cl_gridLine {
+  grid-column: 1 /-1;
   border-bottom: var(--UIBorderThick);
 }
 
@@ -466,7 +492,7 @@ section {
 }
 
 .cl_cardImageLink {
-  max-width: var(--navbarHeight);
+  height: calc(var(--navbarHeight)*0.8);
   filter: invert(var(--filter));
 }
 
@@ -518,8 +544,15 @@ section {
   }
 
   .cl_section_horizontal {
-    flex-direction: column-reverse;
-    align-items: flex-start;
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr;
+    grid-gap: var(--cardGap);
+    justify-content: center;
+  }
+
+  .cl_spanAll {
+    grid-column: 1 / span 1;
   }
 
   /* Disko */
@@ -556,6 +589,11 @@ section {
 }
 
 /* -------------alignment templates -------------------- */
+.cl_subGrid {
+  display: grid;
+  min-height: var(--navbarHeight);
+}
+
 [uiTextAlign~="left"] {
   text-align: left;
 }
@@ -579,6 +617,7 @@ section {
 }
 
 [uiAlign~="middle"] {
+  justify-content: center;
   justify-self: stretch;
 }
 

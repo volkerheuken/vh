@@ -12,7 +12,7 @@ const Contact = {
   get mailText() {
     return `Mail: ${this.mail}`
   },
-  get cityFull(){
+  get cityFull() {
     return `${this.zip} ${this.city}`
   },
   get phoneText() {
@@ -24,8 +24,23 @@ const Contact = {
 }
 
 const News = [{
-    text: "Neue Veröffentlichung: Hörspiel für Kinder Peterchens Mondfahrt"
+    text: "Neue Veröffentlichung: Hörspiel für Kinder Peterchens Mondfahrt",
+    get link() {
+      // bei link zu einer anderen seite das hier benutzen
+      return {
+        url: "https://www.buchfunk.de/peterchens-mondfahrt/"
+      };
+    }
   },
+  // {
+  //   text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  //   get link() {
+  //     bei link auf VolkerHeuken.com das hier benutzen ("local" statt "url")
+  //     return {
+  //       local: "Disko"
+  //     };
+  //   }
+  // },
 ]
 
 const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
@@ -202,13 +217,14 @@ const Ensembles = [{
     die für die beiden Wahl - Leipziger von persönlicher Bedeutung sind. Neben Richie Beirach und Chick Corea sind auch weniger bekannte Komponisten wie Chris Beier zu hören.VOLGA ist lyrisch verspielt,
     improvisatorisch frei, aber auch vehement energisch.`,
     links: [{
-      type: "soundcloud",
-      link: "https://soundcloud.com/olga-reznichenko/sets/volga"
-    },
-    {
-      type: "youtube",
-      link: "https://www.facebook.com/seppmaiers2raumwohnung/videos/223780339769397"
-    }]
+        type: "soundcloud",
+        link: "https://soundcloud.com/olga-reznichenko/sets/volga"
+      },
+      {
+        type: "youtube",
+        link: "https://www.facebook.com/seppmaiers2raumwohnung/videos/223780339769397"
+      }
+    ]
   },
   {
     title: `LAMA`,
@@ -277,8 +293,9 @@ const Disko = [{
       Erschienen 2022 beim Buchfunk in Leipzig. Ein Hörspiel für Kinder, das entstanden ist aus dem Live-Programm "Peterchens Mondfahrt" für die Leipziger Jazztage 2019.
       Regie führte Fritz Dittmann, Stefan Kaminsky und Volker Heuken.`,
     links: [{
-      type: "order",
-      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Peterchens Mondfahrt".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      type: "link",
+      link: "https://www.buchfunk.de/peterchens-mondfahrt/"
+      // link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Peterchens Mondfahrt".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
     }]
   },
   {
