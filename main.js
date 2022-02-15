@@ -437,10 +437,8 @@ function colToggleColormode(btn = null) {
   }
   //change HomeImage
   if (ColorScheme.darkmodeOn) {
-    console.log("add");
     dbID("id_imgHome_light").classList.add("cl_homeHidden")
   } else {
-    console.log("remove");
     dbID("id_imgHome_light").classList.remove("cl_homeHidden")
   }
   setCssRoot(`bgcBackground`, colBG);
