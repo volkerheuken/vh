@@ -14,6 +14,10 @@
 
 	<title>Volker Heuken - Vibraphon</title>
 
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="hsl(0, 0%, 99%)">
 	<meta name="msapplication-TileColor" content="hsl(60, 0%, 99%)">
@@ -39,7 +43,8 @@
 	<main>
 		<section class="cl_section_vertical" id="id_Home">
 			<div class="cl_imageCenter">
-				<img id="id_imgHome" src="Images/Kontakt.jpg" uiAlign="center" uiSize="big">
+				<img id="id_imgHome_dark" class="cl_homeOverlay" src="Images/Home/Home_dark.jpg" uiAlign="center" uiSize="big">
+				<img id="id_imgHome_light" class="cl_homeOverlay cl_homeHidden" src="Images/Home/Home_light.jpg" uiAlign="center" uiSize="big">
 			</div>
 			<h1 class="cl_pageTitle" uiTextAlign="center"> Volker Heuken - Vibraphon - Leipzig</h1>
 			<br>
@@ -92,12 +97,7 @@
 				<br>
 				<div uiTextAlign="left">
 					<span>Schick eine Nachricht per Whatsapp:</span>
-					<!-- <input type="text" id="idVin_Kontakt_Name" placeholder="Dein Name" value=""></input> -->
-					<!-- <br> -->
-					<!-- <textarea id="idArea_Kontakt_Nachricht" placeholder="Deine Nachricht"></textarea> -->
-					<!-- <br> -->
 					<button type="button" id="idArea_Kontakt_SendWA" onclick="sendWA()">Whatsapp öffnen</button>
-					<!-- <p>(Öffnet die Mobile-App oder die WebApp)</p> -->
 				</div>
 			</div>
 			<div class="cl_subGrid" uiAlign="middle top">

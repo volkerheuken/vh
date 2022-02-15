@@ -3,7 +3,7 @@ const globalValues = {
   prevSection: "",
   nextSection: null,
   get defaultStart() {
-    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Disko";
+    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Ensembles";
     return dbID(`idDiv_navBar_${text}`);
   },
   navClick(site) {
@@ -254,7 +254,6 @@ function createSingleCard(data, index = 0, type) {
   // Text
   if (data.description) {
     const text = document.createElement("div");
-    text.classList.add("cl_cardText");
     text.style.gridArea = "cardText";
     text.textContent = data.description;
     text.setAttribute("uiTextAlign", "left");
@@ -437,7 +436,13 @@ function colToggleColormode(btn = null) {
     }
   }
   //change HomeImage
-  dbID("id_imgHome").src = ColorScheme.darkmodeOn ? "Images/Home/Home_dark.jpg" : "Images/Home/Home_light.jpg";
+  if (ColorScheme.darkmodeOn) {
+    console.log("add");
+    dbID("id_imgHome_light").classList.add("cl_homeHidden")
+  } else {
+    console.log("remove");
+    dbID("id_imgHome_light").classList.remove("cl_homeHidden")
+  }
   setCssRoot(`bgcBackground`, colBG);
   setCssRoot(`txtBackground`, colTxt);
   setCssRoot(`txtMain`, mainTxt);

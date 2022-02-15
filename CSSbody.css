@@ -218,9 +218,9 @@ footer {
   padding: var(--padding);
   font-size: var(--fs-Large);
   font-weight: bold;
-  -webkit-transition: all var(--trT-short) ease;
-  -o-transition: all var(--trT-short) ease;
-  transition: all var(--trT-short) ease;
+  -webkit-transition: all var(--trT-short) ease-in-out;
+  -o-transition: all var(--trT-short) ease-in-out;
+  transition: all var(--trT-short) ease-in-out;
   cursor: pointer;
 }
 
@@ -275,9 +275,9 @@ footer {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  -webkit-transition: all var(--trT-short) ease;
-  -o-transition: all var(--trT-short) ease;
-  transition: all var(--trT-short) ease;
+  -webkit-transition: all var(--trT-short) ease-in-out;
+  -o-transition: all var(--trT-short) ease-in-out;
+  transition: all var(--trT-short) ease-in-out;
 }
 
 .cl_spotifySmall:hover, .cl_spotifySmall:focus {
@@ -376,6 +376,18 @@ section {
   background: hsla(var(--bgcMain) / 0.3);
 }
 
+.cl_homeOverlay {
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+}
+
+.cl_homeHidden {
+  opacity: 0;
+  -webkit-transition: all var(--trT-long) ease-in-out;
+  -o-transition: all var(--trT-long) ease-in-out;
+  transition: all var(--trT-long) ease-in-out;
+}
+
 /* -----------------Konzerte -----------------*/
 .cl_konzertGrid {
   display: grid;
@@ -441,9 +453,9 @@ section {
 .cl_cardDisko {
   position: absolute;
   opacity: 0;
-  -webkit-transition: all var(--trT-long) ease-in;
-  -o-transition: all var(--trT-long) ease-in;
-  transition: all var(--trT-long) ease-in;
+  -webkit-transition: all var(--trT-long) ease-in-out;
+  -o-transition: all var(--trT-long) ease-in-out;
+  transition: all var(--trT-long) ease-in-out;
   -webkit-transform: scaleY(0.95);
   transform: scaleY(0.95);
   -webkit-transform-origin: top;
@@ -500,10 +512,10 @@ section {
 .cl_cardLinks {
   display: grid;
   grid-gap: var(--cardGap);
+  grid-column-start: 1;
   grid-auto-flow: column;
   -webkit-box-pack: end;
-  justify-content: end;
-  align-self: end;
+  align-content: center;
   cursor: pointer;
 }
 
@@ -525,10 +537,9 @@ section {
 }
 
 .cl_imageCenter {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
+  display: grid;
   justify-content: center;
+  align-content: center;
 }
 
 /* -----------------mobile layout-------------------- */
@@ -636,22 +647,22 @@ section {
 
 /*  */
 [uiAlign~="left"] {
-  justify-self: start;
+  justify-content: start;
 }
 
 [uiAlign~="middle"] {
   -webkit-box-pack: center;
   justify-content: center;
-  justify-self: stretch;
+  justify-items: center;
 }
 
 [uiAlign~="right"] {
-  justify-self: end;
+  justify-items: flex-end;
 }
 
 /*  */
 [uiAlign~="top"] {
-  align-self: start;
+  align-items: start;
 }
 
 [uiAlign~="center"] {
@@ -660,5 +671,5 @@ section {
 }
 
 [uiAlign~="bottom"] {
-  align-self: end;
+  align-items: flex-end;
 }
