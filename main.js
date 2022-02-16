@@ -181,7 +181,7 @@ function createDisko() {
     // create images with container
     const diskoPreviewContainer = document.createElement("div");
     diskoPreviewContainer.setAttribute("uiSize", "small");
-    diskoPreviewContainer.style.cursor = "pointer";
+    diskoPreviewContainer.classList.add("cl_diskoPreview");
     const diskoPreviewImage = document.createElement("img");
     diskoPreviewImage.src = `Images/Disko/${data.picName}`;
     //create actual Card
@@ -277,7 +277,6 @@ function createSingleCard(data, index = 0, type) {
   if (data.links && data.links.length > 0) {
     const links = document.createElement("div");
     links.classList.add("cl_cardLinks");
-    links.style.gridArea = "cardLinks";
     cardContainer.appendChild(links);
     createButtons(data.links, links)
   }
@@ -316,24 +315,6 @@ function createButtons(btnsArr, parentID, size = null) {
 function sendWA() {
   let url = `https://wa.me/${Contact.phone}`
   window.open(url);
-  // let url = `https://wa.me/${Contact.phone}?text=`
-  // let name = dbID("idVin_Kontakt_Name").value.trim();
-  // let text = dbID("idArea_Kontakt_Nachricht").value.trim();
-  // while (name == "") {
-  //   name = prompt("Bitte gib deinen Name ein.").trim();
-  //   dbID("idVin_Kontakt_Name").value = name;
-  // }
-  // while (text == "") {
-  //   text = prompt("Bitte gib einen Text ein.").trim();
-  //   dbID("idArea_Kontakt_Nachricht").value = text;
-  // }
-  // if (name != "" && text != "") {
-  // const msgText = `${url}${name}:${text}`
-  // const msgTextEnc = encodeURI(msgText);
-  // window.open(url);
-  // dbID("idVin_Kontakt_Name").value = "";
-  // dbID("idArea_Kontakt_Nachricht").value = "";
-  // }
 }
 
 //------------ Helperfunctions --------------

@@ -101,7 +101,7 @@ body {
 input, textarea, button, div {
   margin: var(--UIPadding);
   padding: var(--UIPadding);
-  border: var(--UIBorderThin);
+  border: none;
 }
 
 h1 {
@@ -135,13 +135,24 @@ div, a {
 input, button {
   width: var(--UIWidthWide);
   height: var(--UIHeight);
+  color: hsl(var(--txtBackground));
+  -webkit-transition: all var(--trT-short) ease-in-out;
+  -o-transition: all var(--trT-short) ease-in-out;
+  transition: all var(--trT-short) ease-in-out;
 }
 
 button {
-  background: hsla(var(--bgcMain) / 0.7);
+  border: var(--UIBorderThick);
   cursor: pointer;
+  background: transparent;
 }
 
+button:hover,
+button:focus {
+  background: hsla(var(--bgcMain) / 0.3);
+}
+
+/* button */
 textarea {
   width: var(--UIWidthWide);
   height: var(--UIHeightTriple);
@@ -367,8 +378,7 @@ section {
 }
 
 .cl_newsGrid_link {
-  /* cursor: pointer; */
-  cursor: alias;
+  cursor: pointer;
 }
 
 .cl_newsGrid_link:hover,
@@ -445,9 +455,24 @@ section {
   align-items: center;
 }
 
+.cl_diskoPreview {
+  -webkit-transition: all var(--trT-short) ease-in-out;
+  -o-transition: all var(--trT-short) ease-in-out;
+  transition: all var(--trT-short) ease-in-out;
+  cursor: pointer;
+}
+
+.cl_diskoPreview:hover,
+.cl_diskoPreview:focus {
+  /* border: var(--UIBorderThick); */
+  transform: scale(1.05);
+}
+
 .cl_Disko_CardGrid {
   position: relative;
   width: var(--CardsMinWidth);
+  margin: 0;
+  padding: 0;
 }
 
 .cl_cardDisko {
@@ -494,6 +519,7 @@ section {
   grid-gap: var(--cardGap);
   min-width: var(--CardsMinWidth);
   max-width: var(--CardsMaxWidth);
+  border-bottom: var(--UIBorderThick);
   padding: var(--cardGap);
   -webkit-box-align: start;
   align-items: start;
@@ -506,24 +532,31 @@ section {
     "cardCast cardCast"
     "cardLinks cardLinks";
   grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto 1fr auto auto;
+  grid-template-rows: auto auto auto auto 1fr;
 }
 
 .cl_cardLinks {
-  display: grid;
-  grid-gap: var(--cardGap);
-  grid-column-start: 1;
-  grid-auto-flow: column;
-  -webkit-box-pack: end;
-  justify-content: end;
-  align-content: center;
+  grid-area: cardLinks;
+  display: flex;
+  flex-direction: row-reverse;
+  width: auto;
+  gap: var(--cardGap);
   cursor: pointer;
 }
 
 .cl_cardImageLink {
+  width: auto;
   height: calc(var(--navbarHeight)*0.8);
   -webkit-filter: invert(var(--filter));
   filter: invert(var(--filter));
+  -webkit-transition: all var(--trT-short) ease-in-out;
+  -o-transition: all var(--trT-short) ease-in-out;
+  transition: all var(--trT-short) ease-in-out;
+}
+
+.cl_cardImageLink:hover,
+.cl_cardImageLink:focus {
+  --filter: 0.7;
 }
 
 .cl_pageText {
@@ -654,7 +687,7 @@ section {
 [uiAlign~="middle"] {
   -webkit-box-pack: center;
   justify-content: center;
-  justify-items: center;
+  /* justify-items: center; */
 }
 
 [uiAlign~="right"] {
@@ -663,6 +696,7 @@ section {
 
 /*  */
 [uiAlign~="top"] {
+  /* align-content: start; */
   align-items: start;
 }
 
