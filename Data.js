@@ -3,9 +3,10 @@ const Contact = {
   mail: "mail@volkerheuken.com",
   phone: "+4915778220214",
   phoneString: "0157 78220214",
-  street: "Oststrasse",
+  street: "Oststrasse 78",
   zip: "04229",
   city: "Leipzig",
+  unterricht: "Ich biete Unterricht für Vibraphon, Marimba und Schlagzeug an. Außerdem verleihe ich die Instrumente und baue Mallets auf Anfrage.",
   get mailRef() {
     return `mailto:${this.mail}`
   },

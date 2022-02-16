@@ -416,12 +416,7 @@ function colToggleColormode(btn = null) {
       dbIDStyle("idImg_footer_Spacer").filter = "invert(0%)";
     }
   }
-  //change HomeImage
-  if (ColorScheme.darkmodeOn) {
-    dbID("id_imgHome_light").classList.add("cl_homeHidden")
-  } else {
-    dbID("id_imgHome_light").classList.remove("cl_homeHidden")
-  }
+
   setCssRoot(`bgcBackground`, colBG);
   setCssRoot(`txtBackground`, colTxt);
   setCssRoot(`txtMain`, mainTxt);
