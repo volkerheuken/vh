@@ -79,6 +79,7 @@
   font-family: "HKGrotesk", arial;
   font-size: var(--fs-Base);
   font-weight: var(--fw-Base);
+line-height: 1.48;
 }
 
 *::after, *::before {
@@ -340,7 +341,7 @@ section {
   height: fit-content;
   grid-template-rows: auto;
   /* das Verhältnis 3fr 2fr ist quasi: 3 Teil linke spalte(text), 2 Teil rechte Spalte(Bild). Finde ich etwas schicker, da der text ein wenig mehr platz hat*/
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: var(--cardGap);
   -webkit-box-pack: center;
   justify-content: center;
