@@ -154,7 +154,6 @@ function createKonzerte() {
     parent.appendChild(Titel)
     const Location = document.createElement("p");
     Location.textContent = konzert.Location;
-    // Link zur Veranstaltung nur wenn bevorstehend, da alte Links ggf. verschwinden und man dann auf einer fehlerseite raus kommt, was echt uncool ist.
     if (d >= new Date() && konzert.link != undefined && konzert.link != "") {
       Location.classList.add("highlight");
       Location.title = `Öffnet die Website von\n"${konzert.Location}"`
@@ -191,9 +190,10 @@ function createDisko() {
     cardContainer.appendChild(card);
     //logic to show the card
     diskoPreviewContainer.onclick = () => {
-      const state = card.classList.contains("cl_cardDiskoActive");
-      diskoHideCard();
-      if (!state) card.classList.add("cl_cardDiskoActive");
+      for (const item of dbCL("cl_cardDisko")) {
+        item.classList.remove("cl_cardDiskoActive");
+      }
+      card.classList.add("cl_cardDiskoActive");
     }
     diskoPreviewContainer.appendChild(diskoPreviewImage);
     diskoPreview.appendChild(diskoPreviewContainer);
@@ -201,12 +201,6 @@ function createDisko() {
   //activate first Card
   const randIndex = Math.floor(Math.random() * Disko.length);
   dbID(`id_diskoCard_card${randIndex}`).classList.add("cl_cardDiskoActive");
-}
-
-function diskoHideCard() {
-  for (const item of dbCL("cl_cardDisko")) {
-    item.classList.remove("cl_cardDiskoActive");
-  }
 }
 
 function createEnsembles() {
@@ -274,6 +268,7 @@ function createSingleCard(data, index = 0, type) {
     }
     cardContainer.appendChild(cast);
   }
+
   if (data.links && data.links.length > 0) {
     const links = document.createElement("div");
     links.classList.add("cl_cardLinks");
@@ -285,7 +280,9 @@ function createSingleCard(data, index = 0, type) {
 
 function createButtons(btnsArr, parentID, size = null) {
   let parent = dbID(parentID);
-  // parent.innerHTML = "";
+  parent.innerHTML = "";
+  const spacer = document.createElement("div");
+  parent.appendChild(spacer);
   btnsArr.forEach((arr, index) => {
     const type = arr.type;
     const link = arr.link;
@@ -309,7 +306,6 @@ function createButtons(btnsArr, parentID, size = null) {
     }
     parent.appendChild(linkBtn);
   });
-
 }
 
 function sendWA() {
@@ -428,7 +424,7 @@ function navbarDropdownClick() {
   dbID("idNav_navElements").classList.add("navbarDropActive")
 }
 
-const checkMediaQuery = window.matchMedia('(max-width: 800px)')
+const checkMediaQuery = window.matchMedia('(max-width: 850px)')
 
 function handleTabletChange(e) {
   const w = (e.matches) ? 80 : 300;

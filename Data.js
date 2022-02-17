@@ -6,7 +6,6 @@ const Contact = {
   street: "Oststrasse 78",
   zip: "04229",
   city: "Leipzig",
-  unterricht: "Ich biete Unterricht für Vibraphon, Marimba und Schlagzeug an. Außerdem verleihe ich die Instrumente und baue Mallets auf Anfrage.",
   get mailRef() {
     return `mailto:${this.mail}`
   },
@@ -247,7 +246,7 @@ const Disko = [{
       `,
     links: [{
       type: "order",
-      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Shepherd Moon".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Shepherd Moon".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`
     }]
   },
   {
@@ -269,7 +268,7 @@ const Disko = [{
     description: `Erschienen 2019 beim Label "Float Music" aus Köln. Aufgenommen im Dezember 2018 beim BR Studio Franken.`,
     links: [{
       type: "order",
-      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Siblings".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Siblings".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`
     }]
   },
   {
@@ -282,7 +281,7 @@ const Disko = [{
       `,
     links: [{
       type: "order",
-      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Portugal".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Portugal".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`
     }]
   },
   {
@@ -296,7 +295,7 @@ const Disko = [{
     links: [{
       type: "link",
       link: "https://www.buchfunk.de/peterchens-mondfahrt/"
-      // link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Peterchens Mondfahrt".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      // link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Peterchens Mondfahrt".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`
     }]
   },
   {
@@ -307,7 +306,7 @@ const Disko = [{
     description: `Ein Live - Mitschnitt bei der Konzertreihe Brozzijazz in Nürnberg. Stücke von Thelonious Monk und Ornette Coleman. Aufgenommen und gemixt von Michael Fingerhut.`,
     links: [{
       type: "order",
-      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "LAMA Life".\n\nMeine Adresse lautet:\nName: "NAME"\nStrasse: "STRASSE"\nOrt: "ORT"\n\nGruß`
+      link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "LAMA Life".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`
     }]
   }
 ];

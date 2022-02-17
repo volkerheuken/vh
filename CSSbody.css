@@ -79,7 +79,7 @@
   font-family: "HKGrotesk", arial;
   font-size: var(--fs-Base);
   font-weight: var(--fw-Base);
-line-height: 1.48;
+  line-height: 1.48;
 }
 
 *::after, *::before {
@@ -340,11 +340,11 @@ section {
   height: -moz-fit-content;
   height: fit-content;
   grid-template-rows: auto;
-  /* das Verhältnis 3fr 2fr ist quasi: 3 Teil linke spalte(text), 2 Teil rechte Spalte(Bild). Finde ich etwas schicker, da der text ein wenig mehr platz hat*/
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   grid-gap: var(--cardGap);
   -webkit-box-pack: center;
   justify-content: center;
+  align-items: center;
 }
 
 .cl_section_vertical {
@@ -362,7 +362,7 @@ section {
   grid-column: 1 / span all;
 }
 
-/*----------------- News -----------------*/
+/*----------------- Home -----------------*/
 .cl_newsGrid {
   display: grid;
   grid-gap: var(--cardGap);
@@ -385,18 +385,6 @@ section {
 .cl_newsGrid_link:hover,
 .cl_newsGrid_link:focus {
   background: hsla(var(--bgcMain) / 0.3);
-}
-
-.cl_homeOverlay {
-  grid-row: 1/-1;
-  grid-column: 1/-1;
-}
-
-.cl_homeHidden {
-  opacity: 0;
-  -webkit-transition: all var(--trT-long) ease-in-out;
-  -o-transition: all var(--trT-long) ease-in-out;
-  transition: all var(--trT-long) ease-in-out;
 }
 
 /* -----------------Konzerte -----------------*/
@@ -465,7 +453,6 @@ section {
 
 .cl_diskoPreview:hover,
 .cl_diskoPreview:focus {
-  /* border: var(--UIBorderThick); */
   transform: scale(1.05);
 }
 
@@ -479,6 +466,7 @@ section {
 .cl_cardDisko {
   position: absolute;
   opacity: 0;
+  pointer-events: none;
   -webkit-transition: all var(--trT-long) ease-in-out;
   -o-transition: all var(--trT-long) ease-in-out;
   transition: all var(--trT-long) ease-in-out;
@@ -490,6 +478,7 @@ section {
 
 .cl_cardDiskoActive {
   opacity: 1;
+  pointer-events: auto;
   -webkit-transition: all var(--trT-long) ease-in-out;
   -o-transition: all var(--trT-long) ease-in-out;
   transition: all var(--trT-long) ease-in-out;
@@ -497,6 +486,13 @@ section {
   transform: scaleY(1);
   -webkit-transform-origin: top;
   transform-origin: top;
+}
+
+/* -----------------Bio / Kontakt----------------- */
+.cl_BioImg,
+.cl_KontaktImg {
+  justify-content: start;
+  align-items: start;
 }
 
 /* -----------------layout allgemeines----------------- */
@@ -533,15 +529,16 @@ section {
     "cardCast cardCast"
     "cardLinks cardLinks";
   grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr auto var(--navbarHeight);
 }
 
 .cl_cardLinks {
   grid-area: cardLinks;
-  display: flex;
-  flex-direction: row-reverse;
   width: auto;
-  gap: var(--cardGap);
+  display: grid;
+  grid-gap: var(--cardGap);
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
   cursor: pointer;
 }
 
@@ -617,6 +614,7 @@ section {
     grid-gap: var(--cardGap);
     -webkit-box-pack: center;
     justify-content: center;
+    align-items: center;
   }
 
   .cl_spanAll {
@@ -633,6 +631,13 @@ section {
     opacity: 1;
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
+  }
+
+  /* Bio / Kontakt */
+  .cl_BioImg,
+  .cl_KontaktImg {
+    justify-content: center;
+    align-items: start;
   }
 }
 
@@ -697,7 +702,6 @@ section {
 
 /*  */
 [uiAlign~="top"] {
-  /* align-content: start; */
   align-items: start;
 }
 
