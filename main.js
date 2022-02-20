@@ -3,7 +3,7 @@ const globalValues = {
   prevSection: "",
   nextSection: null,
   get defaultStart() {
-    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Kontakt";
+    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Konzerte";
     return dbID(`idDiv_navBar_${text}`);
   },
   navClick(site) {
@@ -104,45 +104,59 @@ function createNews() {
 
 function createKonzerte() {
   function checkUTC(UTC) {
-    if (oldOnTop) {
-      return UTC >= new Date()
-    }
-    return UTC < new Date()
+    return UTC >= new Date()
   }
-  const oldOnTop = true;
   let parent = dbID(`id_KonzertListe`);
   parent.innerHTML = "";
-  let lastYear = 0;
-  let pastConcertTitle = false;
-  const konzertListe = sortArrayByKey(Konzerte, "datum", !oldOnTop);
-  for (const [index, konzert] of konzertListe.entries()) {
-    //convert date to usable UTC and a formated String
-    const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
-    konzert.UTC = d;
-    const convDate = convertDate(d, true)
-    konzert.date = convDate;
-    const year = d.getFullYear();
-    if (index == 0 && checkUTC(konzert.UTC)) {
-      pastConcertTitle = true;
-    }
-    if (!pastConcertTitle && checkUTC(konzert.UTC)) {
-      pastConcertTitle = true;
-      const spacer = document.createElement("h2");
-      spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
-      parent.appendChild(spacer)
-      const pastC = document.createElement("h2");
-      pastC.textContent = ` `;
-      pastC.classList.add("cl_konzertFullRow");
-      parent.appendChild(pastC)
-    }
-    if (lastYear != year) {
-      lastYear = year;
-      const h2Year = document.createElement("h2");
-      h2Year.textContent = `Spielzeit ${lastYear}`;
-      h2Year.classList.add("cl_konzertFullRow");
-      parent.appendChild(h2Year)
-    }
+  let splitIndex = 0;
+  let prevList = sortArrayByKey(Konzerte, "datum", false);
+  let upcommingList;
 
+  for (const [index, konzert] of prevList.entries()) {
+    const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
+    if (checkUTC(d)) {
+      splitIndex = index;
+      break;
+    }
+  }
+  upcommingList = prevList.splice(splitIndex)
+
+  prevList.reverse();
+
+  // upcomming shows
+  konzertEntry(parent, upcommingList, true);
+  // line
+  const spacer = document.createElement("h2");
+  spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
+  parent.appendChild(spacer)
+  const pastC = document.createElement("h2");
+  // pastC.textContent = ` `;
+  pastC.classList.add("cl_konzertFullRow", "cl_gridLine");
+  parent.appendChild(pastC)
+  // prev shows
+  konzertEntry(parent, prevList, false);
+
+}
+
+function konzertEntry(parent, list, type) {
+  let lastYear = 0;
+  const title = document.createElement("h2");
+  title.textContent = type ? "anstehende Veranstaltungen" : "vergangene Veranstaltungen";;
+  title.classList.add("cl_konzertFullRow");
+  parent.appendChild(title)
+
+  for (const [index, konzert] of list.entries()) {
+    konzert.UTC = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
+    const convDate = convertDate(konzert.UTC, true)
+    const year = konzert.UTC.getFullYear();
+    konzert.date = convDate;
+    // if (lastYear != year) {
+    //   lastYear = year;
+    //   const h2Year = document.createElement("h2");
+    //   h2Year.textContent = `Spielzeit ${lastYear}`;
+    //   h2Year.classList.add("cl_konzertFullRow");
+    //   parent.appendChild(h2Year)
+    // }
     const date = document.createElement("p");
     date.textContent = konzert.date;
     parent.appendChild(date)
@@ -154,7 +168,7 @@ function createKonzerte() {
     parent.appendChild(Titel)
     const Location = document.createElement("p");
     Location.textContent = konzert.Location;
-    if (d >= new Date() && konzert.link != undefined && konzert.link != "") {
+    if (konzert.UTC >= new Date() && konzert.link != undefined && konzert.link != "") {
       Location.classList.add("highlight");
       Location.title = `Öffnet die Website von\n"${konzert.Location}"`
       Location.onclick = () => {
