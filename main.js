@@ -3,7 +3,7 @@ const globalValues = {
   prevSection: "",
   nextSection: null,
   get defaultStart() {
-    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Ensembles";
+    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Kontakt";
     return dbID(`idDiv_navBar_${text}`);
   },
   navClick(site) {
@@ -14,13 +14,13 @@ const globalValues = {
 function mainSetup() {
   //add the Grid-Area-Names to all divs inside the sections
   colToggleColormode();
+  navClick(globalValues.defaultStart);
+  createButtons(FooterButtons, "idDiv_footerCredits", 0.5)
   createContactData();
   createNews();
   createKonzerte();
   createEnsembles();
   createDisko();
-  createButtons(FooterButtons, "idDiv_footerCredits", 0.5)
-  navClick(globalValues.defaultStart);
   handleTabletChange(checkMediaQuery); // Initial check
 }
 
@@ -248,7 +248,8 @@ function createSingleCard(data, index = 0, type) {
   // Text
   if (data.description) {
     const text = document.createElement("div");
-    text.style.gridArea = "cardText";
+    // text.style.gridArea = "cardText";
+    text.classList.add("cl_cardText");
     text.textContent = data.description;
     text.setAttribute("uiTextAlign", "left");
     cardContainer.appendChild(text);

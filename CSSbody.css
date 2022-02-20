@@ -437,7 +437,6 @@ section {
   grid-auto-flow: row;
   grid-template-columns: repeat(auto-fill, max(var(--ImgPreviewWidth), calc(100% / 4)));
   grid-gap: var(--cardGap);
-  overflow-y: scroll;
   -webkit-box-pack: center;
   justify-content: center;
   -webkit-box-align: center;
@@ -489,10 +488,21 @@ section {
 }
 
 /* -----------------Bio / Kontakt----------------- */
+.cl_BioText,
+.cl_KontaktText {
+  max-width: var(--CardsMaxWidth);
+  justify-self: end;
+  display: grid;
+  min-height: var(--navbarHeight);
+  text-align: left;
+}
+
 .cl_BioImg,
 .cl_KontaktImg {
   justify-content: start;
   align-items: start;
+  display: grid;
+  min-height: var(--navbarHeight);
 }
 
 /* -----------------layout allgemeines----------------- */
@@ -530,6 +540,11 @@ section {
     "cardLinks cardLinks";
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto 1fr auto var(--navbarHeight);
+}
+
+.cl_cardText {
+  grid-area: cardText;
+  max-width: var(--CardsMaxWidth);
 }
 
 .cl_cardLinks {
@@ -577,7 +592,9 @@ section {
 /* -----------------mobile layout-------------------- */
 @media screen and (max-width: 850px) {
   :root {
+    --fs-Base: min(max(0.5rem, 2vmin), 1rem);
     --fs-Base: clamp(.5rem, 2vmin, 1rem);
+    --mainMargin: min(max(2rem, 2vmin), 4rem);
     --mainMargin: auto clamp(2rem, 2vmin, 4rem);
   }
 
@@ -634,6 +651,11 @@ section {
   }
 
   /* Bio / Kontakt */
+  .cl_BioText,
+  .cl_KontaktText {
+    justify-self: center;
+  }
+
   .cl_BioImg,
   .cl_KontaktImg {
     justify-content: center;
@@ -663,11 +685,6 @@ section {
 }
 
 /* -------------alignment templates -------------------- */
-.cl_subGrid {
-  display: grid;
-  min-height: var(--navbarHeight);
-}
-
 [uiTextAlign~="left"] {
   text-align: left;
 }
@@ -693,7 +710,7 @@ section {
 [uiAlign~="middle"] {
   -webkit-box-pack: center;
   justify-content: center;
-  /* justify-items: center; */
+  justify-items: center;
 }
 
 [uiAlign~="right"] {

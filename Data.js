@@ -149,7 +149,7 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
 
 const Ensembles = [{
     title: `Heuken/Stadtfeld/Heigenhuber`,
-    picName: "E_HeukenStadtfeldHeigenhuber.webp",
+    picName: "E_HeukenStadtfeldHeigenhuber.png",
     cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
     description: `Ein äußerst ungewöhnliches Trio. Das Nischeninstrument Vibraphon kommt im Jazz immer nur am Rande vor. Hier steht es allerdings im Mittelpunkt. Mal als Melodie-, mal als Harmonieinstrument aber immer als Dreh und Angelpunkt dieses Leipziger Trios. Die Band erforscht zum einen mehr oder weniger bekannte Songs aus Jazz und Pop, zum anderen widmet es sich den Kompositionen von Volker Heuken und Max Stadtfeld, die eindeutig aus der Sprache des Jazz kommen, aber auch Ausflüchte unternehmen in konzipierte Improvisationen, Neue Musik oder konzeptionelle Komposition. 2019 gewann das Trio den Leipziger Jazznachwuchspreis.`,
     links: [{
@@ -162,7 +162,7 @@ const Ensembles = [{
   },
   {
     title: `Volker Heuken Sextett`,
-    picName: "E_VolkerHeukenSextett.webp",
+    picName: "E_VolkerHeukenSextett.png",
     cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
     description: `
       Volker Heukens Kompositionen erzeugen mit Phantasie und Raffinesse dichte Stimmungen von arkadischer Lyrik über geistreiche Eleganz bis zum explosiven Gewitter. Mit großer Klarheit verwebt sein traumwandlerisch eingespieltes Sextett diese Stimmungen zu dichten Atmosphären und bietet dem Hörer die Erfahrung eines großen dramatischen Prozesses.
@@ -183,7 +183,7 @@ const Ensembles = [{
   },
   {
     title: `Shepherd Moon`,
-    picName: "E_ShepherdMoon.webp",
+    picName: "E_ShepherdMoon.png",
     cast: ["Volker Heuken - vibraphon", "Peter Fulda - piano", "Anton Mangold - harp", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums"],
     description: `Mit aussergewöhnlicher Klanggestalt und hochmoderner Ensemblekultur erforscht Volker Heukens neues Quintett galaktische Sphären. Die bizarren Schäfermonde des Saturn bieten die Triebkräfte der vielgestaltigen und fein balancierten Musik von Volker Heukens Suite "Shepherd Moon". Peter Fuldas Suite "The Eclipse" wagt dagegen einen Blick auf Syzygien und Blutmonde. Beide Werke entlocken der Besetzung mit drei Harmonieinstrumenten unerhörte und vielschichtige Klangwelten.`,
     links: [{
@@ -193,7 +193,7 @@ const Ensembles = [{
   },
   {
     title: `Organic Vibes`,
-    picName: "E_OrganicVibes.webp",
+    picName: "E_OrganicVibes.png",
     cast: ["Markus Harm - alt", "Volker Heuken - vibraphon", "Lukas Grossmann - orgel", "Johannes Koch - drums"],
     description: `
       Orgeltrios mit Schlagzeug und Gitarre sind hinlänglich bekannt. Diese Band jedoch,
@@ -211,7 +211,7 @@ const Ensembles = [{
   },
   {
     title: `Volga`,
-    picName: "E_Volga.webp",
+    picName: "E_Volga.png",
     cast: ["Volker Heuken - vibraphon", "Olga Reznichenko - piano"],
     description: `In die renommierten Fußstapfen des ikonesken Duos von Gary Burton und Chick Corea tretend, gestalten die Pianistin Olga Reznichenko und der Vibraphonist Volker Heuken die Klanggestalt dieser seltenen Instrumentenkonstellation neu. Dabei spielen die beiden Musiker mit der Gegenüberstellung von konvergenten Klang und der gezielten Kontrastierung. Neben eigenen Kompositionen widmet sich VOLGA auch Stücken aus dem reichhaltigen Vorrat an Werken von anderen Musikern,
     die für die beiden Wahl - Leipziger von persönlicher Bedeutung sind. Neben Richie Beirach und Chick Corea sind auch weniger bekannte Komponisten wie Chris Beier zu hören.VOLGA ist lyrisch verspielt,
@@ -228,7 +228,7 @@ const Ensembles = [{
   },
   {
     title: `LAMA`,
-    picName: "E_Lama.webp",
+    picName: "E_Lama.png",
     cast: ["Joachim Lenhardt - tenor", "Volker Heuken - vibraphon", "Alex Bayer- bass", "Jan F. Brill - drums"],
     description: `LAMA fräst eine verspielt - akrobatische Schneise in den Kanon des Modern Jazz.Die vier Protagonisten der jungen deutschen Jazzszene pusten den Staub vom Regal der Säulenheiligen und katapultieren die Werke von Monk und Coleman in die pulsierende Jetztzeit.Joachim Lenhardt,
       Volker Heuken, Alex Bayer und Jan Brill toben in den musikalischen Häusern der Überväter, bis die Balken wackeln und das ehrwürdige Werk wieder vor Leben strotzt.`,
@@ -239,7 +239,7 @@ const Ensembles = [{
 const Disko = [{
     title: `Volker Heuken\nShepherd Moon`,
     datum: "2020",
-    picName: "D_ShepherdMoon.webp",
+    picName: "D_ShepherdMoon.png",
     cast: ["Volker Heuken - vibraphon", "Peter Fulda - piano", "Anton Mangold - harp", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums"],
     description: `
       Erschienen 2020 bei Label11 aus Nürnberg. Aufgenommen im August 2019 beim Zikaden Festival.
@@ -252,7 +252,7 @@ const Disko = [{
   {
     title: `Heuken/Stadtfeld/Heigenhuber\nHallungen Tapes`,
     datum: "2019",
-    picName: "D_HallungenTapes.webp",
+    picName: "D_HallungenTapes.png",
     cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
     description: `Aufgenommen im Mai 2019 in Hallungen im Harz. Aufnahme und Mix von Nico Teichmann. Erhältlich nur auf Bandcamp.`,
     links: [{
@@ -263,7 +263,7 @@ const Disko = [{
   {
     title: `Volker Heuken Sextett\nSiblings`,
     datum: "2019",
-    picName: "D_Siblings.webp",
+    picName: "D_Siblings.png",
     cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
     description: `Erschienen 2019 beim Label "Float Music" aus Köln. Aufgenommen im Dezember 2018 beim BR Studio Franken.`,
     links: [{
@@ -274,7 +274,7 @@ const Disko = [{
   {
     title: `Volker Heuken Sextett\nPortugal`,
     datum: "2016",
-    picName: "D_Portugal.webp",
+    picName: "D_Portugal.png",
     cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
     description: `
       Erschienen 2016 beim Label 11 in Nürnberg. Aufgenommen im April 2016 im realistic sound Studio in München.
@@ -301,7 +301,7 @@ const Disko = [{
   {
     title: `LAMA Life`,
     datum: "2016",
-    picName: "D_Lama.webp",
+    picName: "D_Lama.png",
     cast: ["Joachim Lenhardt - tenor", "Volker Heuken - vibraphon", "Alex Bayer- bass", "Jan F. Brill - drums"],
     description: `Ein Live - Mitschnitt bei der Konzertreihe Brozzijazz in Nürnberg. Stücke von Thelonious Monk und Ornette Coleman. Aufgenommen und gemixt von Michael Fingerhut.`,
     links: [{
