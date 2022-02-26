@@ -366,7 +366,7 @@ section {
 .cl_newsGrid {
   display: grid;
   grid-gap: var(--cardGap);
-  grid-template-columns: var(--CardsMaxWidth);
+  /* grid-template-columns: var(--CardsMaxWidth); */
   /* grid-auto-columns: var(--CardsMaxWidth); */
   -webkit-box-pack: center;
   justify-content: center;
