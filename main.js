@@ -3,7 +3,7 @@ const globalValues = {
   prevSection: "",
   nextSection: null,
   get defaultStart() {
-    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Konzerte";
+    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Disko";
     return dbID(`idDiv_navBar_${text}`);
   },
   navClick(site) {
@@ -193,10 +193,12 @@ function createDisko() {
   for (const [index, data] of diskoListe.entries()) {
     // create images with container
     const diskoPreviewContainer = document.createElement("div");
-    diskoPreviewContainer.setAttribute("uiSize", "small");
+    // diskoPreviewContainer.setAttribute("uiSize", "small");
     diskoPreviewContainer.classList.add("cl_diskoPreview");
     const diskoPreviewImage = document.createElement("img");
     diskoPreviewImage.src = `Images/Disko/${data.picName}`;
+    diskoPreviewImage.classList.add("cl_diskoPreviewImg");
+
     //create actual Card
     const card = createSingleCard(data, index, "Disko");
     card.id = `id_diskoCard_card${index}`
