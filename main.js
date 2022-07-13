@@ -335,8 +335,8 @@ function getCssRoot(object, number = false, toPX = false) { //  getCssRoot("navb
   const obj = `--${object}`;
   let valToConvert = getComputedStyle(document.body).getPropertyValue(obj).replace(/s|px|rem/g, "");
   //toPX = false
-  if (toPX == true && object != "fontSize") {
-    const size = getComputedStyle(document.body).getPropertyValue("--fontSize").replace(/px/g, "");
+  if (toPX == true && object != "fs-Base") {
+    const size = getComputedStyle(document.body).getPropertyValue("--fs-Base").replace(/px/g, "");
     return Number(size * valToConvert);
   }
   //number = false
