@@ -105,7 +105,6 @@ function createNews() {
 function createKonzerte() {
   function checkUTC(UTC) {
     let n = new Date()
-    console.log(UTC.getTime(), n.getTime());
     return UTC.getTime() >= n.getTime()
   }
   let parent = dbID(`id_KonzertListe`);
@@ -118,7 +117,6 @@ function createKonzerte() {
     const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
     if (checkUTC(d)) {
       splitIndex = index;
-      console.log(index);
       break;
     }
   }
