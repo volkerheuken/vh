@@ -3,7 +3,7 @@ const globalValues = {
   prevSection: "",
   nextSection: null,
   get defaultStart() {
-    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Disko";
+    const text = (!["local", "127.0.0.1"].some(s => window.location.hostname.includes(s))) ? "Home" : "Konzerte";
     return dbID(`idDiv_navBar_${text}`);
   },
   navClick(site) {
@@ -104,11 +104,13 @@ function createNews() {
 
 function createKonzerte() {
   function checkUTC(UTC) {
-    return UTC >= new Date()
+    let n = new Date()
+    console.log(UTC.getTime(), n.getTime());
+    return UTC.getTime() >= n.getTime()
   }
   let parent = dbID(`id_KonzertListe`);
   parent.innerHTML = "";
-  let splitIndex = 0;
+  let splitIndex = null;
   let prevList = sortArrayByKey(Konzerte, "datum", false);
   let upcommingList;
 
@@ -116,24 +118,25 @@ function createKonzerte() {
     const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
     if (checkUTC(d)) {
       splitIndex = index;
+      console.log(index);
       break;
     }
   }
-  upcommingList = prevList.splice(splitIndex)
-
-  prevList.reverse();
-
-  // upcomming shows
-  konzertEntry(parent, upcommingList, true);
-  // line
-  const spacer = document.createElement("h2");
-  spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
-  parent.appendChild(spacer)
-  const pastC = document.createElement("h2");
-  // pastC.textContent = ` `;
-  pastC.classList.add("cl_konzertFullRow", "cl_gridLine");
-  parent.appendChild(pastC)
+  
+  if (splitIndex != null) {
+    upcommingList = prevList.splice(splitIndex)
+    // upcomming shows
+    konzertEntry(parent, upcommingList, true);
+    // line
+    const spacer = document.createElement("h2");
+    spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
+    parent.appendChild(spacer)
+    const pastC = document.createElement("h2");
+    pastC.classList.add("cl_konzertFullRow", "cl_gridLine");
+    parent.appendChild(pastC)
+  }
   // prev shows
+  prevList.reverse();
   konzertEntry(parent, prevList, false);
 
 }
@@ -377,7 +380,7 @@ function convertDate(d, fourDigitYear = false) {
 
 function sortArrayByKey(arr, key, inverse = false) {
   let array = Array.from(arr);
-  return array.sort(function(a, b) {
+  return array.sort(function (a, b) {
     if (typeof a[key] == "number" && typeof b[key] == "number") {
       if (inverse) {
         return (b[key] - a[key]);
