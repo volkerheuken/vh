@@ -120,19 +120,23 @@ function createKonzerte() {
       break;
     }
   }
-  
+
   if (splitIndex != null) {
     upcommingList = prevList.splice(splitIndex)
     // upcomming shows
     konzertEntry(parent, upcommingList, true);
-    // line
-    const spacer = document.createElement("h2");
-    spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
-    parent.appendChild(spacer)
-    const pastC = document.createElement("h2");
-    pastC.classList.add("cl_konzertFullRow", "cl_gridLine");
-    parent.appendChild(pastC)
+  } else {
+    const noShows = document.createElement("h2");
+    noShows.classList.add("cl_konzertFullRow");
+    noShows.textContent = "keine anstehenden Veranstaltnugen";
+    parent.appendChild(noShows)
   }
+  // line
+  const spacer = document.createElement("h2");
+  spacer.classList.add("cl_konzertFullRow", "cl_gridLine");
+  parent.appendChild(spacer)
+  const spacer2 = spacer.cloneNode(true);
+  parent.appendChild(spacer2)
   // prev shows
   prevList.reverse();
   konzertEntry(parent, prevList, false);
