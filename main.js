@@ -104,15 +104,13 @@ function createNews() {
 
 function createKonzerte() {
   function checkUTC(UTC) {
-    let n = new Date()
-    return UTC.getTime() >= n.getTime()
+    return UTC.getTime() >= new Date().getTime()
   }
   let parent = dbID(`id_KonzertListe`);
   parent.innerHTML = "";
   let splitIndex = null;
   let prevList = sortArrayByKey(Konzerte, "datum", false);
   let upcommingList;
-
   for (const [index, konzert] of prevList.entries()) {
     const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
     if (checkUTC(d)) {
@@ -120,7 +118,6 @@ function createKonzerte() {
       break;
     }
   }
-
   if (splitIndex != null) {
     upcommingList = prevList.splice(splitIndex)
     // upcomming shows
@@ -139,8 +136,7 @@ function createKonzerte() {
   parent.appendChild(spacer2)
   // prev shows
   prevList.reverse();
-  konzertEntry(parent, prevList, false);
-
+  konzertEntry(parent, prevList.slice(0,10), false);
 }
 
 function konzertEntry(parent, list, type) {
@@ -155,13 +151,6 @@ function konzertEntry(parent, list, type) {
     const convDate = convertDate(konzert.UTC, true)
     const year = konzert.UTC.getFullYear();
     konzert.date = convDate;
-    // if (lastYear != year) {
-    //   lastYear = year;
-    //   const h2Year = document.createElement("h2");
-    //   h2Year.textContent = `Spielzeit ${lastYear}`;
-    //   h2Year.classList.add("cl_konzertFullRow");
-    //   parent.appendChild(h2Year)
-    // }
     const date = document.createElement("p");
     date.textContent = konzert.date;
     parent.appendChild(date)
