@@ -109,7 +109,7 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
     link: ""
   },  {
     datum: "2022.10.23",
-    Startzeit: "14:00",
+    Startzeit: "15:00",
     Titel: "Peterchens Mondfahrt",
     Location: "Turbinenhaus",
     Stadt: "Naumburg",
@@ -144,7 +144,7 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
     link: ""
   },  {
     datum: "2022.10.09",
-    Startzeit: "14:00",
+    Startzeit: "16:00",
     Titel: "Peterchens Mondfahrt",
     Location: "Mandau Jazz Festival",
     Stadt: "Zittau",
