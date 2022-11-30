@@ -44,14 +44,7 @@ const News = [{
 ]
 
 const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
-  {
-    datum: "2022.12.21",
-    Startzeit: "20:00",
-    Titel: "Mareike Wiening Oktett",
-    Location: "Domicil",
-    Stadt: "Dortmund",
-    link: ""
-  }, {
+ {
     datum: "2022.12.10",
     Startzeit: "21:00",
     Titel: "Die Hypochondrischen Ängste",
@@ -266,6 +259,40 @@ const Ensembles = [  {
       }
     ]
   },{
+    title: `Antonia Hausmann & Volker Heuken`,
+    picName: "E_AntoniaundVolker.png",
+    cast: ["Antonia Hausmann - posaune", "Volker Heuken - vibraphon"],
+    description: `
+    Antonias und Volkers Wege kreuzen sich seit Jahren immer wieder an verschiedenen Punkten ihres künstlerischen Schaffens. In unterschiedlichsten Besetzungen und Formationen treffen die beiden preisgekrönten Protagonisten der kreativen Leipziger Szene aufeinander. Jedoch nie so innig wie in diesem Projekt. Ihr ungewöhnliches Duo ist intim und furios zugleich, ist sanft und energiegeladen, es erzählt Geschichten und eröffnet Räume. 
+    Die beiden verbinden ihre musikalischen Stimmen zu einer erstaunlich farbenreichen Sprache. Alle Ecken und Winkel ihrer kleinen Besetzung werden ausgeleuchtet und die Instrumente auf jeden erdenkliche Art modifiziert, um das größtmögliche Spektrum an Timbres und Ideen aus Vibraphon und Posaune herauskitzeln. Am Ende hört das Publikum jedoch eines: Tiefes Vertrauen in den Duo-Partner und eine langjährige Freundschaft.
+    
+      `,
+    links: [{
+        type: "youtube",
+        link: "https://www.youtube.com/watch?v=-YI3zIt-iss"
+      },{
+        type: "youtube",
+        link: "https://www.youtube.com/watch?v=3uScnBRGeds"
+      }
+    ]
+  },{
+    title: `Volga`,
+    picName: "E_Volga.png",
+    cast: ["Volker Heuken - vibraphon", "Olga Reznichenko - piano"],
+    description: `In die renommierten Fußstapfen des ikonesken Duos von Gary Burton und Chick Corea tretend, gestalten die Pianistin Olga Reznichenko und der Vibraphonist Volker Heuken die Klanggestalt dieser seltenen Instrumentenkonstellation neu. Dabei spielen die beiden Musiker mit der Gegenüberstellung von konvergenten Klang und der gezielten Kontrastierung. Neben eigenen Kompositionen widmet sich VOLGA auch Stücken aus dem reichhaltigen Vorrat an Werken von anderen Musikern,
+    die für die beiden Wahl - Leipziger von persönlicher Bedeutung sind. Neben Richie Beirach und Chick Corea sind auch weniger bekannte Komponisten wie Chris Beier zu hören.VOLGA ist lyrisch verspielt,
+    improvisatorisch frei, aber auch vehement energisch.`,
+    links: [{
+        type: "soundcloud",
+        link: "https://soundcloud.com/olga-reznichenko/sets/volga"
+      },
+      {
+        type: "youtube",
+        link: "https://www.facebook.com/seppmaiers2raumwohnung/videos/223780339769397"
+      }
+    ]
+  },
+  {
     title: `Heuken/Stadtfeld/Heigenhuber`,
     picName: "E_HeukenStadtfeldHeigenhuber.png",
     cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
@@ -287,49 +314,6 @@ const Ensembles = [  {
       type: "youtube",
       link: "https://www.youtube.com/watch?v=ilXAYWhwWu8&feature=youtu.be"
     }]
-  },
-  {
-    title: `Organic Vibes`,
-    picName: "E_OrganicVibes.png",
-    cast: ["Markus Harm - alt", "Volker Heuken - vibraphon", "Lukas Grossmann - orgel", "Johannes Koch - drums"],
-    description: `
-      Orgeltrios mit Schlagzeug und Gitarre sind hinlänglich bekannt. Diese Band jedoch,
-      hat die Gitarre gegen ein Vibraphon getauscht und erneuert damit den klassischen Sound eines Orgeltrios. Stilistisch bewegen sich die Musiker zwischen Jazz,
-      Soul und Blues. Neben Eigenkompositionen der Bandmitglieder werden unter anderem Stücke von John Scofield oder Michael Brecker zu hören sein,
-      wobei auch der ein oder andere Jazzstandard nicht fehlen wird. Ursprünglich in Nürnberg gegründet,
-      hat sich das Trio,
-      das jetzt in ganz Deutschland verteilt lebt,
-      den herausragenden Saxophonisten Markus Harm mit ins Boot geholt,
-      um den Sound noch um einen Bläser zu erweitern `,
-    links: [{
-      type: "youtube",
-      link: "https://www.youtube.com/watch?v=uF1S0cJwm2w"
-    }]
-  },
-  {
-    title: `Volga`,
-    picName: "E_Volga.png",
-    cast: ["Volker Heuken - vibraphon", "Olga Reznichenko - piano"],
-    description: `In die renommierten Fußstapfen des ikonesken Duos von Gary Burton und Chick Corea tretend, gestalten die Pianistin Olga Reznichenko und der Vibraphonist Volker Heuken die Klanggestalt dieser seltenen Instrumentenkonstellation neu. Dabei spielen die beiden Musiker mit der Gegenüberstellung von konvergenten Klang und der gezielten Kontrastierung. Neben eigenen Kompositionen widmet sich VOLGA auch Stücken aus dem reichhaltigen Vorrat an Werken von anderen Musikern,
-    die für die beiden Wahl - Leipziger von persönlicher Bedeutung sind. Neben Richie Beirach und Chick Corea sind auch weniger bekannte Komponisten wie Chris Beier zu hören.VOLGA ist lyrisch verspielt,
-    improvisatorisch frei, aber auch vehement energisch.`,
-    links: [{
-        type: "soundcloud",
-        link: "https://soundcloud.com/olga-reznichenko/sets/volga"
-      },
-      {
-        type: "youtube",
-        link: "https://www.facebook.com/seppmaiers2raumwohnung/videos/223780339769397"
-      }
-    ]
-  },
-  {
-    title: `LAMA`,
-    picName: "E_Lama.png",
-    cast: ["Joachim Lenhardt - tenor", "Volker Heuken - vibraphon", "Alex Bayer- bass", "Jan F. Brill - drums"],
-    description: `LAMA fräst eine verspielt - akrobatische Schneise in den Kanon des Modern Jazz.Die vier Protagonisten der jungen deutschen Jazzszene pusten den Staub vom Regal der Säulenheiligen und katapultieren die Werke von Monk und Coleman in die pulsierende Jetztzeit.Joachim Lenhardt,
-      Volker Heuken, Alex Bayer und Jan Brill toben in den musikalischen Häusern der Überväter, bis die Balken wackeln und das ehrwürdige Werk wieder vor Leben strotzt.`,
-    links: []
   }
 ];
 
