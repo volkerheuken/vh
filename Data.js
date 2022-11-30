@@ -245,23 +245,10 @@ const Konzerte = [ //Datum: Jahr, Monat, Tag als: YYYY,MM,DD
   },
 ];
 
-const Ensembles = [{
-    title: `Heuken/Stadtfeld/Heigenhuber`,
-    picName: "E_HeukenStadtfeldHeigenhuber.png",
-    cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
-    description: `Ein äußerst ungewöhnliches Trio. Das Nischeninstrument Vibraphon kommt im Jazz immer nur am Rande vor. Hier steht es allerdings im Mittelpunkt. Mal als Melodie-, mal als Harmonieinstrument aber immer als Dreh und Angelpunkt dieses Leipziger Trios. Die Band erforscht zum einen mehr oder weniger bekannte Songs aus Jazz und Pop, zum anderen widmet es sich den Kompositionen von Volker Heuken und Max Stadtfeld, die eindeutig aus der Sprache des Jazz kommen, aber auch Ausflüchte unternehmen in konzipierte Improvisationen, Neue Musik oder konzeptionelle Komposition. 2019 gewann das Trio den Leipziger Jazznachwuchspreis.`,
-    links: [{
-      type: "youtube",
-      link: "https://www.youtube.com/watch?v=_OJRoj2s9BY"
-    }, {
-      type: "bandcamp",
-      link: "https://heuken-stadtfeld-heigenhuber.bandcamp.com/releases"
-    }]
-  },
-  {
+const Ensembles = [  {
     title: `Volker Heuken Sextett`,
     picName: "E_VolkerHeukenSextett.png",
-    cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
+    cast: ["Christopher Kunz - tenor", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
     description: `
       Volker Heukens Kompositionen erzeugen mit Phantasie und Raffinesse dichte Stimmungen von arkadischer Lyrik über geistreiche Eleganz bis zum explosiven Gewitter. Mit großer Klarheit verwebt sein traumwandlerisch eingespieltes Sextett diese Stimmungen zu dichten Atmosphären und bietet dem Hörer die Erfahrung eines großen dramatischen Prozesses.
       `,
@@ -278,6 +265,18 @@ const Ensembles = [{
         link: "https://www.amazon.de/Siblings-Volker-Heuken-Sextett/dp/B07XV71C1X/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=volker+heuken+sextett&qid=1579020409&sr=8-1"
       }
     ]
+  },{
+    title: `Heuken/Stadtfeld/Heigenhuber`,
+    picName: "E_HeukenStadtfeldHeigenhuber.png",
+    cast: ["Volker Heuken - vibraphon", "Lorenz Heigenhuber - bass", "Max Stadtfeld - drums, glockenspiel"],
+    description: `Ein äußerst ungewöhnliches Trio. Das Nischeninstrument Vibraphon kommt im Jazz immer nur am Rande vor. Hier steht es allerdings im Mittelpunkt. Mal als Melodie-, mal als Harmonieinstrument aber immer als Dreh und Angelpunkt dieses Leipziger Trios. Die Band erforscht zum einen mehr oder weniger bekannte Songs aus Jazz und Pop, zum anderen widmet es sich den Kompositionen von Volker Heuken und Max Stadtfeld, die eindeutig aus der Sprache des Jazz kommen, aber auch Ausflüchte unternehmen in konzipierte Improvisationen, Neue Musik oder konzeptionelle Komposition. 2019 gewann das Trio den Leipziger Jazznachwuchspreis.`,
+    links: [{
+      type: "youtube",
+      link: "https://www.youtube.com/watch?v=_OJRoj2s9BY"
+    }, {
+      type: "bandcamp",
+      link: "https://heuken-stadtfeld-heigenhuber.bandcamp.com/releases"
+    }]
   },
   {
     title: `Shepherd Moon`,
