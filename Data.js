@@ -67,7 +67,7 @@ const Konzerte = [
 		datum: "2023.02.17",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
-		Location: "Jazzstudio",
+		Location: "Jazzstudio e.V.",
 		Stadt: "Nürnberg",
 	},{
 		datum: "2023.02.18",
