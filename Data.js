@@ -51,13 +51,15 @@ const Konzerte = [
 		Location: "Weltecho",
 		Stadt: "Chemnitz",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.02.11",
 		Startzeit: "20:00",
 		Titel: "Johannes Moritz Anamorphosis",
 		Location: "Alte Rösterei",
 		Stadt: "Plauen",
-	},{
+	},
+	{
 		datum: "2023.02.12",
 		Startzeit: "20:00",
 		Titel: "Johannes Moritz Anamorphosis",
@@ -67,135 +69,153 @@ const Konzerte = [
 		datum: "2023.02.17",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
-		Location: "Jazzstudio e.V.",
+		Location: "Jazzstudio e.V",
 		Stadt: "Nürnberg",
-	},{
+	},
+	{
 		datum: "2023.02.18",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Wendlandjazz",
 		Stadt: "Gedelitz",
-	},{
+	},
+	{
 		datum: "2023.03.03",
 		Startzeit: "20:00",
 		Titel: "Damian Dalla Torre Happy Floating",
 		Location: "Nato",
 		Stadt: "Leipzig",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.03.04",
 		Startzeit: "20:00",
 		Titel: "Damian Dalla Torre Happy Floating",
 		Location: "Pierre Grasse",
 		Stadt: "Halle Saale",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.03.05",
 		Startzeit: "20:00",
 		Titel: "Damian Dalla Torre Happy Floating",
 		Location: "Franz Mehlhose",
 		Stadt: "Erfurt",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.03.07",
 		Startzeit: "20:00",
 		Titel: "Damian Dalla Torre Happy Floating",
 		Location: "Jazzlab",
 		Stadt: "Hamburg",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.03.09",
 		Startzeit: "20:00",
 		Titel: "Damian Dalla Torre Happy Floating",
 		Location: "Milla Club",
 		Stadt: "München",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.03.30",
 		Startzeit: "19:30",
 		Titel: "Heuken / Stadtfeld / Heigenhuber",
 		Location: "Horns Erben",
 		Stadt: "Leipzig",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.04.13",
 		Startzeit: "20:00",
 		Titel: "Johannes Moritz Anamorphosis",
 		Location: "Weltecho",
 		Stadt: "Chemnitz",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.04.14",
 		Startzeit: "20:00",
 		Titel: "Johannes Moritz Anamorphosis",
 		Location: "BLECH",
 		Stadt: "Halle Saale",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.04.15",
 		Startzeit: "20:00",
 		Titel: "Johannes Moritz Anamorphosis",
 		Location: "Nato",
 		Stadt: "Leipzig",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.04.21",
 		Startzeit: "20:00",
 		Titel: "Hypochondrische Ängste",
 		Location: "Leipjazzig Festival Schille",
 		Stadt: "Leipzig",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.04.22",
 		Startzeit: "14 / 16",
 		Titel: "Peterchens Mondfahrt",
 		Location: "Kulturhof Gohlis",
 		Stadt: "Leipzig",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.05.06",
 		Startzeit: "20:00",
 		Titel: "VOLGA",
 		Location: "Weltecho",
 		Stadt: "Chemnitz",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.05.14",
 		Startzeit: "20:00",
 		Titel: "Johannes Moritz Anamorphosis",
 		Location: "Industriesalon",
 		Stadt: "Berlin",
 		link: "",
-	},{
+	},
+	{
 		datum: "2022.12.10",
 		Startzeit: "21:00",
 		Titel: "Die Hypochondrischen Ängste",
 		Location: "Donau 115",
 		Stadt: "Berlin",
 		link: "",
-	}
-	},{
+	},
+	{
 		datum: "2022.12.10",
 		Startzeit: "21:00",
 		Titel: "Die Hypochondrischen Ängste",
 		Location: "Donau 115",
 		Stadt: "Berlin",
 		link: "",
-	},{
+	},
+	{
 		datum: "2022.12.10",
 		Startzeit: "21:00",
 		Titel: "Die Hypochondrischen Ängste",
 		Location: "Donau 115",
 		Stadt: "Berlin",
 		link: "",
-	},{
+	},
+	{
 		datum: "2022.12.10",
 		Startzeit: "21:00",
 		Titel: "Die Hypochondrischen Ängste",
 		Location: "Donau 115",
 		Stadt: "Berlin",
 		link: "",
-	},{
+	},
+	{
 		datum: "2022.12.10",
 		Startzeit: "21:00",
 		Titel: "Die Hypochondrischen Ängste",
