@@ -183,14 +183,6 @@ const Konzerte = [
 		Stadt: "Berlin",
 		link: "",
 	},
-	{
-		datum: "2022.12.10",
-		Startzeit: "21:00",
-		Titel: "Die Hypochondrischen Ängste",
-		Location: "Donau 115",
-		Stadt: "Berlin",
-		link: "",
-	},
   {
 		datum: "2022.12.10",
 		Startzeit: "21:00",
