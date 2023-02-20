@@ -34,12 +34,39 @@
 	--fs-Base: 16px;
 	--fs-Medium: 1.1rem;
 	--fs-Large: 1.2rem;
-	--fw-Base: 200;
+	--fw-Base: 400;
 	--fw-500: 500;
 	--fw-600: 600;
 }
 
 /* ----------------- FONTS ----------------- */
+
+@font-face {
+	font-family: "PTSerif";
+	src: url("/font/pt-serif-regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "PTSerif";
+	src: url("/font/pt-serif-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "PTSerif";
+	src: url("/font/pt-serif-italic.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+}
+@font-face {
+	font-family: "PTSerif";
+	src: url("/font/pt-serif-italic.woff") format("woff");
+	font-weight: 400;
+	font-style: italic;
+}
+
 @font-face {
 	font-family: "HKGrotesk";
 	src: url("/font/HKGrotesk-Light.woff2") format("woff2");
@@ -72,7 +99,7 @@
 	padding: 0;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	font-family: "HKGrotesk", arial;
+	font-family: "PTSerif", "HKGrotesk", arial;
 	font-size: var(--fs-Base);
 	font-weight: var(--fw-Base);
 	line-height: 1.48;
@@ -107,21 +134,21 @@ div {
 
 h1 {
 	font-size: var(--fs-Medium);
-	font-weight: var(--fw-600);
+	font-weight: var(--fw-Base);
 	text-align: center;
 	text-justify: center;
 }
 
 h2 {
 	font-size: var(--fs-Medium);
-	font-weight: var(--fw-500);
+	font-weight: var(--fw-Base);
 	text-align: center;
 	padding-bottom: var(--padding);
 }
 
 h3 {
 	font-size: var(--fs-Medium);
-	font-weight: var(--fw-600);
+	font-weight: var(--fw-Base);
 	text-align: justify;
 	padding: var(--padding);
 }
@@ -250,7 +277,7 @@ footer:before {
 	color: hsl(var(--txtMain));
 	padding: var(--padding);
 	font-size: var(--fs-Large);
-	font-weight: bold;
+	/* font-weight: bold; */
 	-webkit-transition: all var(--trT-short) ease-in-out;
 	-o-transition: all var(--trT-short) ease-in-out;
 	transition: all var(--trT-short) ease-in-out;

@@ -2,7 +2,7 @@
         "editor.fontWeight": "normal",
         "editor.minimap.renderCharacters": true,
         "workbench.editor.tabCloseButton": "left",
-        "liveServer.settings.port": 3001,
+        "liveServer.settings.port": 3002,
         "liveServer.settings.CustomBrowser": "firefox",
         "editor.snippetSuggestions": "top"
 }
