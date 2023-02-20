@@ -342,9 +342,7 @@ footer:before {
 
 .cl_spotifySmall:hover,
 .cl_spotifySmall:focus {
-	-webkit-transform: scale(1.5);
-	transform: scale(1.5);
-	-webkit-transform: translateY(-60%);
+	scale: 1.5;
 	transform: translateY(-60%);
 }
 
@@ -469,7 +467,7 @@ section {
 	width: 100%;
 	max-height: calc(100vh - var(--navbarHeight) - var(--footerHeight));
 	grid-auto-flow: column;
-	grid-auto-columns: auto -webkit-min-content;
+	/* grid-auto-columns: auto -webkit-min-content; */
 	grid-auto-columns: auto min-content;
 	grid-gap: var(--cardGap);
 	justify-content: center;
@@ -651,9 +649,7 @@ section {
 /* -----------------mobile layout-------------------- */
 @media screen and (max-width: 850px) {
 	:root {
-		--fs-Base: min(max(0.5rem, 2vmin), 1rem);
 		--fs-Base: clamp(0.5rem, 2vmin, 1rem);
-		--mainMargin: min(max(2rem, 2vmin), 4rem);
 		--mainMargin: auto clamp(2rem, 2vmin, 4rem);
 	}
 
@@ -668,10 +664,8 @@ section {
 
 	.cl_spotifySmall:hover,
 	.cl_spotifySmall:focus {
-		-webkit-transform: scale(1.5);
-		transform: scale(1.5);
-		-webkit-transform: translate(30%, -60%);
-		transform: translate(30%, -60%);
+		scale: 1.5;
+		translate: 30% -60%;
 	}
 
 	.cl_nav_hidables {
