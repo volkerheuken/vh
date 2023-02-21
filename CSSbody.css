@@ -103,7 +103,7 @@
 	font-size: var(--fs-Base);
 	font-weight: var(--fw-Base);
 	line-height: 1.48;
-	letter-spacing: 0.1rem;
+	letter-spacing: 0.05rem;
 }
 
 *::after,
@@ -737,7 +737,7 @@ section {
 
 /* -------------alignment templates -------------------- */
 [uiTextAlign~="left"] {
-	text-align: left;
+	text-align: justify;
 }
 
 [uiTextAlign~="center"] {
