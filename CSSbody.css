@@ -720,7 +720,7 @@ section {
 }
 
 /* -------------image sizes ---------------------------- */
-[uiSize~="big"] {
+[uiSize~="large"] {
 	max-width: var(--CardsMaxWidth);
 	max-height: calc(var(--CardsMaxWidth) * 2 / 3);
 	width: auto;
