@@ -191,16 +191,13 @@ textarea {
 
 p {
 	text-align: left;
-	/* padding: calc(var(--UIPadding) * 5); */
 }
 
 span {
 	display: block;
+  text-align: justify;
+  hyphens: auto;
 	margin-bottom: 1rem;
-}
-
-li {
-	margin-left: 1rem;
 }
 
 img {
@@ -737,7 +734,7 @@ section {
 
 /* -------------alignment templates -------------------- */
 [uiTextAlign~="left"] {
-	text-align: justify;
+	text-align: left;
 }
 
 [uiTextAlign~="center"] {

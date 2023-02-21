@@ -87,7 +87,7 @@ function createNews() {
 		spacer.classList.add("cl_gridLine");
 		newsContainer.appendChild(spacer);
 
-		const text = document.createElement("p");
+		const text = document.createElement("span");
 		text.textContent = news.text;
 		text.classList.add("cl_newsGrid_text");
 		if (news.hasOwnProperty("link") && news.link != "") {
@@ -187,7 +187,6 @@ function createDisko() {
 	for (const [index, data] of diskoListe.entries()) {
 		// create images with container
 		const diskoPreviewContainer = document.createElement("div");
-		// diskoPreviewContainer.setAttribute("uiSize", "small");
 		diskoPreviewContainer.classList.add("cl_diskoPreview");
 		const diskoPreviewImage = document.createElement("img");
 		diskoPreviewImage.src = `Images/Disko/${data.picName}`;
@@ -231,7 +230,7 @@ function createSingleCard(data, index = 0, type) {
 	title.classList.add("cl_cardTitle");
 	title.style.gridArea = "cardTitle";
 	title.innerText = data.title;
-	title.setAttribute("uiTextAlign", "left");
+	title.setAttribute("uiTextAlign", "block");
 	cardContainer.appendChild(title);
 
 	//Datum
@@ -257,11 +256,9 @@ function createSingleCard(data, index = 0, type) {
 
 	// Text
 	if (data.description) {
-		const text = document.createElement("div");
-		// text.style.gridArea = "cardText";
+		const text = document.createElement("span");
 		text.classList.add("cl_cardText");
 		text.textContent = data.description;
-		text.setAttribute("uiTextAlign", "left");
 		cardContainer.appendChild(text);
 	}
 
