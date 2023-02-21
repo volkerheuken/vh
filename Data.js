@@ -65,7 +65,8 @@ const Konzerte = [
 		Titel: "Johannes Moritz Anamorphosis",
 		Location: "Saxstall",
 		Stadt: "Pohrsdorf",
-	},{
+	},
+	{
 		datum: "2023.02.17",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
@@ -191,7 +192,7 @@ const Konzerte = [
 		Stadt: "Berlin",
 		link: "",
 	},
-  {
+	{
 		datum: "2022.12.10",
 		Startzeit: "21:00",
 		Titel: "Die Hypochondrischen Ängste",

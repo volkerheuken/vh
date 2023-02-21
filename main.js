@@ -3,7 +3,7 @@ const globalValues = {
 	prevSection: "",
 	nextSection: null,
 	get defaultStart() {
-		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Ensembles";
+		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Home";
 		return dbID(`idDiv_navBar_${text}`);
 	},
 	navClick(site) {
@@ -271,7 +271,7 @@ function createSingleCard(data, index = 0, type) {
 		cast.classList.add("cl_cardCast");
 		cast.style.gridArea = "cardCast";
 		for (let c = 0; c < data.cast.length; c++) {
-			const member = document.createElement("span");
+			const member = document.createElement("p");
 			member.textContent = data.cast[c];
 			member.style.fontStyle = "italic";
 			member.setAttribute("uiTextAlign", "left");
