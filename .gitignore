@@ -2,6 +2,8 @@
 .DS_Store
 .gitignore
 __Kram
+Ocjene.js
+OcjeneHelpers.js
 
 # General
 # Icon must end with two \r
