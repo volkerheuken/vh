@@ -195,8 +195,8 @@ p {
 
 span {
 	display: block;
-  text-align: justify;
-  hyphens: auto;
+	text-align: justify;
+	hyphens: auto;
 	margin-bottom: 1rem;
 }
 
@@ -561,6 +561,7 @@ section {
 	padding-top: 2rem;
 	align-self: center;
 	grid-column: 1 / -1;
+	white-space: pre-wrap;
 }
 
 .cl_card {
@@ -589,7 +590,7 @@ section {
 	padding-top: 0;
 }
 .cl_cardText {
-  text-align: justify;
+	text-align: justify;
 	grid-area: cardText;
 	max-width: var(--CardsMaxWidth);
 }

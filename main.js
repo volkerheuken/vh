@@ -104,7 +104,8 @@ function createNews() {
 
 function createKonzerte() {
 	function checkUTC(UTC) {
-		return UTC.getTime() >= new Date().getTime();
+		const day = 86400000; 
+		return UTC.getTime() + day >= new Date().getTime();
 	}
 	let parent = dbID(`id_KonzertListe`);
 	parent.innerHTML = "";
@@ -314,11 +315,6 @@ function createButtons(btnsArr, parentID, size = null) {
 		};
 		parent.appendChild(linkBtn);
 	});
-}
-
-function sendWA() {
-	let url = `https://wa.me/${Contact.phone}`;
-	window.open(url);
 }
 
 //------------ Helperfunctions --------------
