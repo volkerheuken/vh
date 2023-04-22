@@ -23,6 +23,7 @@
 	--CardsMinWidth: 25rem;
 	--CardsMaxWidth: 30rem;
 	--ImgPreviewWidth: 15rem;
+	--imgSize: 1.5rem;
 	--filter: 1;
 	/* Borders */
 	--UIBorderThin: 0.042rem solid hsl(var(--bgcMain));
@@ -37,6 +38,39 @@
 	--fw-Base: 400;
 	--fw-500: 500;
 	--fw-600: 600;
+
+	--bgcButton: 0 0% 100%;
+	--txtButton: 0 0% 0%;
+	--bgcButtonPositive: 120 100% 50%;
+	--txtButtonPositive: 0 0% 0%;
+	--bgcButtonNegative: 0 100% 44%;
+	--txtButtonNegative: 0 0% 100%;
+
+	--UIHeight1: 2rem;
+	--UIHeight2: calc(var(--UIHeight1) * 2);
+	--UIHeight3: calc(var(--UIHeight1) * 3);
+
+	--UIWidth1: calc(var(--UIHeight1) * 1);
+	--UIWidth2: calc(var(--UIHeight1) * 2);
+	--UIWidth3: calc(var(--UIHeight1) * 3);
+	--UIWidth4: calc(var(--UIHeight1) * 4);
+	--UIWidth5: calc(var(--UIHeight1) * 5);
+	--UIWidth6: calc(var(--UIHeight1) * 6);
+	--UIWidth7: calc(var(--UIHeight1) * 7);
+	--UIWidth8: calc(var(--UIHeight1) * 8);
+	--UIWidth9: calc(var(--UIHeight1) * 9);
+	--UIWidth10: calc(var(--UIHeight1) * 10);
+	--UIWidth11: calc(var(--UIHeight1) * 11);
+	--UIWidth12: calc(var(--UIHeight1) * 12);
+	--UIWidth13: calc(var(--UIHeight1) * 13);
+	--UIWidth14: calc(var(--UIHeight1) * 14);
+	--UIWidth15: calc(var(--UIHeight1) * 15);
+	--UIWidth16: calc(var(--UIHeight1) * 16);
+	--UIWidth17: calc(var(--UIHeight1) * 17);
+	--UIWidth18: calc(var(--UIHeight1) * 18);
+	--UIWidth19: calc(var(--UIHeight1) * 19);
+	--UIWidth20: calc(var(--UIHeight1) * 20);
+	--UIWidth30: calc(var(--UIHeight1) * 30);
 }
 
 /* ----------------- FONTS ----------------- */
@@ -99,11 +133,7 @@
 	padding: 0;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	font-family: "PTSerif", "HKGrotesk", arial;
-	font-size: var(--fs-Base);
-	font-weight: var(--fw-Base);
-	line-height: 1.48;
-	letter-spacing: 0.05rem;
+
 }
 
 *::after,
@@ -113,6 +143,13 @@
 }
 
 body {
+
+	font-family: "PTSerif", "HKGrotesk", arial;
+	font-size: var(--fs-Base);
+	font-weight: var(--fw-Base);
+	line-height: 1.48;
+	letter-spacing: 0.05rem;
+  
 	display: -webkit-box;
 	display: flex;
 	background-color: hsl(var(--bgcBackground));
@@ -125,7 +162,6 @@ body {
 }
 
 input,
-textarea,
 button,
 div {
 	margin: var(--UIPadding);
@@ -162,31 +198,27 @@ a {
 	color: hsl(var(--txtBackground));
 }
 
-input,
-button {
-	width: var(--UIWidthWide);
-	height: var(--UIHeight);
-	color: hsl(var(--txtBackground));
-	-webkit-transition: all var(--trT-short) ease-in-out;
-	-o-transition: all var(--trT-short) ease-in-out;
+input {
+	width: var(--UIWidth6);
+	height: var(--UIHeight1);
 	transition: all var(--trT-short) ease-in-out;
 }
 
 button {
-	border: var(--UIBorderThick);
+  position: relative;
+	width: var(--UIWidth16);
+  height: var(--UIHeight1);
+	text-align: center;
+	-webkit-box-align: center;
+	align-items: center;
 	cursor: pointer;
-	background: transparent;
+	transition: all var(--transitionTimeInfo) ease-in-out;
 }
 
+input:hover,
 button:hover,
 button:focus {
 	background: hsla(var(--bgcMain) / 0.3);
-}
-
-/* button */
-textarea {
-	width: var(--UIWidthWide);
-	height: var(--UIHeightTriple);
 }
 
 p {
@@ -545,6 +577,44 @@ section {
 	transform: scaleY(1);
 	-webkit-transform-origin: top;
 	transform-origin: top;
+}
+
+.cl_subGrid_Ocjene {
+	display: grid;
+	grid-template-areas:
+		". cl_OcjeneSheet cl_OcjeneGenerate cl_OcjeneGenerate ."
+		". cl_OcjeneSheet cl_OcjeneRandomA cl_OcjeneRandomA ."
+		". cl_OcjeneSheet cl_OcjeneRandomB cl_OcjeneRandomB ."
+		". cl_OcjeneSheet cl_OcjeneRandomC cl_OcjeneRandomC ."
+		". cl_OcjeneSheet cl_OcjeneSongHeader cl_OcjeneSongHeader ."
+		". cl_OcjeneSheet cl_OcjeneTimeSignature cl_OcjeneTimeSignature ."
+		". cl_OcjeneSheet cl_OcjeneClefs cl_OcjeneClefs ."
+		". cl_OcjeneSheet cl_OcjeneKeySignature cl_OcjeneKeySignature ."
+		". cl_OcjeneSheet cl_OcjeneKey cl_OcjeneKey ."
+		". cl_OcjeneSheet cl_OcjeneTempo cl_OcjeneTempo ."
+		". cl_OcjeneSheet cl_OcjeneBars cl_OcjeneBars ."
+		". cl_OcjeneSheet cl_OcjeneShowText cl_OcjeneShowText ."
+		". cl_OcjeneSheet cl_OcjeneTextLanguage cl_OcjeneTextLanguage ."
+		". cl_OcjeneSheet cl_OcjeneRhytmusHeader cl_OcjeneRhytmusHeader ."
+		". cl_OcjeneSheet cl_OcjeneNotenwert1 cl_OcjeneNotenwert8 ."
+		". cl_OcjeneSheet cl_OcjeneNotenwert2 cl_OcjeneNotenwert16 ."
+		". cl_OcjeneSheet cl_OcjeneNotenwert4 cl_OcjeneNotenwert32 ."
+		". cl_OcjeneSheet cl_OcjeneDotted cl_OcjeneDotted ."
+		". cl_OcjeneSheet cl_OcjeneTriplet cl_OcjeneTriplet ."
+		". cl_OcjeneSheet cl_OcjeneRests cl_OcjeneRests ."
+		". cl_OcjeneSheet cl_OcjeneBarOverflowStop cl_OcjeneBarOverflowStop ."
+		". cl_OcjeneSheet cl_OcjeneMetronome cl_OcjeneMetronome ."
+		". cl_OcjeneSheet cl_OcjeneMelodieHeader cl_OcjeneMelodieHeader ."
+		". cl_OcjeneSheet cl_OcjeneInstrument cl_OcjeneInstrument ."
+		". cl_OcjeneSheet cl_OcjeneKeyOnly cl_OcjeneKeyOnly ."
+		". cl_OcjeneSheet cl_OcjeneLimitRange cl_OcjeneLimitRange ."
+		". cl_OcjeneSheet cl_OcjeneInterval cl_OcjeneInterval .";
+	grid-template-columns: 1fr auto var(--UIWidth8) var(--UIWidth8) 1fr;
+	grid-template-rows:
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
 }
 
 /* -----------------layout allgemeines----------------- */

@@ -15,13 +15,29 @@ function mainSetup() {
 	//add the Grid-Area-Names to all divs inside the sections
 	colToggleColormode();
 	navClick(globalValues.defaultStart);
+	htmlAltTag();
 	createButtons(FooterButtons, "idDiv_footerCredits", 0.5);
+	ocjeneGridAreas();
+	createOcjene();
 	createContactData();
 	createNews();
 	createKonzerte();
 	createEnsembles();
 	createDisko();
 	handleTabletChange(checkMediaQuery); // Initial check
+}
+
+function htmlAltTag() {
+	setAlt("trash");
+	setAlt("oAdd");
+	setAlt("oSub");
+
+	function setAlt(name) {
+		const obj = dbCL(`img_${name}`, null);
+		for (let imgObj of obj) {
+			imgObj.alt = `${name}.svg`;
+		}
+	}
 }
 
 function createContactData() {
@@ -43,7 +59,7 @@ function navClick(obj = null) {
 	if (globalValues.prevSection != globalValues.nextSection) {
 		let selectedID = `idDiv_navBar_${globalValues.nextSection}`;
 		//set the CSS-Active class to highlight the clicked Menu
-		const clArr = dbCL("cl_navElements");
+		const clArr = dbCL("cl_navElements", null);
 		for (const item of clArr) {
 			if (item.id === selectedID) {
 				item.classList.add("navbarActive");
@@ -56,9 +72,8 @@ function navClick(obj = null) {
 		const mainGridItems = document.querySelectorAll("section");
 		let selected;
 		for (let item of mainGridItems) {
-			prevID = `id_${globalValues.prevSection}`;
-			nextID = `id_${globalValues.nextSection}`;
 			item.setAttribute("hidden", true);
+			nextID = `id_${globalValues.nextSection}`;
 			if (nextID === item.id) {
 				selected = item;
 			}
@@ -104,7 +119,7 @@ function createNews() {
 
 function createKonzerte() {
 	function checkUTC(UTC) {
-		const day = 86400000; 
+		const day = 86400000;
 		return UTC.getTime() + day >= new Date().getTime();
 	}
 	let parent = dbID(`id_KonzertListe`);
@@ -200,7 +215,7 @@ function createDisko() {
 		cardContainer.appendChild(card);
 		//logic to show the card
 		diskoPreviewContainer.onclick = () => {
-			for (const item of dbCL("cl_cardDisko")) {
+			for (const item of dbCL("cl_cardDisko", null)) {
 				item.classList.remove("cl_cardDiskoActive");
 			}
 			card.classList.add("cl_cardDiskoActive");
@@ -214,7 +229,7 @@ function createDisko() {
 }
 
 function createEnsembles() {
-	const parent = dbCL(`cl_Ensembles`)[0];
+	const parent = dbCL(`cl_Ensembles`);
 	parent.innerHTML = "";
 	Ensembles.forEach((data, index) => {
 		const card = createSingleCard(data, index, "Ensembles");
@@ -346,18 +361,49 @@ function dbID(id) {
 	return document.getElementById(id);
 }
 
-function dbCL(id) {
-	return document.getElementsByClassName(id);
-}
-
 function dbIDStyle(id) {
-	return dbID(id).style;
+	if (id instanceof Object) return id.style;
+	return document.getElementById(id).style;
 }
 
-function dbCLStyle(id) {
-	return dbCL(id).style;
+function dbCL(id, loc = 0) {
+	if (loc === null) {
+		return document.getElementsByClassName(id);
+	}
+	return document.getElementsByClassName(id)[loc];
 }
 
+function dbCLStyle(id, loc = 0) {
+	if (loc === null) {
+		let ret = [];
+		for (const s of document.getElementsByClassName(id)) {
+			ret.push(s.style);
+		}
+		return ret;
+	}
+	return document.getElementsByClassName(id)[loc].style;
+}
+
+//
+//
+
+// function dbIDStyle(id) {
+// 	if (id instanceof Object) return id.style;
+// 	return document.getElementById(id).style;
+// }
+
+// function dbCLStyle(id, loc = 0) {
+// 	if (loc === null) {
+// 		let ret = [];
+// 		for (const s of document.getElementsByClassName(id)) {
+// 			ret.push(s.style);
+// 		}
+// 		return ret;
+// 	}
+// 	return document.getElementsByClassName(id)[loc].style;
+// }
+
+//
 function convertDate(d, fourDigitYear = false) {
 	const date = d; //new Date(Date.parse(d.replace(/\./g, "/")))
 	const day = ("0" + date.getDate()).slice(-2);
@@ -437,11 +483,8 @@ checkMediaQuery.addEventListener("change", handleTabletChange);
 
 function handleTabletChange(e) {
 	const w = e.matches ? 80 : 300;
-	let s = dbCL("cl_spotifySmall")[0];
+	let s = dbCL("cl_spotifySmall");
 	s.style.width = `${w / 2}px`;
-	let iframe =
-		'<iframe id="spotify" src="https://open.spotify.com/embed/artist/7pv0ZlsoLsO02h38vM8wVq" width="' +
-		w +
-		'"px height="80" frameBorder="1" allowtransparency="false" allow="encrypted-media"></iframe>';
+	let iframe = '<iframe id="spotify" src="https://open.spotify.com/embed/artist/7pv0ZlsoLsO02h38vM8wVq" width="' + w + '"px height="80" frameBorder="1" allowtransparency="false" allow="encrypted-media"></iframe>';
 	s.innerHTML = iframe;
 }
