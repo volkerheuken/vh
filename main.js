@@ -3,7 +3,7 @@ const globalValues = {
 	prevSection: "",
 	nextSection: null,
 	get defaultStart() {
-		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Home";
+		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Ocjene";
 		return dbID(`idDiv_navBar_${text}`);
 	},
 	navClick(site) {

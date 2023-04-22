@@ -1311,7 +1311,7 @@ function ocjeneDraw() {
 	const drawOptions = {
 		print: false, // show in DINA4 format
     responsive: "resize",
-		staffwidth: getCssRoot("CardsMinWidth", true, true), // width 600
+		// staffwidth: getCssRoot("CardsMinWidth", true, true), // width 600
 		wrap: {
 			minSpacing: 1.8,
 			maxSpacing: 2.7,

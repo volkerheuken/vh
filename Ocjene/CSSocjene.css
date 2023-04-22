@@ -30,14 +30,17 @@ label[for] {
 }
 
 .img_trash {
+	width: var(--imgSize);
 	content: url("../Images/Icons/trash.svg");
 }
 
 .img_oAdd {
+	width: var(--imgSize);
 	content: url("../Images/Icons/oAdd.svg");
 }
 
 .img_oSub {
+	width: var(--imgSize);
 	content: url("../Images/Icons/oSub.svg");
 }
 
@@ -112,12 +115,11 @@ input[type="image"] {
 	height: var(--imgSize);
 	width: var(--imgSize);
 	background-color: transparent;
-  line-height: 1;
+	line-height: 1;
 	border-color: transparent;
 	padding: 0;
 	margin: 0 var(--padding);
 }
-
 
 .cl_infoCB,
 .cl_info {
@@ -132,6 +134,7 @@ input[type="image"] {
 	border-radius: var(--UIRadius);
 	text-align: center;
 }
+
 .cl_infoCB {
 	width: var(--UIWidth1);
 }
@@ -139,11 +142,6 @@ input[type="image"] {
 .cl_highlighted {
 	background-color: hsl(var(--bgcButtonPositive));
 	color: hsl(var(--txtButtonPositive));
-}
-
-.cl_outputText {
-	padding: var(--padding);
-	border-top: var(--borderThin);
 }
 
 .cl_abcHighlight {
@@ -224,7 +222,6 @@ input[type="image"] {
 [uiSize~="height3"] {
 	height: var(--UIHeight3);
 }
-
 
 [uiWrap~="nowrap"] {
 	white-space: nowrap;
