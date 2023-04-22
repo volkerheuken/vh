@@ -13,13 +13,6 @@
 	--paddingVertical: 0.167rem;
 	--mainMargin: auto 10rem;
 	--UIPadding: 0.2rem;
-	--UIHeight: 1.667rem;
-	--UIHeightDouble: 3.333rem;
-	--UIHeightTriple: 10rem;
-	--UIWidthSmall: 5rem;
-	--UIWidthMedium: 6.667rem;
-	--UIWidthNorm: 10rem;
-	--UIWidthWide: 20rem;
 	--CardsMinWidth: 25rem;
 	--CardsMaxWidth: 30rem;
 	--ImgPreviewWidth: 15rem;
@@ -585,6 +578,9 @@ section {
 	transform-origin: top;
 }
 
+.cl_OcjeneSheet {
+	width: 100%;
+}
 .cl_subGrid_Ocjene {
 	display: grid;
 	grid-template-areas:
@@ -621,6 +617,9 @@ section {
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
+	width: 100%;
+	grid-gap: var(--cardGap);
+	justify-content: center;
 }
 
 /* -----------------layout allgemeines----------------- */
@@ -785,6 +784,45 @@ section {
 	.cl_KontaktImg {
 		justify-content: center;
 		align-items: start;
+	}
+
+	.cl_subGrid_Ocjene {
+		grid-template-areas:
+			". cl_OcjeneSheet cl_OcjeneSheet ."
+			". cl_OcjeneGenerate cl_OcjeneGenerate ."
+			". cl_OcjeneRandomA cl_OcjeneRandomA ."
+			". cl_OcjeneRandomB cl_OcjeneRandomB ."
+			". cl_OcjeneRandomC cl_OcjeneRandomC ."
+			". cl_OcjeneSongHeader cl_OcjeneSongHeader ."
+			". cl_OcjeneTimeSignature cl_OcjeneTimeSignature ."
+			". cl_OcjeneClefs cl_OcjeneClefs ."
+			". cl_OcjeneKeySignature cl_OcjeneKeySignature ."
+			". cl_OcjeneKey cl_OcjeneKey ."
+			". cl_OcjeneTempo cl_OcjeneTempo ."
+			". cl_OcjeneBars cl_OcjeneBars ."
+			". cl_OcjeneShowText cl_OcjeneShowText ."
+			". cl_OcjeneTextLanguage cl_OcjeneTextLanguage ."
+			". cl_OcjeneRhytmusHeader cl_OcjeneRhytmusHeader ."
+			". cl_OcjeneNotenwert1 cl_OcjeneNotenwert8 ."
+			". cl_OcjeneNotenwert2 cl_OcjeneNotenwert16 ."
+			". cl_OcjeneNotenwert4 cl_OcjeneNotenwert32 ."
+			". cl_OcjeneDotted cl_OcjeneDotted ."
+			". cl_OcjeneTriplet cl_OcjeneTriplet ."
+			". cl_OcjeneRests cl_OcjeneRests ."
+			". cl_OcjeneBarOverflowStop cl_OcjeneBarOverflowStop ."
+			". cl_OcjeneMetronome cl_OcjeneMetronome ."
+			". cl_OcjeneMelodieHeader cl_OcjeneMelodieHeader ."
+			". cl_OcjeneInstrument cl_OcjeneInstrument ."
+			". cl_OcjeneKeyOnly cl_OcjeneKeyOnly ."
+			". cl_OcjeneLimitRange cl_OcjeneLimitRange ."
+			". cl_OcjeneInterval cl_OcjeneInterval .";
+		grid-template-columns: 1fr var(--UIWidth6) var(--UIWidth6) 1fr;
+		grid-template-rows:
+			auto
+			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
 	}
 }
 

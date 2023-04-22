@@ -1310,8 +1310,7 @@ function ocjeneDraw() {
 	const res = `${ocjeneSong.header}${ocjeneSong.abcJSSong}\n${text}`;
 	const drawOptions = {
 		print: false, // show in DINA4 format
-    responsive: "resize",
-		// staffwidth: getCssRoot("CardsMinWidth", true, true), // width 600
+		staffwidth: getCssRoot("CardsMinWidth", true, true), // width 600
 		wrap: {
 			minSpacing: 1.8,
 			maxSpacing: 2.7,
@@ -1331,7 +1330,6 @@ function ocjeneDraw() {
 }
 
 function createOcjene(preset = null) {
-	// dbID("idCanv_ocjeneSheet").innerHTML = "";
 	dbIDStyle("idCanv_ocjeneSheet").backgroundColor = "#FFFFF3";
 	dbIDStyle("idCanv_ocjeneSheet").color = "#000000";
 
