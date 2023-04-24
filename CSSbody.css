@@ -41,7 +41,7 @@
 	--fw-500: 500;
 	--fw-600: 600;
 
-	--UIHeight1: 2rem;
+	--UIHeight1: 1.5rem;
 	--UIHeight2: calc(var(--UIHeight1) * 2);
 	--UIHeight3: calc(var(--UIHeight1) * 3);
 
@@ -197,6 +197,7 @@ button {
 	border-radius: var(--UIRadius);
 	cursor: pointer;
 	vertical-align: middle;
+
 	max-width: var(--UIWidth16);
 	transition: all var(--trT-short) ease-in-out;
 }

@@ -82,7 +82,6 @@ input[type="image"] {
 	background-color: hsl(var(--bgcBackground) / 0.15);
 	color: hsl(var(--txtBackground));
 	width: var(--UIWidth6);
-	line-height: 200%;
 	border: var(--UIBorderThin);
 	border-radius: var(--UIRadius);
 	text-align: center;
