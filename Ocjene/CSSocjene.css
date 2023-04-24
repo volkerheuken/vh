@@ -1,77 +1,30 @@
 /* all the inputs */
-select {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	height: var(--UIHeight1);
-	text-decoration: none;
-	background-color: hsl(var(--bgcButton));
-	color: hsl(var(--txtButton));
-	border: var(--UIBorderThin);
-	border-radius: var(--UIRadius);
-	padding: 0;
-	vertical-align: middle;
-}
 
-select:hover {
-	background-color: hsl(var(--bgcMain) / 0.6);
-	color: hsl(var(--txtMain));
-	transition-duration: 0.1s;
-	transition-delay: 0s;
-}
 
 label {
-	vertical-align: middle;
+  vertical-align: middle;
 	border: var(--UIBorderThin);
 }
 
 label[for] {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .img_trash {
-	width: var(--imgSize);
+  width: var(--imgSize);
 	content: url("../Images/Icons/trash.svg");
 }
 
 .img_oAdd {
-	width: var(--imgSize);
+  width: var(--imgSize);
 	content: url("../Images/Icons/oAdd.svg");
 }
 
 .img_oSub {
-	width: var(--imgSize);
+  width: var(--imgSize);
 	content: url("../Images/Icons/oSub.svg");
 }
 
-select {
-	text-indent: var(--gridGap);
-	border-right: var(--UIBorderRight);
-	border-bottom: var(--UIBorderBottom);
-	max-width: var(--UIWidth16);
-	-o-text-overflow: ellipsis;
-	text-overflow: ellipsis;
-	/* padding-right: calc(2 * var(--padding)); */
-}
-
-select:disabled {
-	background-color: hsl(var(--bgcBackground) / 0.1);
-	color: var(--txtBackground);
-	cursor: default;
-}
-
-button:disabled {
-	background-color: hsl(var(--bgcBackground) / 0.05);
-	color: hsl(var(--txtBackground));
-	cursor: default;
-}
-
-button:active {
-	background-color: hsl(var(--bgcMain));
-	color: hsl(var(--txtMain));
-	transition-duration: 0s;
-	transition-delay: 0s;
-}
 
 [data-btnstatus="btnPositive"] {
 	background-color: hsl(var(--bgcButtonPositive));
@@ -129,7 +82,7 @@ input[type="image"] {
 	background-color: hsl(var(--bgcBackground) / 0.15);
 	color: hsl(var(--txtBackground));
 	width: var(--UIWidth6);
-	line-height: 150%;
+	line-height: 200%;
 	border: var(--UIBorderThin);
 	border-radius: var(--UIRadius);
 	text-align: center;

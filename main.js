@@ -18,7 +18,7 @@ function mainSetup() {
 	htmlAltTag();
 	createButtons(FooterButtons, "idDiv_footerCredits", 0.5);
 	ocjeneGridAreas();
-	createOcjene();
+	createOcjene(true);
 	createContactData();
 	createNews();
 	createKonzerte();
@@ -383,27 +383,10 @@ function dbCLStyle(id, loc = 0) {
 	}
 	return document.getElementsByClassName(id)[loc].style;
 }
-
-//
-//
-
-// function dbIDStyle(id) {
-// 	if (id instanceof Object) return id.style;
-// 	return document.getElementById(id).style;
-// }
-
-// function dbCLStyle(id, loc = 0) {
-// 	if (loc === null) {
-// 		let ret = [];
-// 		for (const s of document.getElementsByClassName(id)) {
-// 			ret.push(s.style);
-// 		}
-// 		return ret;
-// 	}
-// 	return document.getElementsByClassName(id)[loc].style;
-// }
-
-//
+function deepClone(data) {
+	if (data === null || data === undefined) return data;
+	return JSON.parse(JSON.stringify(data));
+}
 function convertDate(d, fourDigitYear = false) {
 	const date = d; //new Date(Date.parse(d.replace(/\./g, "/")))
 	const day = ("0" + date.getDate()).slice(-2);

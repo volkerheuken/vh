@@ -4,6 +4,14 @@
 	--txtMain: 0 100% 100%;
 	--bgcBackground: 60 0% 10%;
 	--txtBackground: 0 100% 100%;
+	/* --bgcButton: var(--bgcBackground);
+	--txtButton: var(--txtBackground); */
+	--bgcButton: 0 0% 100%;
+	--txtButton: 0 0% 0%;
+	--bgcButtonPositive: 120 100% 50%;
+	--txtButtonPositive: 0 0% 0%;
+	--bgcButtonNegative: 0 100% 44%;
+	--txtButtonNegative: 0 0% 100%;
 	/* UserInterface SIZES */
 	--navbarHeight: 3rem;
 	--footerHeight: calc(var(--navbarHeight) * 1.2);
@@ -32,13 +40,6 @@
 	--fw-Base: 400;
 	--fw-500: 500;
 	--fw-600: 600;
-
-	--bgcButton: 0 0% 100%;
-	--txtButton: 0 0% 0%;
-	--bgcButtonPositive: 120 100% 50%;
-	--txtButtonPositive: 0 0% 0%;
-	--bgcButtonNegative: 0 100% 44%;
-	--txtButtonNegative: 0 0% 100%;
 
 	--UIHeight1: 2rem;
 	--UIHeight2: calc(var(--UIHeight1) * 2);
@@ -153,21 +154,6 @@ body {
 	justify-content: center;
 }
 
-input,
-button {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	height: var(--UIHeight1);
-	text-decoration: none;
-	background-color: hsl(var(--bgcButton));
-	color: hsl(var(--txtButton));
-	border: var(--UIBorderThin);
-	border-radius: var(--UIRadius);
-	padding: 0;
-	vertical-align: middle;
-}
-
 h1 {
 	font-size: var(--fs-Medium);
 	font-weight: var(--fw-Base);
@@ -191,33 +177,45 @@ h3 {
 
 div,
 a {
-	font-size: var(--fs-Base);
-	font-weight: var(--fw-Base);
-	border: none;
+	/* font-size: var(--fs-Base);
+	font-weight: var(--fw-Base); */
+	/* border: none; */
 	color: hsl(var(--txtBackground));
 }
 
-input {
-	width: var(--UIWidth6);
+input,
+select,
+button {
+	font-family: "PTSerif", "HKGrotesk", arial;
+	font-size: var(--fs-Base);
+	font-weight: var(--fw-Base);
 	height: var(--UIHeight1);
+	text-decoration: none;
+	background-color: hsl(var(--bgcButton));
+	color: hsl(var(--txtButton));
+	border: var(--UIBorderThin);
+	border-radius: var(--UIRadius);
+	cursor: pointer;
+	vertical-align: middle;
+	max-width: var(--UIWidth16);
 	transition: all var(--trT-short) ease-in-out;
 }
 
-button {
-	position: relative;
-	width: var(--UIWidth16);
-	height: var(--UIHeight1);
-	text-align: center;
-	-webkit-box-align: center;
-	align-items: center;
-	cursor: pointer;
-	transition: all var(--transitionTimeInfo) ease-in-out;
+select {
+	text-indent: var(--padding);
+	border-right: var(--UIBorderThick);
+	border-bottom: var(--UIBorderThick);
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
 }
 
 input:hover,
-button:hover,
-button:focus {
-	background: hsla(var(--bgcMain) / 0.3);
+select:hover,
+button:hover {
+	background-color: hsl(var(--bgcMain) / 0.9);
+	color: hsl(var(--txtMain));
+	transition-duration: 0.1s;
+	transition-delay: 0s;
 }
 
 p {
@@ -585,9 +583,9 @@ section {
 	display: grid;
 	grid-template-areas:
 		". cl_OcjeneSheet cl_OcjeneGenerate cl_OcjeneGenerate ."
-		". cl_OcjeneSheet cl_OcjeneRandomA cl_OcjeneRandomA ."
-		". cl_OcjeneSheet cl_OcjeneRandomB cl_OcjeneRandomB ."
-		". cl_OcjeneSheet cl_OcjeneRandomC cl_OcjeneRandomC ."
+		". cl_OcjeneSheet cl_OcjeneLevelHeader cl_OcjeneLevelHeader ."
+		". cl_OcjeneSheet cl_OcjeneLevelselect1 cl_OcjeneLevelselect1 ."
+		". cl_OcjeneSheet cl_OcjeneLevelselect2 cl_OcjeneLevelselect2 ."
 		". cl_OcjeneSheet cl_OcjeneSongHeader cl_OcjeneSongHeader ."
 		". cl_OcjeneSheet cl_OcjeneTimeSignature cl_OcjeneTimeSignature ."
 		". cl_OcjeneSheet cl_OcjeneClefs cl_OcjeneClefs ."
@@ -613,7 +611,8 @@ section {
 		". cl_OcjeneSheet cl_OcjeneInterval cl_OcjeneInterval .";
 	grid-template-columns: 1fr auto var(--UIWidth6) var(--UIWidth6) 1fr;
 	grid-template-rows:
-		var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+		var(--UIHeight1)
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
@@ -790,9 +789,9 @@ section {
 		grid-template-areas:
 			". cl_OcjeneSheet cl_OcjeneSheet ."
 			". cl_OcjeneGenerate cl_OcjeneGenerate ."
-			". cl_OcjeneRandomA cl_OcjeneRandomA ."
-			". cl_OcjeneRandomB cl_OcjeneRandomB ."
-			". cl_OcjeneRandomC cl_OcjeneRandomC ."
+			". cl_OcjeneLevelHeader cl_OcjeneLevelHeader ."
+			". cl_OcjeneLevelselect1 cl_OcjeneLevelselect1 ."
+			". cl_OcjeneLevelselect2 cl_OcjeneLevelselect2 ."
 			". cl_OcjeneSongHeader cl_OcjeneSongHeader ."
 			". cl_OcjeneTimeSignature cl_OcjeneTimeSignature ."
 			". cl_OcjeneClefs cl_OcjeneClefs ."
@@ -819,7 +818,8 @@ section {
 		grid-template-columns: 1fr var(--UIWidth6) var(--UIWidth6) 1fr;
 		grid-template-rows:
 			auto
-			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
+			var(--UIHeight2)
+			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1)
 			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
