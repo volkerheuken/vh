@@ -36,13 +36,6 @@ function htmlAltTag() {
 		}
 	}
 }
-function randomObjectCentered(obj, top = null, iterations = 1) {
-	let sum = 0;
-	for (let i = 0; i < iterations; i++) {
-		sum += randomObject(obj, top);
-	}
-	return Math.floor(sum / iterations);
-}
 function utilsVinChange(id, v) {
 	let obj = null;
 	let siblingList = Array.from(id.parentNode.children);

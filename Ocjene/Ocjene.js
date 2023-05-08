@@ -4,9 +4,9 @@
 // https://soundprogramming.net/file-formats/midi-note-ranges-of-orchestral-instruments/
 // https://de.wikipedia.org/wiki/Liste_musikalischer_Symbole
 // https://musescore.org/sl/instruments
+// https://www.zem-college.de/midi/mc_taben.htm
 // https://cyrusn.github.io/note/abcjs/
 
-// https://abcnotation.com/wiki/abc:standard:v2.1
 const ocjeneSubgrid = [
 	["cl_OcjeneSheet", "right", "start"],
 	["cl_OcjeneLevelHeader", "left", "end"],
@@ -51,6 +51,7 @@ const ocjeneOptions = {
 	division: 576,
 	notenwerte: {
 		selected: [],
+		// selectedOrig: [0, 0, 0, 1, 0, 0], //1/1, 1/2, 1/4, 1/8, 1/16, 1/32
 		selectedOrig: [0, 1, 1, 1, 0, 0], //1/1, 1/2, 1/4, 1/8, 1/16, 1/32
 		quaternote: 144,
 		noteArrays: {
@@ -58,25 +59,19 @@ const ocjeneOptions = {
 			triplet: [null, 192, 96, 48, 24, 12],
 			dotted: [null, 432, 216, 108, 54, 27],
 		},
-		get min() {
+		get minIndex() {
 			return this.selected.findLastIndex((i) => i > 0);
 		},
 	},
 	dotted: {
-		state: false,
-		stateOrig: false,
-		probability: 0.15,
 		val: 0,
-		valOrig: 0,
+		valOrig: 5,
 		min: 0,
 		max: 20,
 	},
 	triplet: {
-		state: false,
-		stateOrig: true,
-		probability: 0.15,
 		val: 0,
-		valOrig: 0,
+		valOrig: 5,
 		min: 0,
 		max: 20,
 	},
@@ -96,6 +91,8 @@ const ocjeneOptions = {
 	interval: {
 		val: 0,
 		valOrig: 4,
+		min: 1,
+		max: 12,
 	},
 	tempo: {
 		val: 0,
@@ -105,8 +102,9 @@ const ocjeneOptions = {
 	},
 	bars: {
 		val: 0,
-		valOrig: 8,
-		max: 16,
+		valOrig: 4,
+		min: 1,
+		max: 24,
 	},
 	barOverflowStop: {
 		state: true,
@@ -115,12 +113,12 @@ const ocjeneOptions = {
 	metronome: {
 		state: false,
 		stateOrig: false,
-		val: 0,
-		valOrig: 0,
-		min: 0,
-		max: 2,
 	},
 	showText: {
+		state: false,
+		stateOrig: false,
+	},
+	showMidi: {
 		state: false,
 		stateOrig: false,
 	},
@@ -172,17 +170,10 @@ const ocjeneOptions = {
 	limitRange: {
 		state: true,
 		stateOrig: true,
-		base: 69,
-	},
-	variables: {
-		rangeOffset: {
-			val: 8,
-			valOrig: 8,
-		},
-		firstPitchIterations: {
-			val: 0,
-			valOrig: 8,
-		},
+		lower: 0,
+		lowerOrig: 58, //53,
+		upper: 0,
+		upperOrig: 69, //93,
 	},
 	definitions: {
 		notes: {
@@ -371,6 +362,10 @@ const ocjeneOptions = {
 				21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
 				94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108,
 			],
+			midiNotes: {
+				A: [0, 7, 1, 8, 2, 3, 9, 4, 10, 5, 11, 6],
+				B: [0, 12, 1, 13, 2, 3, 14, 4, 15, 5, 16, 6],
+			},
 			textLanguage: {
 				//Data_Country_CodesIso639
 				en: ["C", "D", "E", "F", "G", "A", "B", "C#", "D#", "F#", "G#", "A#", "Db", "Eb", "Gb", "Ab", "Bb"],
@@ -399,12 +394,26 @@ const ocjeneOptions = {
 				el: ["Ντο", "Ρε", "Μι", "Φα", "Σολ", "Λα", "Σι", "Ντο δίεση", "Ρε δίεση", "Φα δίεση", "Σολ δίεση", "Λα δίεση", "Ρε ύφεση", "Μι ύφεση", "Σολ ύφεση", "Λα ύφεση", "Σι ύφεση"],
 				ja: ["ハ", "ニ", "ホ", "ヘ", "ト", "イ", "ロ", "嬰ハ", "嬰ニ", "嬰ヘ", "嬰ト", "嬰イ", "変ニ", "変ホ", "変ト", "変イ", "変ロ"],
 			},
-			getTextLanguageArray(index) {
-				const code = Object.keys(this.textLanguage)[index];
-				return this.textLanguage[code];
-			},
-			getTextLanguageNoteIndex(note) {
-				return this.abcJSBasenotes.indexOf(note);
+			midiIndexToLanguageText(midiID, simple = false) {
+				const keyMode = ocjeneOptions.keys.index <= 7 ? "A" : "B";
+				const langArr = this.textLanguage[Object.keys(this.textLanguage)[ocjeneOptions.textLanguage.index]];
+				const langIndex = this.midiNotes[keyMode][midiID % 12];
+				let text = langArr[langIndex];
+				if (simple) return text;
+
+				let octaveIndicator = "";
+				//language Rules ENGLISH
+				const lIndex = ocjeneOptions.textLanguage.index;
+				if (lIndex < 5) {
+					octaveIndicator = Math.floor(midiID / 12);
+				} else {
+					// if (lIndex < 14)
+					const shift = Math.floor(midiID / 12) - 3;
+					if (shift < 0) octaveIndicator = Math.abs(shift);
+					if (shift >= 2) octaveIndicator = shift - 1;
+					if (shift > 0) text = text.toLowerCase();
+				}
+				return `${text} ${octaveIndicator}`;
 			},
 			get ABCJSnotes() {
 				const p = ocjeneOptions.keys.index <= 7 ? "A" : "B";
@@ -421,16 +430,18 @@ const ocjeneOptions = {
 			Bass: "bass",
 		},
 		timeSignatures: [
-			[2, 2],
-			[2, 4],
-			[3, 4],
-			[4, 4],
-			[5, 4],
-			[3, 8],
-			[6, 8],
-			[7, 8],
-			[9, 8],
-			[12, 8],
+			{ sig: [2, 2], postfix: "", accentuation: [2] },
+			{ sig: [2, 4], postfix: "", accentuation: [2] },
+			{ sig: [3, 4], postfix: "", accentuation: [3] },
+			{ sig: [4, 4], postfix: "", accentuation: [4] },
+			{ sig: [5, 4], postfix: "", accentuation: [5] },
+			{ sig: [3, 8], postfix: "", accentuation: [3] },
+			{ sig: [6, 8], postfix: "", accentuation: [3, 3] },
+			{ sig: [7, 8], postfix: "(3-4)", accentuation: [3, 4] },
+			{ sig: [7, 8], postfix: "(4-3)", accentuation: [4, 3] },
+			{ sig: [9, 8], postfix: "", accentuation: [3, 3, 3] },
+			{ sig: [10, 8], postfix: "(3-2-3-2)", accentuation: [3, 2, 3, 2] },
+			{ sig: [12, 8], postfix: "", accentuation: [3, 3, 3, 3] },
 		],
 		keySignatures: ["Dur", "Moll"],
 		keys: [
@@ -464,540 +475,412 @@ const ocjeneInstruments = {
 	get instrument() {
 		return this.data[this.index];
 	},
+	get baseNote() {
+		return Math.floor((this.instrument.range.lower + this.instrument.range.upper) / 2);
+	},
 	get firstPitch() {
-		return randomObjectCentered(this.getRange.lower, this.getRange.upper, ocjeneOptions.variables.firstPitchIterations.val);
+		return this.baseNote;
 	},
-	get getRange() {
-		if (!ocjeneOptions.limitRange.state) {
-			return this.instrument.range;
-		}
-		const base = ocjeneOptions.limitRange.base - 3 * ocjeneOptions.clef.index;
-		return {
-			lower: Math.max(this.instrument.range.lower, base - ocjeneOptions.variables.rangeOffset.val),
-			upper: Math.min(this.instrument.range.upper, base + ocjeneOptions.variables.rangeOffset.val),
-		};
+	get getInstrumentRange() {
+		return this.instrument.range;
 	},
-	// midi: [
-	// 	[0, "acoustic_grand_piano"],
-	// 	[1, "bright_acoustic_piano"],
-	// 	[2, "electric_grand_piano"],
-	// 	[3, "honkytonk_piano"],
-	// 	[4, "electric_piano_1"],
-	// 	[5, "electric_piano_2"],
-	// 	[6, "harpsichord"],
-	// 	[7, "clavinet"],
-	// 	[8, "celesta"],
-	// 	[9, "glockenspiel"],
-	// 	[10, "music_box"],
-	// 	[11, "vibraphone"],
-	// 	[12, "marimba"],
-	// 	[13, "xylophone"],
-	// 	[14, "tubular_bells"],
-	// 	[15, "dulcimer"],
-	// 	[16, "drawbar_organ"],
-	// 	[17, "percussive_organ"],
-	// 	[18, "rock_organ"],
-	// 	[19, "church_organ"],
-	// 	[20, "reed_organ"],
-	// 	[21, "accordion"],
-	// 	[22, "harmonica"],
-	// 	[23, "tango_accordion"],
-	// 	[24, "acoustic_guitar_nylon"],
-	// 	[25, "acoustic_guitar_steel"],
-	// 	[26, "electric_guitar_jazz"],
-	// 	[27, "electric_guitar_clean"],
-	// 	[28, "electric_guitar_muted"],
-	// 	[29, "overdriven_guitar"],
-	// 	[30, "distortion_guitar"],
-	// 	[31, "guitar_harmonics"],
-	// 	[32, "acoustic_bass"],
-	// 	[33, "electric_bass_finger"],
-	// 	[34, "electric_bass_pick"],
-	// 	[35, "fretless_bass"],
-	// 	[36, "slap_bass_1"],
-	// 	[37, "slap_bass_2"],
-	// 	[38, "synth_bass_1"],
-	// 	[39, "synth_bass_2"],
-	// 	[40, "violin"],
-	// 	[41, "viola"],
-	// 	[42, "cello"],
-	// 	[43, "contrabass"],
-	// 	[44, "tremolo_strings"],
-	// 	[45, "pizzicato_strings"],
-	// 	[46, "orchestral_harp"],
-	// 	[47, "timpani"],
-	// 	[48, "string_ensemble_1"],
-	// 	[49, "string_ensemble_2"],
-	// 	[50, "synth_strings_1"],
-	// 	[51, "synth_strings_2"],
-	// 	[52, "choir_aahs"],
-	// 	[53, "voice_oohs"],
-	// 	[54, "synth_choir"],
-	// 	[55, "orchestra_hit"],
-	// 	[56, "trumpet"],
-	// 	[57, "trombone"],
-	// 	[58, "tuba"],
-	// 	[59, "muted_trumpet"],
-	// 	[60, "french_horn"],
-	// 	[61, "brass_section"],
-	// 	[62, "synth_brass_1"],
-	// 	[63, "synth_brass_2"],
-	// 	[64, "soprano_sax"],
-	// 	[65, "alto_sax"],
-	// 	[66, "tenor_sax"],
-	// 	[67, "baritone_sax"],
-	// 	[68, "oboe"],
-	// 	[69, "english_horn"],
-	// 	[70, "bassoon"],
-	// 	[71, "clarinet"],
-	// 	[72, "piccolo"],
-	// 	[73, "flute"],
-	// 	[74, "recorder"],
-	// 	[75, "pan_flute"],
-	// 	[76, "blown_bottle"],
-	// 	[77, "shakuhachi"],
-	// 	[78, "whistle"],
-	// 	[79, "ocarina"],
-	// 	[80, "lead_1_square"],
-	// 	[81, "lead_2_sawtooth"],
-	// 	[82, "lead_3_calliope"],
-	// 	[83, "lead_4_chiff"],
-	// 	[84, "lead_5_charang"],
-	// 	[85, "lead_6_voice"],
-	// 	[86, "lead_7_fifths"],
-	// 	[87, "lead_8_bass_lead"],
-	// 	[88, "pad_1_new_age"],
-	// 	[89, "pad_2_warm"],
-	// 	[90, "pad_3_polysynth"],
-	// 	[91, "pad_4_choir"],
-	// 	[92, "pad_5_bowed"],
-	// 	[93, "pad_6_metallic"],
-	// 	[94, "pad_7_halo"],
-	// 	[95, "pad_8_sweep"],
-	// 	[96, "fx_1_rain"],
-	// 	[97, "fx_2_soundtrack"],
-	// 	[98, "fx_3_crystal"],
-	// 	[99, "fx_4_atmosphere"],
-	// 	[100, "fx_5_brightness"],
-	// 	[101, "fx_6_goblins"],
-	// 	[102, "fx_7_echoes"],
-	// 	[103, "fx_8_scifi"],
-	// 	[104, "sitar"],
-	// 	[105, "banjo"],
-	// 	[106, "shamisen"],
-	// 	[107, "koto"],
-	// 	[108, "kalimba"],
-	// 	[109, "bagpipe"],
-	// 	[110, "fiddle"],
-	// 	[111, "shanai"],
-	// 	[112, "tinkle_bell"],
-	// 	[113, "agogo"],
-	// 	[114, "steel_drums"],
-	// 	[115, "woodblock"],
-	// 	[116, "taiko_drum"],
-	// 	[117, "melodic_tom"],
-	// 	[118, "synth_drum"],
-	// 	[119, "reverse_cymbal"],
-	// 	[120, "guitar_fret_noise"],
-	// 	[121, "breath_noise"],
-	// 	[122, "seashore"],
-	// 	[123, "bird_tweet"],
-	// 	[124, "telephone_ring"],
-	// 	[125, "helicopter"],
-	// 	[126, "applause"],
-	// 	[127, "gunshot"],
-	// 	[128, "percussion"],
-	// ],
+	get getLimitedRange() {
+		if (!ocjeneOptions.limitRange.state) return this.getInstrumentRange;
+		const lower = ocjeneOptions.limitRange.lower;
+		const upper = ocjeneOptions.limitRange.upper;
+		return { lower, upper };
+	},
 	data: [
 		{
 			Name: "Klavier",
-			group: "Strings",
+			group: "Tasteninstrument",
 			midiInstrumentIndex: 0,
+			clef: "Violin",
 			range: {
 				lower: 33,
 				upper: 108,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Geige",
-			group: "Strings",
+			group: "Streichinstrument",
 			midiInstrumentIndex: 40,
+			clef: "Violin",
 			range: {
 				lower: 55,
 				upper: 103,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Viola",
-			group: "Strings",
+			group: "Streichinstrument",
 			midiInstrumentIndex: 41,
+			clef: "Violin",
 			range: {
 				lower: 48,
 				upper: 91,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Cello",
-			group: "Strings",
+			group: "Streichinstrument",
 			midiInstrumentIndex: 42,
+			clef: "Bass",
 			range: {
 				lower: 36,
 				upper: 76,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Kontrabass",
-			group: "Strings",
+			group: "Streichinstrument",
 			midiInstrumentIndex: 43,
+			clef: "Bass",
 			range: {
 				lower: 28,
 				upper: 67,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Bassgitarre",
-			group: "Strings",
+			group: "Zupfinstrument",
 			midiInstrumentIndex: 32,
+			clef: "Bass",
 			range: {
 				lower: 28,
 				upper: 67,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Gitarre",
-			group: "Strings",
+			group: "Zupfinstrument",
 			midiInstrumentIndex: 24,
+			clef: "Violin",
 			range: {
 				lower: 40,
 				upper: 88,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Tuba",
-			group: "Brass",
+			group: "Blechblasinstrument",
 			midiInstrumentIndex: 58,
+			clef: "Bass",
 			range: {
 				lower: 28,
 				upper: 58,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Bassposaune",
-			group: "Brass",
+			group: "Blechblasinstrument",
 			midiInstrumentIndex: 57,
+			clef: "Bass",
 			range: {
 				lower: 34,
 				upper: 67,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Posaune",
-			group: "Brass",
+			group: "Blechblasinstrument",
 			midiInstrumentIndex: 57,
+			clef: "Bass",
 			range: {
 				lower: 40,
 				upper: 72,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Flügelhorn",
-			group: "Brass",
+			group: "Blechblasinstrument",
 			midiInstrumentIndex: 57,
+			clef: "Violin",
 			range: {
 				lower: 34,
 				upper: 77,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Trompete",
-			group: "Brass",
+			group: "Blechblasinstrument",
 			midiInstrumentIndex: 56,
+			clef: "Violin",
 			range: {
 				lower: 55,
 				upper: 82,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Piccoloflöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 72,
+			clef: "Violin",
 			range: {
 				lower: 74,
 				upper: 102,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Flöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
+			clef: "Violin",
 			range: {
 				lower: 60,
 				upper: 96,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Oboe",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 68,
+			clef: "Violin",
 			range: {
 				lower: 58,
 				upper: 91,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Altflöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 68,
+			clef: "Violin",
 			range: {
 				lower: 55,
 				upper: 91,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Englischhorn",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 69,
+			clef: "Violin",
 			range: {
 				lower: 52,
 				upper: 81,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Klarinette",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 71,
+			clef: "Violin",
 			range: {
 				lower: 50,
 				upper: 94,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Bassklarinette",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 71,
+			clef: "Violin",
 			range: {
 				lower: 38,
 				upper: 77,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Fagott",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 70,
+			clef: "Bass",
 			range: {
 				lower: 34,
 				upper: 75,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Kontrafagott",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 70,
+			clef: "Bass",
 			range: {
 				lower: 22,
 				upper: 53,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Sopranblockflöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
+			clef: "Violin",
 			range: {
 				lower: 72,
 				upper: 98,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Altblockflöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
+			clef: "Violin",
 			range: {
 				lower: 65,
 				upper: 91,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Tenorblockflöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
+			clef: "Violin",
 			range: {
 				lower: 60,
 				upper: 86,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Bassblockflöte",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
+			clef: "Bass",
 			range: {
 				lower: 53,
 				upper: 79,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Baritonsaxophon",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 67,
+			clef: "Violin",
 			range: {
 				lower: 36,
 				upper: 69,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Tenorsaxophon",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 66,
+			clef: "Violin",
 			range: {
 				lower: 44,
 				upper: 76,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Altsaxophon",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 65,
+			clef: "Violin",
 			range: {
 				lower: 49,
 				upper: 81,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Sopranosaxophon",
-			group: "Woodwinds",
+			group: "Holzblasinstrument",
 			midiInstrumentIndex: 64,
+			clef: "Violin",
 			range: {
 				lower: 56,
 				upper: 88,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Glockenspiel",
 			group: "Percussion",
 			midiInstrumentIndex: 9,
+			clef: "Violin",
 			range: {
 				lower: 79,
 				upper: 108,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Xylophon",
 			group: "Percussion",
 			midiInstrumentIndex: 13,
+			clef: "Violin",
 			range: {
 				lower: 65,
 				upper: 108,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Vibraphon",
 			group: "Percussion",
 			midiInstrumentIndex: 11,
+			clef: "Violin",
 			range: {
 				lower: 53,
 				upper: 89,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Marimba",
 			group: "Percussion",
 			midiInstrumentIndex: 12,
+			clef: "Violin",
 			range: {
 				lower: 45,
 				upper: 96,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Bass Marimba",
 			group: "Percussion",
 			midiInstrumentIndex: 12,
+			clef: "Violin",
 			range: {
 				lower: 33,
 				upper: 81,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Celesta",
-			group: "Percussion",
+			group: "Tasteninstrument",
+
 			midiInstrumentIndex: 8,
+			clef: "Violin",
 			range: {
 				lower: 60,
 				upper: 108,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Röhrenglocken",
 			group: "Percussion",
 			midiInstrumentIndex: 14,
+			clef: "Violin",
 			range: {
 				lower: 60,
 				upper: 77,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Pauken",
 			group: "Percussion",
 			midiInstrumentIndex: 47,
+			clef: "Bass",
 			range: {
 				lower: 40,
 				upper: 55,
 			},
-			clef: "Bass",
 		},
 		{
 			Name: "Cembalo",
-			group: "Percussion",
+			group: "Tasteninstrument",
 			midiInstrumentIndex: 6,
+			clef: "Violin",
 			range: {
 				lower: 29,
 				upper: 89,
 			},
-			clef: "Violin",
 		},
 		{
 			Name: "Harfe",
-			group: "Percussion",
+			group: "Zupfinstrument",
 			midiInstrumentIndex: 46,
+			clef: "Violin",
 			range: {
 				lower: 24,
 				upper: 103,
 			},
-			clef: "Violin",
 		},
 	],
 };
@@ -1009,9 +892,9 @@ const ocjeneSong = {
 	get header() {
 		const config = {
 			T: `${firstLetterCap(this.title)}`, //Title --- shot bars:    \n%%barnumbers 1
-			C: `Musik: ${this.author}`, //Author
-			// S: `${new Date().getFullYear()}, Khage`, // copyright
-			M: ocjeneOptions.timeSignature.currSignature.join("/"), //Taktart
+			// C: `Musik: ${this.author}`, //Author
+			S: `${new Date().getFullYear()}, V. Heuken`, // copyright
+			M: ocjeneOptions.timeSignature.currSignature.sig.join("/"), //Taktart
 			L: `1/${ocjeneOptions.division}`, // kleinster Notenwert
 			Q: `1/4=${ocjeneOptions.tempo.val}`, // tempo
 			K: `${ocjeneOptions.keys.current} clef=${ocjeneOptions.clef.val()}`, //  Tonart, Reihenfolge wichtig!
@@ -1033,15 +916,22 @@ const ocjeneSong = {
 	},
 	currentSongLength: 0,
 	get barLength() {
-		return ocjeneOptions.timeSignature.currSignature[0] * (ocjeneOptions.division / ocjeneOptions.timeSignature.currSignature[1]);
+		return ocjeneOptions.timeSignature.currSignature.sig[0] * (ocjeneOptions.division / ocjeneOptions.timeSignature.currSignature.sig[1]);
 	},
 	get remainingBarLength() {
 		return this.barLength - (ocjeneSong.currentSongLength % this.barLength);
 	},
+	get isOnQuaterNote() {
+		let currPos = this.currentSongLength;
+		let tpbar = this.barLength;
+		let currBars = Math.floor(currPos / tpbar);
+		const barTs = currPos - tpbar * currBars;
+		return barTs % ocjeneOptions.notenwerte.quaternote == 0;
+	},
 	noteData: [],
 	abcJSSong: "",
 	abcJSText: "",
-	getData() {
+	generateData() {
 		let song = "";
 		let text = "";
 		for (let n of ocjeneSong.noteData) {
@@ -1065,23 +955,26 @@ const ocjeneSong = {
 			return ocjeneInstruments.instrument.midiInstrumentIndex;
 		},
 		get drumIntro() {
-			return 0; //ocjeneOptions.metronome.val;
+			return 0;
 		},
 		get drum() {
-			if (!ocjeneOptions.metronome.state) return null;
-			const metronomePattern = [
-				"dddd 76 77 77 77 70 50 60 40", // 2/2
-				"dd 76 77 70 40", // 2/4
-				"ddd 76 77 77 70 50 40", // 3/4
-				"dddd 76 77 77 77 70 40 50 40", // 4/4
-				"ddddd 76 77 77 77 77 70 40 40 60 40", // 5/4
-				"d72d72d72 76 77 77 70 50 40", // 3/8
-				"d72d72d72d72d72d72 76 77 77 76 77 77 70 50 40 50 50 40", // 6/8
-				"d72d72d72d72d72d72d72 76 77 77 76 77 76 77 70 50 40 50 40 50 40", // 7/8
-				"d72d72d72d72d72d72d72d72d72 76 77 77 76 77 77 76 77 77 70 50 40 50 50 40 50 50 40", // 9/8
-				"d72d72d72d72d72d72d72d72d72d72d72d72 76 77 77 76 77 77 76 77 77 76 77 77 70 50 40 50 50 40 50 50 40 50 50 40", // 12/8
-			];
-			return metronomePattern[ocjeneOptions.timeSignature.index];
+			if (!ocjeneOptions.metronome.state) return "";
+			let autoPattern = [[], [], []];
+			const baseLength = ocjeneOptions.notenwerte.noteArrays.base[Math.log2(ocjeneOptions.timeSignature.currSignature.sig[1])];
+			const accArr = ocjeneOptions.timeSignature.currSignature.accentuation;
+			for (let i = 0; i < accArr.length; i++) {
+				for (let j = 0; j < accArr[i]; j++) {
+					let pitch = j == 0 ? 76 : 77;
+					let volume = j == 0 ? 80 : 50;
+					autoPattern[0].push(`d${baseLength}`); //notelength
+					autoPattern[1].push(pitch); //pitch
+					autoPattern[2].push(volume); //Volume
+				}
+			}
+			let p0 = autoPattern[0].join("");
+			let p1 = autoPattern[1].join(" ");
+			let p2 = autoPattern[2].join(" ");
+			return [p0, p1, p2].join(" ");
 		},
 	},
 	midiBuffer: null,
@@ -1126,7 +1019,7 @@ class ocjeneNote {
 		this.addToSongData();
 		this.createPitch(splitMidiPitch);
 		this.checkSplit();
-		this.checkSpace();
+		this.insertSpace();
 		this.translatePitch();
 	}
 	pitchIndex() {
@@ -1149,7 +1042,8 @@ class ocjeneNote {
 	checkSplit() {
 		if (this.type == "triplet") return;
 		if (!ocjeneOptions.barOverflowStop.state && this.isCrossingBar()) {
-			const barStamp = (this.getBar() + 1) * ocjeneSong.barLength;
+			// const barStamp = (this.getBar() + 1) * ocjeneSong.barLength;
+			const barStamp = this.getBarStart(1);
 			const tsEnd = this.timeStamp + this.duration;
 			const newDuration = barStamp - this.timeStamp;
 			const addedNoteDuration = tsEnd - barStamp;
@@ -1173,26 +1067,33 @@ class ocjeneNote {
 		let ts = this.timeStamp + newDuration;
 		new ocjeneNote(this.type, addedNoteDuration, ts, 0, this.getDataIndex() + 1, this.midiPitch);
 	}
-	checkSpace() {
-		const dIndex = this.getDurationIndex();
-		if (dIndex < 3) return;
-		if (this.type == "triplet") return;
-		if (this.midiPitch == null) return (this.spaceStembar = true);
 
-		const num = ocjeneOptions.timeSignature.currSignature[0];
-		const den = ocjeneOptions.timeSignature.currSignature[1];
-		let splitTime;
-		let dIndexMultiplyer = dIndex - 2;
-		if (dIndex == 3 && den % num == 0) dIndexMultiplyer = dIndex - 1;
-		if ((num * den) % 3 == 0) {
-			splitTime = this.duration * 3 * dIndexMultiplyer;
-		} else {
-			splitTime = this.duration * 2 * dIndexMultiplyer;
+	insertSpace() {
+		const dIndex = this.getDurationIndex();
+		if (this.midiPitch == null) return (this.spaceStembar = true);
+		if (dIndex < 3) return (this.spaceStembar = true); // keine Balken
+		if (this.slur) return (this.spaceStembar = true); // keine Balken
+		if (this.type == "triplet") return;
+
+		const diff = this.timeStamp - this.getBarStart();
+		if (diff == 0) return;
+		const signature = ocjeneOptions.timeSignature.currSignature;
+		const accentLength = ocjeneOptions.division / signature.sig[1];
+		let accent = 0;
+		for (let index = 0; index < signature.accentuation.length; index++) {
+			const currAccentTimestamp = accentLength * accent;
+			if (diff - currAccentTimestamp <= accentLength && diff % currAccentTimestamp == 0) {
+				this.spaceStembar = true;
+				return;
+			}
+			accent += signature.accentuation[index];
 		}
-		if (this.timeStamp % splitTime == 0) this.spaceStembar = true;
 	}
 	getBar(offset = 0) {
 		return Math.floor((this.timeStamp + offset) / ocjeneSong.barLength);
+	}
+	getBarStart(offset = 0) {
+		return (Math.floor(this.timeStamp / ocjeneSong.barLength) + offset) * ocjeneSong.barLength;
 	}
 	isCrossingBar() {
 		return this.getBar() != this.getBar(this.duration - 1);
@@ -1202,7 +1103,6 @@ class ocjeneNote {
 		let a = this.timeStamp % ocjeneSong.barLength == 0;
 		return this.timeStamp % ocjeneSong.barLength == 0;
 	}
-
 	static isAccidental(pitch) {
 		return ocjeneOptions.definitions.accidentals.includes(pitch % 12);
 	}
@@ -1222,17 +1122,10 @@ class ocjeneNote {
 			return;
 		}
 		const lastNoteIndex = ocjeneSong.noteData.findLastIndex((n) => n.midiPitch != null);
-		if (lastNoteIndex == -1) {
-			this.midiPitch = ocjeneInstruments.firstPitch;
-		} else {
-			const prevPitch = ocjeneSong.noteData[lastNoteIndex].midiPitch;
-			const interval = randomObject(ocjeneOptions.interval.val * -1, ocjeneOptions.interval.val);
-			const nextPitch = prevPitch + interval;
-			if (nextPitch < ocjeneInstruments.getRange.lower) this.midiPitch = prevPitch + Math.abs(interval);
-			else if (nextPitch > ocjeneInstruments.getRange.upper) this.midiPitch = prevPitch - Math.abs(interval);
-			else this.midiPitch = nextPitch;
-		}
-		// correct Pitch if "keyOnly"
+		this.midiPitch = lastNoteIndex == -1 ? ocjeneInstruments.firstPitch : ocjeneSong.noteData[lastNoteIndex].midiPitch;
+		this.midiPitch += randomObject(ocjeneOptions.interval.val * -1, ocjeneOptions.interval.val);
+		this.midiPitch = valueConstrain(this.midiPitch, ocjeneInstruments.getLimitedRange.lower, ocjeneInstruments.getLimitedRange.upper);
+
 		if (ocjeneOptions.keyOnly.state) {
 			this.midiPitch = ocjeneNote.getBaseKey(this.midiPitch);
 		}
@@ -1268,82 +1161,111 @@ class ocjeneNote {
 	translateText() {
 		if (this.midiPitch == null) return "";
 		if (this.getDataIndex() > 0 && !this.isOnNewBar() && ocjeneSong.noteData[this.getDataIndex() - 1].slur == true) return "* ";
-
-		// clean Notetext
-		const midiIndex = ocjeneOptions.definitions.notes.midi.indexOf(this.midiPitch);
-		let text = ocjeneOptions.definitions.notes.ABCJSnotes[midiIndex].toUpperCase();
-		text = text.replace(/[',]/g, "");
-		const index = ocjeneOptions.definitions.notes.getTextLanguageNoteIndex(text);
-		const arr = ocjeneOptions.definitions.notes.getTextLanguageArray(ocjeneOptions.textLanguage.index);
-		return `${arr[index]} `;
+		const text = ocjeneOptions.showMidi.state ? `${this.midiPitch} ` : `${ocjeneOptions.definitions.notes.midiIndexToLanguageText(this.midiPitch, true)} `;
+		return text;
 	}
 }
-let failSafe = 10;
+
 function ocjeneGenerate() {
 	// console.clear();
 	btnColor("idBtn_ocjeneGenerate", null);
-	ocjeneSong.title = "Notenübeng 1"; //randomObject(netsaonaOptions.data.RandomWord);
+	ocjeneSong.title = `Notenübung ${ocjeneSettings.level}`; //randomObject(netsaonaOptions.data.RandomWord);
 	ocjeneSong.author = "Volker H."; //randomObject(netsaonaOptions.data.Name);
 	ocjeneSong.noteData = [];
 	ocjeneSong.currentSongLength = 0;
-
-	let failSafeCurr = 10;
 	while (ocjeneSong.currentSongLength < ocjeneSong.songlength) {
-		let fail = {};
-		if (Math.random() * 100 < ocjeneOptions.triplet.val) {
-			let arr = ocjeneOptions.notenwerte.noteArrays.triplet.slice();
-			fail = ocjeneCreateNote(arr, "triplet");
-		} else if (Math.random() * 100 < ocjeneOptions.dotted.val) {
-			let arr = ocjeneOptions.notenwerte.noteArrays.dotted.slice();
-			fail = ocjeneCreateNote(arr, "dotted");
-		} else {
-			let arr = ocjeneOptions.notenwerte.noteArrays.base.slice();
-			fail = ocjeneCreateNote(arr, "base");
-		}
-		if (fail != null) {
-			failSafeCurr--;
-			if (failSafeCurr <= 0) {
-				failSafe--;
-				console.log("impossible!!!", fail, ocjeneSong.currentSongLength, ocjeneSong.remainingSongLength);
-				ocjeneGenerate();
-				// alert("Taktart kann nicht mit gewählter Taktzahl und gewählten Notenlängen errreicht werden.");
-				return;
-			}
-		}
+		ocjeneCreateNote();
 	}
 	ocjeneCleanAfterGeneration();
 	ocjeneDraw();
-	// console.log(ocjeneSong.abcJSSong);
-	failSafe = 10;
 }
 
-function ocjeneCreateNote(arr, type) {
-	let possibleNotes = [];
-	const min = ocjeneOptions.notenwerte.min;
-	let indices = [];
-	for (let i = 0; i <= min; i++) {
-		if (ocjeneOptions.notenwerte.selected[i]) indices.push(i);
+function ocjeneCreateNote() {
+	let type = "base";
+	const normalizedSum = ocjeneOptions.triplet.val + ocjeneOptions.dotted.val;
+	if (normalizedSum != 0) {
+		const tripletNormalized = ocjeneOptions.triplet.val / normalizedSum;
+		const tempType = Math.random() < tripletNormalized ? "triplet" : "dotted";
+		const tempState = Math.random() * 100 < ocjeneOptions[tempType].val;
+		if (tempState) type = tempType;
 	}
-	for (let i of indices) {
-		if (type == "triplet" && (arr[i] == null || i == min)) continue;
-		if (type == "dotted" && (arr[i] == null || i == min)) continue;
-		possibleNotes.push(arr[i]);
-	}
-	let mult = type == "triplet" ? 3 : 1;
-	mult = type == "dotted" ? 2 : 1;
 
-	possibleNotes = possibleNotes.filter((n) => n * mult <= ocjeneSong.remainingSongLength);
-	if (ocjeneOptions.barOverflowStop.state) possibleNotes = possibleNotes.filter((n) => n * mult <= ocjeneSong.remainingBarLength);
-	if (possibleNotes.length == 0) return { type: type, l: ocjeneSong.remainingBarLength };
-	//more doubled 1/16 and 1/32
-	ocjeneIncreasePossibilities(type, possibleNotes);
+	let possibleNotes = ocjeneGetPossibleNotes(type);
+
+	if (possibleNotes.length == 0) {
+		// console.log("nope!");
+		type = "base";
+		possibleNotes = ocjeneGetPossibleNotes(type);
+	}
+
+	if (type == "base") {
+		(() => {
+			if (ocjeneSong.noteData.length < 2) return;
+			let prev1 = ocjeneSong.noteData[ocjeneSong.noteData.length - 1];
+			if (prev1.type != "base") return;
+			let prev2 = ocjeneSong.noteData[ocjeneSong.noteData.length - 2];
+			if (prev1.getDurationIndex() > 2 && prev1.duration != prev2.duration) {
+				possibleNotes.push(prev1.duration);
+				possibleNotes.push(prev1.duration);
+				possibleNotes.push(prev1.duration);
+			}
+		})();
+	}
+
 	const duration = randomObject(possibleNotes);
 	new ocjeneNote(type, duration, ocjeneSong.currentSongLength, 0);
 	if (type == "triplet") {
 		new ocjeneNote(type, duration, ocjeneSong.currentSongLength, 1);
 		new ocjeneNote(type, duration, ocjeneSong.currentSongLength, 2);
 	}
-	return null;
+}
+
+function ocjeneGetPossibleNotes(type) {
+	let possibleNotes = [];
+	let noteArray = ocjeneOptions.notenwerte.noteArrays[type].slice();
+	let indices = ocjeneOptions.notenwerte.selected
+		.map((index, e) => index * e)
+		.filter((e) => {
+			return e > 0;
+		}); //[0,1,3,4]
+
+	if (type == "base") {
+		const multiplier = 1;
+		possibleNotes = noteArray.filter((n, index) => {
+			if (!indices.includes(index)) return false;
+			if (n * multiplier > ocjeneSong.remainingSongLength) return false;
+			if (ocjeneOptions.barOverflowStop.state && n * multiplier > ocjeneSong.remainingBarLength) return false;
+			return true;
+		});
+		return possibleNotes;
+	}
+
+	if (type == "triplet") {
+		const multiplier = 3;
+		possibleNotes = noteArray.filter((n, index) => {
+			if (n == null) return false;
+			if (!indices.includes(index)) return false;
+			if (!ocjeneSong.isOnQuaterNote) return false;
+			if (n * multiplier > ocjeneSong.remainingSongLength) return false;
+			if (n * multiplier > ocjeneSong.remainingBarLength) return false;
+			return true;
+		});
+		return possibleNotes;
+	}
+
+	if (type == "dotted") {
+		const multiplier = 1.5;
+		possibleNotes = noteArray.filter((n, index) => {
+			if (n == null) return false;
+			if (index == ocjeneOptions.notenwerte.minIndex) return false;
+			if (!indices.includes(index)) return false;
+			if (n * multiplier > ocjeneSong.remainingSongLength) return false;
+			if (n * multiplier > ocjeneSong.remainingBarLength) return false;
+			return true;
+		});
+		return possibleNotes;
+	}
+	return [];
 }
 
 function ocjeneCleanAfterGeneration() {
@@ -1354,6 +1276,7 @@ function ocjeneCleanAfterGeneration() {
 		if (bars[b] == undefined) bars[b] = [];
 		bars[b].push([n, null]);
 	}
+	// console.log(bars);
 	for (let b = 0; b < bars.length; b++) {
 		const bar = bars[b];
 		for (let i = 0; i < bar.length; i++) {
@@ -1408,19 +1331,6 @@ function ocjeneCleanAfterGeneration() {
 			if (bar[i][1] == "shift") bar[i][0].midiPitch += ocjeneOptions.keys.shiftDir;
 			bar[i][0].translatePitch();
 		}
-	}
-	// console.log(bars);
-}
-
-function ocjeneIncreasePossibilities(type, possibleNotes) {
-	if (type != "base") return;
-	if (ocjeneSong.noteData.length < 2) return;
-	let prev1 = ocjeneSong.noteData[ocjeneSong.noteData.length - 1];
-	if (type != prev1.type) return;
-	let prev2 = ocjeneSong.noteData[ocjeneSong.noteData.length - 2];
-	if (prev1.getDurationIndex() > 2 && prev1.duration != prev2.duration) {
-		possibleNotes.push(prev1.duration);
-		possibleNotes.push(prev1.duration);
 	}
 }
 
@@ -1478,7 +1388,7 @@ function ocjeneDraw() {
 		ocjeneSong.synthControl.pause();
 		ocjeneSong.synthControl.restart();
 	}
-	ocjeneSong.getData();
+	ocjeneSong.generateData();
 	let text = ocjeneOptions.showText.state ? `w: ${ocjeneSong.abcJSText}` : "";
 	const res = `${ocjeneSong.header}${ocjeneSong.abcJSSong}\n${text}`;
 	const drawOptions = {
@@ -1490,13 +1400,11 @@ function ocjeneDraw() {
 			preferredMeasuresPerLine: ocjeneSong.spread,
 		},
 	};
-
 	ocjeneSong.abcCanvas = ABCJS.renderAbc(ocjeneOptions.div, res, drawOptions)[0];
 	if (!ABCJS.synth.supportsAudio()) {
 		console.log("Audio is not supported in this browser.");
 		return;
 	}
-
 	ocjeneSong.synthControl = new ABCJS.synth.SynthController();
 	ocjeneSong.synthControl.load(ocjeneOptions.audio, ocjeneSong.cursorControl, ocjeneSong.synthOptions);
 	ocjeneSong.startTune();
@@ -1506,8 +1414,6 @@ function createOcjene(preset = null) {
 	dbIDStyle("idCanv_ocjeneSheet").backgroundColor = "#FFFFF3";
 	dbIDStyle("idCanv_ocjeneSheet").color = "#000000";
 
-	ocjeneOptions.variables.firstPitchIterations.val = preset === null ? ocjeneOptions.variables.firstPitchIterations.valOrig : ocjeneSettings.get("firstPitchIterations");
-
 	ocjeneOptions.tempo.val = preset === null ? ocjeneOptions.tempo.valOrig : ocjeneSettings.get("tempo");
 	resetInput("idVin_ocjeneTempo", ocjeneOptions.tempo.val, {
 		min: ocjeneOptions.tempo.min,
@@ -1516,12 +1422,14 @@ function createOcjene(preset = null) {
 
 	ocjeneOptions.bars.val = preset === null ? ocjeneOptions.bars.valOrig : ocjeneSettings.get("bars");
 	resetInput("idVin_ocjeneBars", ocjeneOptions.bars.val, {
+		min: ocjeneOptions.bars.min,
 		max: ocjeneOptions.bars.max,
 	});
 
 	ocjeneOptions.interval.val = preset === null ? ocjeneOptions.interval.valOrig : ocjeneSettings.get("interval");
 	resetInput("idVin_ocjeneInterval", ocjeneOptions.interval.val, {
-		max: ocjeneOptions.bars.max,
+		min: ocjeneOptions.interval.min,
+		max: ocjeneOptions.interval.max,
 	});
 
 	ocjeneOptions.timeSignature.index = preset === null ? ocjeneOptions.timeSignature.indexOrig : ocjeneSettings.get("timeSignature");
@@ -1529,21 +1437,19 @@ function createOcjene(preset = null) {
 	clearFirstChild("idSel_ocjeneTimeSignature");
 	for (const [index, opt] of ocjeneOptions.definitions.timeSignatures.entries()) {
 		const option = document.createElement("OPTION");
-		option.textContent = opt.join("/");
-		option.value = opt.join("/");
+		option.textContent = opt.sig.join("/") + opt.postfix;
+		option.value = opt.sig.join("/");
 		if (index == ocjeneOptions.timeSignature.index) option.selected = true;
 		selSignature.appendChild(option);
 	}
-
 	ocjeneOptions.notenwerte.selected = preset === null ? ocjeneOptions.notenwerte.selectedOrig.slice() : ocjeneSettings.get("notenwerte");
 	const notenwertCB = dbCL("cl_ocjeneNotenwerte", null);
 	for (let i = 0; i < notenwertCB.length; i++) {
 		notenwertCB[i].checked = ocjeneOptions.notenwerte.selected[i];
 		notenwertCB[i].setAttribute("data-index", i);
 	}
-	// ocjeneOptions.notenwerte.createDivisions();
 
-	ocjeneInstruments.index = ocjeneInstruments.indexOrig;
+	if (preset === null) ocjeneInstruments.index = ocjeneInstruments.indexOrig;
 	const selInstruemnts = dbID("idSel_ocjeneInstrument");
 	clearFirstChild("idSel_ocjeneInstrument");
 	let groups = {};
@@ -1562,6 +1468,7 @@ function createOcjene(preset = null) {
 			option.textContent = opt.Name;
 			option.value = opt.Name;
 			optGroup.appendChild(option);
+			if (opt.Name == ocjeneInstruments.instrument.Name) option.selected = true;
 		}
 		selInstruemnts.appendChild(optGroup);
 	}
@@ -1573,10 +1480,8 @@ function createOcjene(preset = null) {
 		const option = document.createElement("OPTION");
 		option.textContent = ocjeneOptions.clef.name(i);
 		option.value = ocjeneOptions.clef.val(i);
-		if (i == ocjeneOptions.clef.index) {
-			option.selected = true;
-		}
 		selClefs.appendChild(option);
+		if (i == ocjeneOptions.clef.index) option.selected = true;
 	}
 
 	ocjeneOptions.keySignatures.index = ocjeneOptions.keySignatures.indexOrig;
@@ -1612,18 +1517,19 @@ function createOcjene(preset = null) {
 
 	ocjeneOptions.metronome.state = preset === null ? ocjeneOptions.metronome.stateOrig : ocjeneSettings.get("metronome");
 	dbID("idCb_ocjeneMetronome").checked = ocjeneOptions.metronome.state;
-	// ocjeneOptions.metronome.val = ocjeneOptions.metronome.valOrig;
-	// resetInput("idVin_ocjeneMetronome", ocjeneOptions.metronome.val, {
-	// 	min: ocjeneOptions.metronome.min,
-	// 	max: ocjeneOptions.metronome.max,
-	// });
 
 	ocjeneOptions.limitRange.state = preset === null ? ocjeneOptions.limitRange.stateOrig : ocjeneSettings.get("limitRange");
-	ocjeneOptions.variables.rangeOffset.val = preset === null ? ocjeneOptions.variables.rangeOffset.valOrig : ocjeneSettings.get("rangeOffset");
 	dbID("idCb_ocjeneLimitRange").checked = ocjeneOptions.limitRange.state;
+
+	ocjeneOptions.limitRange.lower = preset === null ? ocjeneOptions.limitRange.lowerOrig : ocjeneSettings.get("limitRangeLower");
+	ocjeneOptions.limitRange.upper = preset === null ? ocjeneOptions.limitRange.upperOrig : ocjeneSettings.get("limitRangeUpper");
+	//--> call "populate" at the end!
 
 	ocjeneOptions.showText.state = preset === null ? ocjeneOptions.showText.stateOrig : ocjeneSettings.get("showText");
 	dbID("idCb_ocjeneShowText").checked = ocjeneOptions.showText.state;
+
+	ocjeneOptions.showMidi.state = preset === null ? ocjeneOptions.showMidi.stateOrig : ocjeneSettings.get("showMidi");
+	dbID("idCb_ocjeneShowMidi").checked = ocjeneOptions.showMidi.state;
 
 	ocjeneOptions.textLanguage.index = preset === null ? ocjeneOptions.textLanguage.indexOrig : ocjeneSettings.get("textLanguage");
 	const textLanguage = dbID("idSel_ocjeneTextLanguage");
@@ -1644,12 +1550,9 @@ function createOcjene(preset = null) {
 		max: ocjeneOptions.rests.max,
 	});
 
+	ocjenePopulateLimitRangeSelect();
+
 	setTimeout(ocjeneGenerate, 300);
-	// if (globalValues.hostDebug || preset) {
-	//   setTimeout(ocjeneGenerate, 300)
-	// } else {
-	//   btnColor("idBtn_ocjeneGenerate", "positive");
-	// }
 }
 
 function ocjenePopulateKeys() {
@@ -1668,6 +1571,39 @@ function ocjenePopulateKeys() {
 	}
 }
 
+function ocjenePopulateLimitRangeSelect(instrumentChange = false) {
+	const selLimitRangeLower = dbID("idSel_ocjeneLimitRangeLower");
+	const selLimitRangeUpper = dbID("idSel_ocjeneLimitRangeUpper");
+
+	selLimitRangeLower.style.direction = "rtl";
+	selLimitRangeUpper.style.direction = "rtl";
+	clearFirstChild("idSel_ocjeneLimitRangeLower");
+	clearFirstChild("idSel_ocjeneLimitRangeUpper");
+
+	const optGroupLower = document.createElement("optgroup");
+	optGroupLower.label = "untere Grenze";
+	const optGroupUpper = document.createElement("optgroup");
+	optGroupUpper.label = "obere Grenze";
+	selLimitRangeLower.appendChild(optGroupLower);
+	selLimitRangeUpper.appendChild(optGroupUpper);
+
+	if (instrumentChange) {
+		ocjeneOptions.limitRange.lower = ocjeneInstruments.instrument.range.lower;
+		ocjeneOptions.limitRange.upper = ocjeneInstruments.instrument.range.upper;
+	}
+
+	for (let i = ocjeneInstruments.getInstrumentRange.lower; i <= ocjeneInstruments.getInstrumentRange.upper; i++) {
+		const optionL = document.createElement("OPTION");
+		optionL.textContent = ocjeneOptions.definitions.notes.midiIndexToLanguageText(i);
+		optionL.value = i;
+		const optionU = optionL.cloneNode(true);
+		if (i < ocjeneOptions.limitRange.upper) optGroupLower.appendChild(optionL);
+		if (i > ocjeneOptions.limitRange.lower) optGroupUpper.appendChild(optionU);
+		if (i == ocjeneOptions.limitRange.lower) optionL.selected = true;
+		if (i == ocjeneOptions.limitRange.upper) optionU.selected = true;
+	}
+}
+
 function ocjeneNotenwert(obj) {
 	const index = obj.dataset.index;
 	ocjeneOptions.notenwerte.selected[index] = obj.checked;
@@ -1680,9 +1616,11 @@ function ocjeneTimeSignature(obj) {
 }
 
 function ocjeneInstrument(obj) {
-	ocjeneInstruments.index = obj.selectedIndex;
-	ocjeneOptions.clef.index = Object.keys(ocjeneOptions.definitions.clefs).indexOf(ocjeneInstruments.instrument.clef);
+	const instrument = ocjeneInstruments.data.find((o) => o.Name == obj.value);
+	ocjeneInstruments.index = ocjeneInstruments.data.findIndex((o) => o.Name == obj.value);
+	ocjeneOptions.clef.index = Object.keys(ocjeneOptions.definitions.clefs).indexOf(instrument.clef);
 	dbID("idSel_ocjeneClefs").selectedIndex = ocjeneOptions.clef.index;
+	ocjenePopulateLimitRangeSelect(true);
 	ocjeneInputChange();
 }
 
@@ -1727,8 +1665,14 @@ function ocjeneShowText(obj) {
 	ocjeneDraw();
 }
 
+function ocjeneShowMidi(obj) {
+	ocjeneOptions.showMidi.state = obj.checked;
+	ocjeneDraw();
+}
+
 function ocjeneTextLanguage(obj) {
 	ocjeneOptions.textLanguage.index = obj.selectedIndex;
+	ocjenePopulateLimitRangeSelect();
 	ocjeneDraw();
 }
 
@@ -1746,6 +1690,7 @@ function ocjeneBarOverflowStop(obj) {
 	ocjeneOptions.barOverflowStop.state = obj.checked;
 	ocjeneInputChange();
 }
+
 function ocjeneMetronome(obj) {
 	ocjeneOptions.metronome.state = obj.checked;
 	ocjeneDraw();
@@ -1753,6 +1698,19 @@ function ocjeneMetronome(obj) {
 
 function ocjeneLimitRange(obj) {
 	ocjeneOptions.limitRange.state = obj.checked;
+	if (ocjeneOptions.limitRange.state) {
+		dbID("idSel_ocjeneLimitRangeLower").removeAttribute("disabled");
+		dbID("idSel_ocjeneLimitRangeUpper").removeAttribute("disabled");
+	} else {
+		dbID("idSel_ocjeneLimitRangeLower").setAttribute("disabled", "true");
+		dbID("idSel_ocjeneLimitRangeUpper").setAttribute("disabled", "true");
+	}
+	ocjeneInputChange();
+}
+
+function ocjeneLimitRangeSelect(obj) {
+	ocjeneOptions.limitRange[obj.dataset.sel] = Number(obj.value);
+	ocjenePopulateLimitRangeSelect();
 	ocjeneInputChange();
 }
 
@@ -1771,7 +1729,7 @@ function ocjeneRandom(obj) {
 }
 
 const ocjeneSettings = {
-	level: 1,
+	level: 2,
 	get(fn) {
 		return this.data[fn];
 	},
@@ -1803,6 +1761,12 @@ const ocjeneSettings = {
 		get showText() {
 			if (ocjeneSettings.level == 1) return true;
 			if (ocjeneSettings.level == 2) return ocjeneOptions.showText.stateOrig;
+			if (ocjeneSettings.level == 3) return false;
+			if (ocjeneSettings.level == 4) return false;
+		},
+		get showMidi() {
+			if (ocjeneSettings.level == 1) return false;
+			if (ocjeneSettings.level == 2) return ocjeneOptions.showMidi.stateOrig;
 			if (ocjeneSettings.level == 3) return false;
 			if (ocjeneSettings.level == 4) return false;
 		},
@@ -1869,21 +1833,20 @@ const ocjeneSettings = {
 		get limitRange() {
 			if (ocjeneSettings.level == 1) return true;
 			if (ocjeneSettings.level == 2) return ocjeneOptions.limitRange.stateOrig;
-			if (ocjeneSettings.level == 3) return true;
+			if (ocjeneSettings.level == 3) return false;
 			if (ocjeneSettings.level == 4) return false;
 		},
-		//variables
-		get rangeOffset() {
-			if (ocjeneSettings.level == 1) return 8;
-			if (ocjeneSettings.level == 2) return ocjeneOptions.variables.rangeOffset.valOrig;
-			if (ocjeneSettings.level == 3) return 10;
-			if (ocjeneSettings.level == 4) return 24;
+		get limitRangeLower() {
+			if (ocjeneSettings.level == 1) return 55;
+			if (ocjeneSettings.level == 2) return ocjeneOptions.limitRange.lowerOrig;
+			if (ocjeneSettings.level == 3) return 53;
+			if (ocjeneSettings.level == 4) return 50;
 		},
-		get firstPitchIterations() {
-			if (ocjeneSettings.level == 1) return 20;
-			if (ocjeneSettings.level == 2) return ocjeneOptions.variables.firstPitchIterations.valOrig;
-			if (ocjeneSettings.level == 3) return 6;
-			if (ocjeneSettings.level == 4) return 4;
+		get limitRangeUpper() {
+			if (ocjeneSettings.level == 1) return 90;
+			if (ocjeneSettings.level == 2) return ocjeneOptions.limitRange.upperOrig;
+			if (ocjeneSettings.level == 3) return 94;
+			if (ocjeneSettings.level == 4) return 95;
 		},
 	},
 };

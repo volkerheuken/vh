@@ -15,6 +15,7 @@
 	/* UserInterface SIZES */
 	--navbarHeight: 3rem;
 	--footerHeight: calc(var(--navbarHeight) * 1.2);
+	--maxWidthContent: 80%;
 	--padding: 0.5rem;
 	--gridGap: 1.5rem;
 	--cardGap: 0.5rem;
@@ -209,6 +210,11 @@ select {
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
 }
+select:disabled {
+	background-color: hsl(var(--bgcMain) / 0.1);
+	color: hsl(var(--txtMain));
+	cursor: default;
+}
 
 input:hover,
 select:hover,
@@ -265,7 +271,7 @@ nav:after {
 	position: absolute;
 	left: 10%;
 	bottom: 0px;
-	width: 80%;
+	width: var(--maxWidthContent);
 	margin: auto;
 	border-bottom: var(--UIBorderThick);
 }
@@ -296,7 +302,7 @@ footer:before {
 	position: absolute;
 	left: 10%;
 	top: 0px;
-	width: 80%;
+	width: var(--maxWidthContent);
 	margin: auto;
 	border-top: var(--UIBorderThick);
 }
@@ -389,13 +395,13 @@ footer:before {
 	aspect-ratio: 1;
 }
 
-/* -----------------main AREA -----------------*/
+/* --------------------------------------------main AREA -------------------------------------------*/
 main {
 	--navBottomSpacing: calc(var(--navbarHeight) * 1.5);
 	display: -webkit-box;
 	display: flex;
-	width: 100%;
 	position: relative;
+	width: var(--maxWidthContent);
 	top: var(--navBottomSpacing);
 	min-height: calc(100vh - var(--navBottomSpacing) var(--footerHeight));
 	-webkit-box-pack: center;
@@ -407,7 +413,11 @@ section {
 	margin: var(--padding);
 	-webkit-box-pack: center;
 	justify-content: center;
-	width: 100%;
+	width: var(--maxWidthContent);
+}
+
+section[hidden] {
+	display: none;
 }
 
 .cl_section_horizontal {
@@ -587,6 +597,11 @@ section {
 		". cl_OcjeneSheet cl_OcjeneLevelHeader cl_OcjeneLevelHeader ."
 		". cl_OcjeneSheet cl_OcjeneLevelselect1 cl_OcjeneLevelselect1 ."
 		". cl_OcjeneSheet cl_OcjeneLevelselect2 cl_OcjeneLevelselect2 ."
+		". cl_OcjeneSheet cl_OcjeneMelodieHeader cl_OcjeneMelodieHeader ."
+		". cl_OcjeneSheet cl_OcjeneInstrument cl_OcjeneInstrument ."
+		". cl_OcjeneSheet cl_OcjeneKeyOnly cl_OcjeneKeyOnly ."
+		". cl_OcjeneSheet cl_OcjeneLimitRange cl_OcjeneLimitRange ."
+		". cl_OcjeneSheet cl_OcjeneInterval cl_OcjeneInterval ."
 		". cl_OcjeneSheet cl_OcjeneSongHeader cl_OcjeneSongHeader ."
 		". cl_OcjeneSheet cl_OcjeneTimeSignature cl_OcjeneTimeSignature ."
 		". cl_OcjeneSheet cl_OcjeneClefs cl_OcjeneClefs ."
@@ -597,28 +612,23 @@ section {
 		". cl_OcjeneSheet cl_OcjeneShowText cl_OcjeneShowText ."
 		". cl_OcjeneSheet cl_OcjeneTextLanguage cl_OcjeneTextLanguage ."
 		". cl_OcjeneSheet cl_OcjeneRhytmusHeader cl_OcjeneRhytmusHeader ."
+		". cl_OcjeneSheet cl_OcjeneMetronome cl_OcjeneMetronome ."
 		". cl_OcjeneSheet cl_OcjeneNotenwert1 cl_OcjeneNotenwert8 ."
 		". cl_OcjeneSheet cl_OcjeneNotenwert2 cl_OcjeneNotenwert16 ."
 		". cl_OcjeneSheet cl_OcjeneNotenwert4 cl_OcjeneNotenwert32 ."
 		". cl_OcjeneSheet cl_OcjeneDotted cl_OcjeneDotted ."
 		". cl_OcjeneSheet cl_OcjeneTriplet cl_OcjeneTriplet ."
 		". cl_OcjeneSheet cl_OcjeneRests cl_OcjeneRests ."
-		". cl_OcjeneSheet cl_OcjeneBarOverflowStop cl_OcjeneBarOverflowStop ."
-		". cl_OcjeneSheet cl_OcjeneMetronome cl_OcjeneMetronome ."
-		". cl_OcjeneSheet cl_OcjeneMelodieHeader cl_OcjeneMelodieHeader ."
-		". cl_OcjeneSheet cl_OcjeneInstrument cl_OcjeneInstrument ."
-		". cl_OcjeneSheet cl_OcjeneKeyOnly cl_OcjeneKeyOnly ."
-		". cl_OcjeneSheet cl_OcjeneLimitRange cl_OcjeneLimitRange ."
-		". cl_OcjeneSheet cl_OcjeneInterval cl_OcjeneInterval .";
+		". cl_OcjeneSheet cl_OcjeneBarOverflowStop cl_OcjeneBarOverflowStop .";
 	grid-template-columns: 1fr auto var(--UIWidth6) var(--UIWidth6) 1fr;
 	grid-template-rows:
 		var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1)
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
-		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
-		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
 	width: 100%;
-	grid-gap: var(--cardGap);
+	grid-gap: var(--cardGap) 0;
 	justify-content: center;
 }
 
@@ -825,11 +835,6 @@ section {
 			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 			var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
 	}
-}
-
-/* ------------- hide sections ---------------------------- */
-[hidden] {
-	display: none;
 }
 
 /* -------------image sizes ---------------------------- */

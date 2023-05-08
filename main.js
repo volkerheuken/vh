@@ -73,11 +73,13 @@ function navClick(obj = null) {
 		let selected;
 		for (let item of mainGridItems) {
 			item.setAttribute("hidden", true);
+			item.removeAttribute("visible");
 			nextID = `id_${globalValues.nextSection}`;
 			if (nextID === item.id) {
 				selected = item;
 			}
 		}
+		selected.setAttribute("visible", true);
 		selected.removeAttribute("hidden");
 	}
 	//always scroll to the top
