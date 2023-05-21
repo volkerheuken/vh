@@ -284,7 +284,7 @@ footer {
 	height: var(--footerHeight);
 	background: hsl(var(--bgcBackground));
 	display: grid;
-	grid-template-columns: repeat(7, auto);
+	grid-template-columns: repeat(8, auto);
 	grid-template-rows: auto;
 	-webkit-box-align: center;
 	align-items: center;

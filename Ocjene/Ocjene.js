@@ -1,3 +1,7 @@
+// - Auswahlmöglichkeiten ausblenden (reversierbar?)
+// - Dropdown Level / notenübung
+// - slur --> balkentrennung beachten!
+
 // https://github.com/paulrosen/abcjs/blob/main/examples/basic-transpose.html
 // https://abcnotation.com/wiki/abc:standard:v2.1
 // http://www.lehrklaenge.de/PHP/Grundlagen/Notenschluessel.php
@@ -1742,6 +1746,7 @@ function ocjeneKeySignature(obj) {
 
 function ocjeneKey(obj) {
 	ocjeneOptions.keys.index = obj.selectedIndex;
+	ocjenePopulateLimitRangeSelect(false);
 	ocjeneInputChange();
 }
 
@@ -1873,8 +1878,8 @@ const ocjeneSettings = {
 		get textLanguage() {
 			if (ocjeneSettings.level == 1) return 5;
 			if (ocjeneSettings.level == 2) return ocjeneOptions.textLanguage.indexOrig;
-			if (ocjeneSettings.level == 3) return 0;
-			if (ocjeneSettings.level == 4) return 16;
+			if (ocjeneSettings.level == 3) return 5;
+			if (ocjeneSettings.level == 4) return 5;
 		},
 		get interval() {
 			if (ocjeneSettings.level == 1) return 5;

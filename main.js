@@ -3,7 +3,7 @@ const globalValues = {
 	prevSection: "",
 	nextSection: null,
 	get defaultStart() {
-		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Ocjene";
+		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Home";
 		return dbID(`idDiv_navBar_${text}`);
 	},
 	navClick(site) {
@@ -143,7 +143,7 @@ function createKonzerte() {
 	} else {
 		const noShows = document.createElement("h2");
 		noShows.classList.add("cl_konzertFullRow");
-		noShows.textContent = "keine anstehenden Veranstaltnugen";
+		noShows.textContent = "keine anstehenden Veranstaltungen";
 		parent.appendChild(noShows);
 	}
 	// line
