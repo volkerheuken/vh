@@ -1548,7 +1548,7 @@ function createOcjene(preset = null) {
 	}
 
 	if (preset === null) ocjeneInstruments.index = ocjeneInstruments.indexOrig;
-  //populated at the end
+	//populated at the end
 
 	ocjeneOptions.clef.index = preset === null ? ocjeneOptions.clef.indexOrig : ocjeneSettings.get("clef");
 	const selClefs = dbID("idSel_ocjeneClefs");
@@ -1628,7 +1628,7 @@ function createOcjene(preset = null) {
 	});
 
 	test();
-  ocjenePopulateInstruments();
+	ocjenePopulateInstruments();
 	ocjenePopulateLimitRangeSelect(true);
 	setTimeout(ocjeneGenerate, 300);
 }
@@ -1688,8 +1688,8 @@ function ocjenePopulateLimitRangeSelect(instrumentChange = false) {
 	selLimitRangeUpper.appendChild(optGroupUpper);
 
 	if (instrumentChange) {
-		ocjeneOptions.limitRange.lower = Math.max(ocjeneInstruments.getInstrumentRange[0], ocjeneOptions.limitRange.lowerOrig);
-		ocjeneOptions.limitRange.upper = Math.min(ocjeneInstruments.getInstrumentRange[1], ocjeneOptions.limitRange.upperOrig);
+		ocjeneOptions.limitRange.lower = ocjeneInstruments.getInstrumentRange[0];
+		ocjeneOptions.limitRange.upper = ocjeneInstruments.getInstrumentRange[1];
 	}
 
 	for (let i = ocjeneInstruments.getInstrumentFullRange[0]; i <= ocjeneInstruments.getInstrumentFullRange[1]; i++) {
