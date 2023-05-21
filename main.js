@@ -18,12 +18,12 @@ function mainSetup() {
 	htmlAltTag();
 	createButtons(FooterButtons, "idDiv_footerCredits", 0.5);
 	ocjeneGridAreas();
-	createOcjene(true);
 	createContactData();
 	createNews();
 	createKonzerte();
 	createEnsembles();
 	createDisko();
+	createOcjene(true);
 	handleTabletChange(checkMediaQuery); // Initial check
 }
 
@@ -389,10 +389,9 @@ function deepClone(data) {
 	if (data === null || data === undefined) return data;
 	return JSON.parse(JSON.stringify(data));
 }
-function convertDate(d, fourDigitYear = false) {
-	const date = d; //new Date(Date.parse(d.replace(/\./g, "/")))
-	const day = ("0" + date.getDate()).slice(-2);
-	const month = ("0" + (date.getMonth() + 1)).slice(-2);
+function convertDate(date, fourDigitYear = false) {
+	const day = date.getDate().toString().padStart(2, 0);
+	const month = (date.getMonth() + 1).toString().padStart(2, 0);
 	const year = fourDigitYear ? date.getFullYear() : parseInt(date.getFullYear().toString().substr(2, 2), 10);
 	return `${day}.${month}.${year}`;
 }
@@ -470,6 +469,6 @@ function handleTabletChange(e) {
 	const w = e.matches ? 80 : 300;
 	let s = dbCL("cl_spotifySmall");
 	s.style.width = `${w / 2}px`;
-	let iframe = '<iframe id="spotify" src="https://open.spotify.com/embed/artist/7pv0ZlsoLsO02h38vM8wVq" width="' + w + '"px height="80" frameBorder="1" allowtransparency="false" allow="encrypted-media"></iframe>';
+	let iframe = `<iframe id="spotify" src="https://open.spotify.com/embed/artist/7pv0ZlsoLsO02h38vM8wVq" width="${w}px" height="80" frameBorder="0" allowtransparency="false" allow="encrypted-media"></iframe>`;
 	s.innerHTML = iframe;
 }

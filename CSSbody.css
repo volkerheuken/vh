@@ -619,14 +619,15 @@ section[hidden] {
 		". cl_OcjeneSheet cl_OcjeneDotted cl_OcjeneDotted ."
 		". cl_OcjeneSheet cl_OcjeneTriplet cl_OcjeneTriplet ."
 		". cl_OcjeneSheet cl_OcjeneRests cl_OcjeneRests ."
-		". cl_OcjeneSheet cl_OcjeneBarOverflowStop cl_OcjeneBarOverflowStop .";
+		". cl_OcjeneSheet cl_OcjeneBarOverflowStop cl_OcjeneBarOverflowStop ."
+		". cl_OcjeneSheet . . .";
 	grid-template-columns: 1fr auto var(--UIWidth6) var(--UIWidth6) 1fr;
 	grid-template-rows:
 		var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
 		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1)
-		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto;
+		var(--UIHeight2) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) var(--UIHeight1) auto; 
 	width: 100%;
 	grid-gap: var(--cardGap) 0;
 	justify-content: center;

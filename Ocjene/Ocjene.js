@@ -1,9 +1,12 @@
+// https://github.com/paulrosen/abcjs/blob/main/examples/basic-transpose.html
 // https://abcnotation.com/wiki/abc:standard:v2.1
-// https://www.abcjs.net/abcjs-editor.html
 // http://www.lehrklaenge.de/PHP/Grundlagen/Notenschluessel.php
+// https://www.abcjs.net/abcjs-editor.html
 // https://soundprogramming.net/file-formats/midi-note-ranges-of-orchestral-instruments/
 // https://de.wikipedia.org/wiki/Liste_musikalischer_Symbole
 // https://musescore.org/sl/instruments
+// https://github.com/musescore/MuseScore
+// https://musescore.org/en/handbook/developers-handbook/references/instrumentsxml-documentation#copyandpastemethod
 // https://www.zem-college.de/midi/mc_taben.htm
 // https://cyrusn.github.io/note/abcjs/
 
@@ -138,15 +141,20 @@ const ocjeneOptions = {
 	clef: {
 		index: 0,
 		indexOrig: 0,
-		name(index = null) {
-			if (index == null) return Object.keys(ocjeneOptions.definitions.clefs)[this.index];
-			return Object.keys(ocjeneOptions.definitions.clefs)[index];
+		abcName(index = null) {
+			let i = index == null ? this.index : index;
+			return ocjeneOptions.definitions.clefs[i].abc;
+			// return ocjeneOptions.definitions.clefs[Object.keys(ocjeneOptions.definitions.clefs)[i]][1];
 		},
-		val(index = null) {
-			if (index == null) {
-				return ocjeneOptions.definitions.clefs[Object.keys(ocjeneOptions.definitions.clefs)[this.index]];
-			}
-			return ocjeneOptions.definitions.clefs[Object.keys(ocjeneOptions.definitions.clefs)[this.index]];
+		enName(index = null) {
+			let i = index == null ? this.index : index;
+			return ocjeneOptions.definitions.clefs[i].en;
+			// return Object.keys(ocjeneOptions.definitions.clefs)[i];
+		},
+		deName(index = null) {
+			let i = index == null ? this.index : index;
+			return ocjeneOptions.definitions.clefs[i].de;
+			// return ocjeneOptions.definitions.clefs[Object.keys(ocjeneOptions.definitions.clefs)[i]][0];
 		},
 	},
 	keySignatures: {
@@ -171,14 +179,35 @@ const ocjeneOptions = {
 		state: true,
 		stateOrig: true,
 		lower: 0,
-		lowerOrig: 58, //53,
+		lowerOrig: 0, //53,
 		upper: 0,
-		upperOrig: 69, //93,
+		upperOrig: 127, //93,
 	},
 	definitions: {
 		notes: {
 			abcJSBasenotes: ["C", "D", "E", "F", "G", "A", "B", "^C", "^D", "^F", "^G", "^A", "_D", "_E", "_G", "_A", "_B"],
 			A: [
+				"C,,,,,,",
+				"^C,,,,,",
+				"D,,,,,",
+				"^D,,,,,",
+				"E,,,,,",
+				"F,,,,,",
+				"^F,,,,,",
+				"G,,,,,",
+				"^G,,,,,",
+				"A,,,,,",
+				"^A,,,,,",
+				"B,,,,,",
+				"C,,,,",
+				"^C,,,,",
+				"D,,,,",
+				"^D,,,,",
+				"E,,,,",
+				"F,,,,",
+				"^F,,,,",
+				"G,,,,",
+				"^G,,,,",
 				"A,,,,",
 				"^A,,,,",
 				"B,,,,",
@@ -267,8 +296,49 @@ const ocjeneOptions = {
 				"^a''",
 				"b''",
 				"c'''",
+				"^c'''",
+				"d'''",
+				"^d'''",
+				"e'''",
+				"f'''",
+				"^f'''",
+				"g'''",
+				"^g'''",
+				"a'''",
+				"^a'''",
+				"b'''",
+				"c''''",
+				"^c''''",
+				"d''''",
+				"^d''''",
+				"e''''",
+				"f''''",
+				"^f''''",
+				"g''''",
+				"^g''''",
 			],
 			B: [
+				"C,,,,,,",
+				"_D,,,,,",
+				"D,,,,,",
+				"_E,,,,,",
+				"E,,,,,",
+				"F,,,,,",
+				"_G,,,,,",
+				"G,,,,,",
+				"_A,,,",
+				"A,,,,,",
+				"_B,,,,,",
+				"B,,,,,",
+				"C,,,,",
+				"^C,,,,",
+				"D,,,,",
+				"_E,,,,",
+				"E,,,,",
+				"F,,,,",
+				"_G,,,,",
+				"G,,,,",
+				"_A,,,,",
 				"A,,,,",
 				"_B,,,,",
 				"B,,,,",
@@ -357,10 +427,30 @@ const ocjeneOptions = {
 				"_b''",
 				"b''",
 				"c'''",
+				"_d'''",
+				"d'''",
+				"_e'''",
+				"e'''",
+				"f'''",
+				"_g'''",
+				"g'''",
+				"_a'''",
+				"a'''",
+				"_b'''",
+				"b'''",
+				"c''''",
+				"_d''''",
+				"d''''",
+				"_e''''",
+				"e''''",
+				"f''''",
+				"_g''''",
+				"g''''",
+				"_a''''",
 			],
 			midi: [
-				21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
-				94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108,
+				0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74,
+				75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127,
 			],
 			midiNotes: {
 				A: [0, 7, 1, 8, 2, 3, 9, 4, 10, 5, 11, 6],
@@ -420,15 +510,19 @@ const ocjeneOptions = {
 				return this[p];
 			},
 		},
-		clefs: {
-			Violin: "treble",
-			Sopran: "alto1",
-			Mezzosopran: "alto2",
-			Alto: "alto",
-			Tenor: "tenor",
-			Bariton: "bass3",
-			Bass: "bass",
-		},
+		clefs: [
+			{ abc: "treble", en: "G", de: "Violin" },
+			{ abc: "alto1", en: "C1", de: "Sopran" },
+			{ abc: "alto2", en: "C2", de: "Mezzosopran" },
+			{ abc: "alto", en: "C3", de: "Alt" },
+			{ abc: "tenor", en: "C4", de: "Tenor" },
+			{ abc: "bass3", en: "C5", de: "Bariton" },
+			{ abc: "bass", en: "F", de: "Bass" },
+			{ abc: "treble+8", en: "G8va", de: "Violin" },
+			{ abc: "treble-8", en: "G8vb", de: "Violin" },
+			{ abc: "bass+8", en: "F8va", de: "Bass" },
+			{ abc: "bass-8", en: "F8vb", de: "Bass" },
+		],
 		timeSignatures: [
 			{ sig: [2, 2], postfix: "", accentuation: [2] },
 			{ sig: [2, 4], postfix: "", accentuation: [2] },
@@ -470,417 +564,420 @@ const ocjeneOptions = {
 };
 
 const ocjeneInstruments = {
-	index: 0,
-	indexOrig: 0,
+	index: 346,
+	indexOrig: 346,
 	get instrument() {
 		return this.data[this.index];
 	},
 	get baseNote() {
-		return Math.floor((this.instrument.range.lower + this.instrument.range.upper) / 2);
+		return Math.floor((this.getSelectedRange[0] + this.getSelectedRange[1]) / 2);
 	},
 	get firstPitch() {
 		return this.baseNote;
 	},
 	get getInstrumentRange() {
-		return this.instrument.range;
+		const pro = ocjeneOptions.limitRange.state ? 0 : 1;
+		return [this.instrument.range[pro][0] - ocjeneInstruments.instrument.transposeChromatic, this.instrument.range[pro][1] - ocjeneInstruments.instrument.transposeChromatic];
 	},
-	get getLimitedRange() {
-		if (!ocjeneOptions.limitRange.state) return this.getInstrumentRange;
-		const lower = ocjeneOptions.limitRange.lower;
-		const upper = ocjeneOptions.limitRange.upper;
-		return { lower, upper };
+	get getInstrumentFullRange() {
+		return [this.instrument.range[1][0] - ocjeneInstruments.instrument.transposeChromatic, this.instrument.range[1][1] - ocjeneInstruments.instrument.transposeChromatic];
+	},
+	get getSelectedRange() {
+		if (ocjeneOptions.limitRange.state) return [ocjeneOptions.limitRange.lower, ocjeneOptions.limitRange.upper];
+		return this.getInstrumentRange;
 	},
 	data: [
 		{
-			Name: "Klavier",
-			group: "Tasteninstrument",
+			nameDE: "Klavier",
+			family: "Tasteninstrument",
 			midiInstrumentIndex: 0,
-			clef: "Violin",
-			range: {
-				lower: 33,
-				upper: 108,
-			},
+			clef: "G",
+			transposeChromatic: 0,
+			range: [
+				[33, 108],
+				[33, 64],
+			],
 		},
 		{
-			Name: "Geige",
-			group: "Streichinstrument",
+			nameDE: "Violine",
+			family: "Streichinstrument",
 			midiInstrumentIndex: 40,
-			clef: "Violin",
-			range: {
-				lower: 55,
-				upper: 103,
-			},
+			clef: "G",
+			range: [
+				[55, 103],
+				[55, 70],
+			],
 		},
 		{
-			Name: "Viola",
-			group: "Streichinstrument",
+			nameDE: "Bratsche",
+			family: "Streichinstrument",
 			midiInstrumentIndex: 41,
-			clef: "Violin",
-			range: {
-				lower: 48,
-				upper: 91,
-			},
+			clef: "G",
+			range: [
+				[36, 64],
+				[36, 64],
+			],
 		},
 		{
-			Name: "Cello",
-			group: "Streichinstrument",
+			nameDE: "Violoncello",
+			family: "Streichinstrument",
 			midiInstrumentIndex: 42,
-			clef: "Bass",
-			range: {
-				lower: 36,
-				upper: 76,
-			},
+			clef: "F",
+			range: [
+				[36, 76],
+				[36, 50],
+			],
 		},
 		{
-			Name: "Kontrabass",
-			group: "Streichinstrument",
+			nameDE: "Kontrabass",
+			family: "Streichinstrument",
 			midiInstrumentIndex: 43,
-			clef: "Bass",
-			range: {
-				lower: 28,
-				upper: 67,
-			},
+			clef: "F",
+			range: [
+				[28, 67],
+				[28, 48],
+			],
 		},
 		{
-			Name: "Bassgitarre",
-			group: "Zupfinstrument",
+			nameDE: "Bassgitarre",
+			family: "Zupfinstrument",
 			midiInstrumentIndex: 32,
-			clef: "Bass",
-			range: {
-				lower: 28,
-				upper: 67,
-			},
+			clef: "F",
+			range: [
+				[28, 67],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Gitarre",
-			group: "Zupfinstrument",
+			nameDE: "Gitarre",
+			family: "Zupfinstrument",
 			midiInstrumentIndex: 24,
-			clef: "Violin",
-			range: {
-				lower: 40,
-				upper: 88,
-			},
+			clef: "G",
+			range: [
+				[40, 88],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Tuba",
-			group: "Blechblasinstrument",
+			nameDE: "Tuba",
+			family: "Blechblasinstrument",
 			midiInstrumentIndex: 58,
-			clef: "Bass",
-			range: {
-				lower: 28,
-				upper: 58,
-			},
+			clef: "F",
+			range: [
+				[28, 58],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Bassposaune",
-			group: "Blechblasinstrument",
+			nameDE: "Bassposaune",
+			family: "Blechblasinstrument",
 			midiInstrumentIndex: 57,
-			clef: "Bass",
-			range: {
-				lower: 34,
-				upper: 67,
-			},
+			clef: "F",
+			range: [
+				[34, 67],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Posaune",
-			group: "Blechblasinstrument",
+			nameDE: "Posaune",
+			family: "Blechblasinstrument",
 			midiInstrumentIndex: 57,
-			clef: "Bass",
-			range: {
-				lower: 40,
-				upper: 72,
-			},
+			clef: "F",
+			range: [
+				[40, 72],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Flügelhorn",
-			group: "Blechblasinstrument",
+			nameDE: "Flügelhorn",
+			family: "Blechblasinstrument",
 			midiInstrumentIndex: 57,
-			clef: "Violin",
-			range: {
-				lower: 34,
-				upper: 77,
-			},
+			clef: "G",
+			range: [
+				[34, 77],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Trompete",
-			group: "Blechblasinstrument",
+			nameDE: "Trompete",
+			family: "Blechblasinstrument",
 			midiInstrumentIndex: 56,
-			clef: "Violin",
-			range: {
-				lower: 55,
-				upper: 82,
-			},
+			clef: "G",
+			range: [
+				[55, 82],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Piccoloflöte",
-			group: "Holzblasinstrument",
+			nameDE: "Piccoloflöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 72,
-			clef: "Violin",
-			range: {
-				lower: 74,
-				upper: 102,
-			},
+			clef: "G",
+			range: [
+				[74, 102],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Flöte",
-			group: "Holzblasinstrument",
+			nameDE: "Flöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
-			clef: "Violin",
-			range: {
-				lower: 60,
-				upper: 96,
-			},
+			clef: "G",
+			range: [
+				[60, 96],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Oboe",
-			group: "Holzblasinstrument",
+			nameDE: "Oboe",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 68,
-			clef: "Violin",
-			range: {
-				lower: 58,
-				upper: 91,
-			},
+			clef: "G",
+			range: [
+				[58, 91],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Altflöte",
-			group: "Holzblasinstrument",
+			nameDE: "Altflöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 68,
-			clef: "Violin",
-			range: {
-				lower: 55,
-				upper: 91,
-			},
+			clef: "G",
+			range: [
+				[55, 91],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Englischhorn",
-			group: "Holzblasinstrument",
+			nameDE: "Englischhorn",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 69,
-			clef: "Violin",
-			range: {
-				lower: 52,
-				upper: 81,
-			},
+			clef: "G",
+			range: [
+				[52, 81],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Klarinette",
-			group: "Holzblasinstrument",
+			nameDE: "Klarinette",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 71,
-			clef: "Violin",
-			range: {
-				lower: 50,
-				upper: 94,
-			},
+			clef: "G",
+			range: [
+				[50, 94],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Bassklarinette",
-			group: "Holzblasinstrument",
+			nameDE: "Bassklarinette",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 71,
-			clef: "Violin",
-			range: {
-				lower: 38,
-				upper: 77,
-			},
+			clef: "G",
+			range: [
+				[38, 77],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Fagott",
-			group: "Holzblasinstrument",
+			nameDE: "Fagott",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 70,
-			clef: "Bass",
-			range: {
-				lower: 34,
-				upper: 75,
-			},
+			clef: "F",
+			range: [
+				[34, 75],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Kontrafagott",
-			group: "Holzblasinstrument",
+			nameDE: "Kontrafagott",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 70,
-			clef: "Bass",
-			range: {
-				lower: 22,
-				upper: 53,
-			},
+			clef: "F",
+			range: [
+				[22, 53],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Sopranblockflöte",
-			group: "Holzblasinstrument",
+			nameDE: "Sopranblockflöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
-			clef: "Violin",
-			range: {
-				lower: 72,
-				upper: 98,
-			},
+			clef: "G",
+			range: [
+				[72, 98],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Altblockflöte",
-			group: "Holzblasinstrument",
+			nameDE: "Altblockflöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
-			clef: "Violin",
-			range: {
-				lower: 65,
-				upper: 91,
-			},
+			clef: "G",
+			range: [
+				[65, 91],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Tenorblockflöte",
-			group: "Holzblasinstrument",
+			nameDE: "Tenorblockflöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
-			clef: "Violin",
-			range: {
-				lower: 60,
-				upper: 86,
-			},
+			clef: "G",
+			range: [
+				[60, 86],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Bassblockflöte",
-			group: "Holzblasinstrument",
+			nameDE: "Bassblockflöte",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 74,
-			clef: "Bass",
-			range: {
-				lower: 53,
-				upper: 79,
-			},
+			clef: "F",
+			range: [
+				[53, 79],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Baritonsaxophon",
-			group: "Holzblasinstrument",
+			nameDE: "Baritonsaxophon",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 67,
-			clef: "Violin",
-			range: {
-				lower: 36,
-				upper: 69,
-			},
+			clef: "G",
+			range: [
+				[36, 69],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Tenorsaxophon",
-			group: "Holzblasinstrument",
+			nameDE: "Tenorsaxophon",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 66,
-			clef: "Violin",
-			range: {
-				lower: 44,
-				upper: 76,
-			},
+			clef: "G",
+			range: [
+				[44, 76],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Altsaxophon",
-			group: "Holzblasinstrument",
+			nameDE: "Altsaxophon",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 65,
-			clef: "Violin",
-			range: {
-				lower: 49,
-				upper: 81,
-			},
+			clef: "G",
+			range: [
+				[49, 81],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Sopranosaxophon",
-			group: "Holzblasinstrument",
+			nameDE: "Sopranosaxophon",
+			family: "Holzblasinstrument",
 			midiInstrumentIndex: 64,
-			clef: "Violin",
-			range: {
-				lower: 56,
-				upper: 88,
-			},
+			clef: "G",
+			range: [
+				[56, 88],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Glockenspiel",
-			group: "Percussion",
+			nameDE: "Glockenspiel",
+			family: "Percussion",
 			midiInstrumentIndex: 9,
-			clef: "Violin",
-			range: {
-				lower: 79,
-				upper: 108,
-			},
+			clef: "G",
+			range: [
+				[79, 108],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Xylophon",
-			group: "Percussion",
+			nameDE: "Xylophon",
+			family: "Percussion",
 			midiInstrumentIndex: 13,
-			clef: "Violin",
-			range: {
-				lower: 65,
-				upper: 108,
-			},
+			clef: "G",
+			range: [
+				[65, 108],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Vibraphon",
-			group: "Percussion",
+			nameDE: "Vibraphon",
+			family: "Percussion",
 			midiInstrumentIndex: 11,
-			clef: "Violin",
-			range: {
-				lower: 53,
-				upper: 89,
-			},
+			clef: "G",
+			range: [
+				[53, 89],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Marimba",
-			group: "Percussion",
+			nameDE: "Marimba",
+			family: "Percussion",
 			midiInstrumentIndex: 12,
-			clef: "Violin",
-			range: {
-				lower: 45,
-				upper: 96,
-			},
+			clef: "G",
+			range: [
+				[45, 96],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Bass Marimba",
-			group: "Percussion",
+			nameDE: "Bass Marimba",
+			family: "Percussion",
 			midiInstrumentIndex: 12,
-			clef: "Violin",
-			range: {
-				lower: 33,
-				upper: 81,
-			},
+			clef: "G",
+			range: [
+				[33, 81],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Celesta",
-			group: "Tasteninstrument",
+			nameDE: "Celesta",
+			family: "Tasteninstrument",
 
 			midiInstrumentIndex: 8,
-			clef: "Violin",
-			range: {
-				lower: 60,
-				upper: 108,
-			},
+			clef: "G",
+			range: [
+				[60, 108],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Röhrenglocken",
-			group: "Percussion",
+			nameDE: "Röhrenglocken",
+			family: "Percussion",
 			midiInstrumentIndex: 14,
-			clef: "Violin",
-			range: {
-				lower: 60,
-				upper: 77,
-			},
+			clef: "G",
+			range: [
+				[60, 77],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Pauken",
-			group: "Percussion",
+			nameDE: "Pauken",
+			family: "Percussion",
 			midiInstrumentIndex: 47,
-			clef: "Bass",
-			range: {
-				lower: 40,
-				upper: 55,
-			},
+			clef: "F",
+			range: [
+				[40, 55],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Cembalo",
-			group: "Tasteninstrument",
+			nameDE: "Cembalo",
+			family: "Tasteninstrument",
 			midiInstrumentIndex: 6,
-			clef: "Violin",
-			range: {
-				lower: 29,
-				upper: 89,
-			},
+			clef: "G",
+			range: [
+				[29, 89],
+				[0, 0],
+			],
 		},
 		{
-			Name: "Harfe",
-			group: "Zupfinstrument",
+			nameDE: "Harfe",
+			family: "Zupfinstrument",
 			midiInstrumentIndex: 46,
-			clef: "Violin",
-			range: {
-				lower: 24,
-				upper: 103,
-			},
+			clef: "G",
+			range: [
+				[24, 103],
+				[0, 0],
+			],
 		},
 	],
 };
@@ -897,7 +994,7 @@ const ocjeneSong = {
 			M: ocjeneOptions.timeSignature.currSignature.sig.join("/"), //Taktart
 			L: `1/${ocjeneOptions.division}`, // kleinster Notenwert
 			Q: `1/4=${ocjeneOptions.tempo.val}`, // tempo
-			K: `${ocjeneOptions.keys.current} clef=${ocjeneOptions.clef.val()}`, //  Tonart, Reihenfolge wichtig!
+			K: `${ocjeneOptions.keys.current} clef=${ocjeneOptions.clef.abcName()}`, //  Tonart, Reihenfolge wichtig!
 		};
 		const options = ["%score Melody"];
 		const text =
@@ -951,6 +1048,9 @@ const ocjeneSong = {
 		displayPlay: true,
 		displayProgress: true,
 		displayWarp: false,
+		get midiTranspose() {
+			return ocjeneInstruments.instrument.transposeChromatic;
+		},
 		get program() {
 			return ocjeneInstruments.instrument.midiInstrumentIndex;
 		},
@@ -1042,12 +1142,10 @@ class ocjeneNote {
 	checkSplit() {
 		if (this.type == "triplet") return;
 		if (!ocjeneOptions.barOverflowStop.state && this.isCrossingBar()) {
-			// const barStamp = (this.getBar() + 1) * ocjeneSong.barLength;
 			const barStamp = this.getBarStart(1);
 			const tsEnd = this.timeStamp + this.duration;
 			const newDuration = barStamp - this.timeStamp;
 			const addedNoteDuration = tsEnd - barStamp;
-			// console.log("split");
 			this.split(newDuration, addedNoteDuration);
 			return;
 		}
@@ -1124,7 +1222,7 @@ class ocjeneNote {
 		const lastNoteIndex = ocjeneSong.noteData.findLastIndex((n) => n.midiPitch != null);
 		this.midiPitch = lastNoteIndex == -1 ? ocjeneInstruments.firstPitch : ocjeneSong.noteData[lastNoteIndex].midiPitch;
 		this.midiPitch += randomObject(ocjeneOptions.interval.val * -1, ocjeneOptions.interval.val);
-		this.midiPitch = valueConstrain(this.midiPitch, ocjeneInstruments.getLimitedRange.lower, ocjeneInstruments.getLimitedRange.upper);
+		this.midiPitch = valueConstrain(this.midiPitch, ocjeneInstruments.getSelectedRange[0], ocjeneInstruments.getSelectedRange[1]);
 
 		if (ocjeneOptions.keyOnly.state) {
 			this.midiPitch = ocjeneNote.getBaseKey(this.midiPitch);
@@ -1139,8 +1237,7 @@ class ocjeneNote {
 	}
 
 	translatePitch() {
-		const midiIndex = ocjeneOptions.definitions.notes.midi.indexOf(this.midiPitch);
-		let pitch = this.midiPitch == null ? "z" : ocjeneOptions.definitions.notes.ABCJSnotes[midiIndex];
+		let pitch = this.midiPitch == null ? "z" : ocjeneOptions.definitions.notes.ABCJSnotes[this.midiPitch];
 		let duration = this.duration;
 
 		let prefix = this.isOnNewBar() ? " |" : "";
@@ -1193,7 +1290,6 @@ function ocjeneCreateNote() {
 	let possibleNotes = ocjeneGetPossibleNotes(type);
 
 	if (possibleNotes.length == 0) {
-		// console.log("nope!");
 		type = "base";
 		possibleNotes = ocjeneGetPossibleNotes(type);
 	}
@@ -1403,6 +1499,7 @@ function ocjeneDraw() {
 	ocjeneSong.abcCanvas = ABCJS.renderAbc(ocjeneOptions.div, res, drawOptions)[0];
 	if (!ABCJS.synth.supportsAudio()) {
 		console.log("Audio is not supported in this browser.");
+		alert("Audio is not supported in this browser.");
 		return;
 	}
 	ocjeneSong.synthControl = new ABCJS.synth.SynthController();
@@ -1439,6 +1536,7 @@ function createOcjene(preset = null) {
 		const option = document.createElement("OPTION");
 		option.textContent = opt.sig.join("/") + opt.postfix;
 		option.value = opt.sig.join("/");
+		// option.title = "Tooltip";
 		if (index == ocjeneOptions.timeSignature.index) option.selected = true;
 		selSignature.appendChild(option);
 	}
@@ -1450,38 +1548,17 @@ function createOcjene(preset = null) {
 	}
 
 	if (preset === null) ocjeneInstruments.index = ocjeneInstruments.indexOrig;
-	const selInstruemnts = dbID("idSel_ocjeneInstrument");
-	clearFirstChild("idSel_ocjeneInstrument");
-	let groups = {};
-	for (const vals of Object.values(ocjeneInstruments.data)) {
-		if (groups[vals.group] === undefined) {
-			groups[vals.group] = [vals];
-		} else {
-			groups[vals.group].push(vals);
-		}
-	}
-	for (let [name, arr] of Object.entries(groups)) {
-		let optGroup = document.createElement("optgroup");
-		optGroup.label = name;
-		for (let opt of arr) {
-			const option = document.createElement("OPTION");
-			option.textContent = opt.Name;
-			option.value = opt.Name;
-			optGroup.appendChild(option);
-			if (opt.Name == ocjeneInstruments.instrument.Name) option.selected = true;
-		}
-		selInstruemnts.appendChild(optGroup);
-	}
+  //populated at the end
 
 	ocjeneOptions.clef.index = preset === null ? ocjeneOptions.clef.indexOrig : ocjeneSettings.get("clef");
 	const selClefs = dbID("idSel_ocjeneClefs");
 	clearFirstChild("idSel_ocjeneClefs");
-	for (let i = 0; i < Object.keys(ocjeneOptions.definitions.clefs).length; i++) {
+	for (let [index, clef] of ocjeneOptions.definitions.clefs.entries()) {
 		const option = document.createElement("OPTION");
-		option.textContent = ocjeneOptions.clef.name(i);
-		option.value = ocjeneOptions.clef.val(i);
+		option.textContent = clef.de;
+		option.value = index;
 		selClefs.appendChild(option);
-		if (i == ocjeneOptions.clef.index) option.selected = true;
+		if (index == ocjeneOptions.clef.index) option.selected = true;
 	}
 
 	ocjeneOptions.keySignatures.index = ocjeneOptions.keySignatures.indexOrig;
@@ -1550,8 +1627,9 @@ function createOcjene(preset = null) {
 		max: ocjeneOptions.rests.max,
 	});
 
-	ocjenePopulateLimitRangeSelect();
-
+	test();
+  ocjenePopulateInstruments();
+	ocjenePopulateLimitRangeSelect(true);
 	setTimeout(ocjeneGenerate, 300);
 }
 
@@ -1570,11 +1648,33 @@ function ocjenePopulateKeys() {
 		selKey.appendChild(option);
 	}
 }
-
+function ocjenePopulateInstruments() {
+	clearFirstChild("idSel_ocjeneInstrument");
+	let family = {};
+	for (const vals of Object.values(ocjeneInstruments.data)) {
+		if (family[vals.family] === undefined) {
+			family[vals.family] = [vals];
+		} else {
+			family[vals.family].push(vals);
+		}
+	}
+	for (let [name, arr] of Object.entries(family)) {
+		let optGroup = document.createElement("optgroup");
+		optGroup.label = name;
+		for (let opt of arr) {
+			const option = document.createElement("OPTION");
+			let tuning = opt.nameENtuning == null ? "" : ` in ${opt.nameENtuning}`;
+			option.textContent = `${opt.nameDE}${tuning}`;
+			option.value = opt.ID;
+			optGroup.appendChild(option);
+			if (opt.nameDE == ocjeneInstruments.instrument.nameDE) option.selected = true;
+		}
+		dbID("idSel_ocjeneInstrument").appendChild(optGroup);
+	}
+}
 function ocjenePopulateLimitRangeSelect(instrumentChange = false) {
 	const selLimitRangeLower = dbID("idSel_ocjeneLimitRangeLower");
 	const selLimitRangeUpper = dbID("idSel_ocjeneLimitRangeUpper");
-
 	selLimitRangeLower.style.direction = "rtl";
 	selLimitRangeUpper.style.direction = "rtl";
 	clearFirstChild("idSel_ocjeneLimitRangeLower");
@@ -1588,11 +1688,11 @@ function ocjenePopulateLimitRangeSelect(instrumentChange = false) {
 	selLimitRangeUpper.appendChild(optGroupUpper);
 
 	if (instrumentChange) {
-		ocjeneOptions.limitRange.lower = ocjeneInstruments.instrument.range.lower;
-		ocjeneOptions.limitRange.upper = ocjeneInstruments.instrument.range.upper;
+		ocjeneOptions.limitRange.lower = Math.max(ocjeneInstruments.getInstrumentRange[0], ocjeneOptions.limitRange.lowerOrig);
+		ocjeneOptions.limitRange.upper = Math.min(ocjeneInstruments.getInstrumentRange[1], ocjeneOptions.limitRange.upperOrig);
 	}
 
-	for (let i = ocjeneInstruments.getInstrumentRange.lower; i <= ocjeneInstruments.getInstrumentRange.upper; i++) {
+	for (let i = ocjeneInstruments.getInstrumentFullRange[0]; i <= ocjeneInstruments.getInstrumentFullRange[1]; i++) {
 		const optionL = document.createElement("OPTION");
 		optionL.textContent = ocjeneOptions.definitions.notes.midiIndexToLanguageText(i);
 		optionL.value = i;
@@ -1616,9 +1716,9 @@ function ocjeneTimeSignature(obj) {
 }
 
 function ocjeneInstrument(obj) {
-	const instrument = ocjeneInstruments.data.find((o) => o.Name == obj.value);
-	ocjeneInstruments.index = ocjeneInstruments.data.findIndex((o) => o.Name == obj.value);
-	ocjeneOptions.clef.index = Object.keys(ocjeneOptions.definitions.clefs).indexOf(instrument.clef);
+	const instrument = ocjeneInstruments.data.find((o) => o.ID == obj.value);
+	ocjeneInstruments.index = ocjeneInstruments.data.findIndex((o) => o.ID == obj.value);
+	ocjeneOptions.clef.index = ocjeneOptions.definitions.clefs.findIndex((c) => c.en == instrument.clef);
 	dbID("idSel_ocjeneClefs").selectedIndex = ocjeneOptions.clef.index;
 	ocjenePopulateLimitRangeSelect(true);
 	ocjeneInputChange();

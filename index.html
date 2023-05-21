@@ -55,7 +55,7 @@
     <div class="cl_navElements" id="idDiv_navBar_Disko" data-type="Disko" onclick="navClick(this)">Disko</div>
     <div class="cl_navElements" id="idDiv_navBar_Bio" data-type="Bio" onclick="navClick(this)">Bio</div>
     <div class="cl_navElements" id="idDiv_navBar_Kontakt" data-type="Kontakt" onclick="navClick(this)">Kontakt</div>
-    <div class="cl_navElements" id="idDiv_navBar_Ocjene" data-type="Ocjene" onclick="navClick(this)"></div>
+    <div class="cl_navElements" id="idDiv_navBar_Ocjene" data-type="Ocjene" onclick="navClick(this)">&#127926</div>
     <div class="cl_navElements cl_nav_hidables" id="idDiv_navBar_Impressum" data-type="Impressum"
       onclick="navClick(this)">Impressum</div>
   </nav>
@@ -285,11 +285,12 @@
         </div>
         <div class="cl_OcjeneShowText" uiWrap="nowrap">
           <label class="cl_info" for="idCb_ocjeneShowText" uiSize="size6" uiAlign="center"
-            uiRadius="left">Notennamen</label><label class="cl_info" uiSize="size5" uiRadius="none"><input
+            uiRadius="left">Notennamen</label><label class="cl_info" uiSize="size1" uiRadius="none"><input
               type="checkbox" id="idCb_ocjeneShowText" onclick="ocjeneShowText(this)"></input>
-          </label><label class="cl_info" uiSize="size1" uiRadius="right"><input
-            type="checkbox" id="idCb_ocjeneShowMidi" onclick="ocjeneShowMidi(this)"></input>
-        </label>
+          </label><label class="cl_info" for="idCb_ocjeneShowText" uiSize="size4" uiAlign="center"
+            uiRadius="none">MIDI</label><label class="cl_info" uiSize="size1" uiRadius="right"><input type="checkbox"
+              id="idCb_ocjeneShowMidi" onclick="ocjeneShowMidi(this)"></input>
+          </label>
         </div>
         <div class="cl_OcjeneRhytmusHeader">
           <label class="cl_info" uiSize="size12" uiAlign="center">Rhytmus</label>
