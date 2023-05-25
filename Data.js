@@ -43,7 +43,7 @@ const News = [
 ];
 
 const Konzerte = [
-	//Datum: Jahr, Monat, Tag als: YYYY,MM,DD
+	//Datum: Jahr, Monat, Tag als: YYYY.MM.DD
 	{
 		datum: "2023.10.12",
 		Startzeit: "20:00",

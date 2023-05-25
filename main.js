@@ -3,8 +3,8 @@ const globalValues = {
 	prevSection: "",
 	nextSection: null,
 	get defaultStart() {
-		const text = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Home";
-		return dbID(`idDiv_navBar_${text}`);
+		const ds = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Ensembles";
+		return dbID(`idDiv_navBar_${ds}`);
 	},
 	navClick(site) {
 		navClick(dbID(`idDiv_navBar_${site}`));
@@ -17,13 +17,11 @@ function mainSetup() {
 	navClick(globalValues.defaultStart);
 	htmlAltTag();
 	createButtons(FooterButtons, "idDiv_footerCredits", 0.5);
-	ocjeneGridAreas();
 	createContactData();
 	createNews();
 	createKonzerte();
 	createEnsembles();
 	createDisko();
-	createOcjene(true);
 	handleTabletChange(checkMediaQuery); // Initial check
 }
 
