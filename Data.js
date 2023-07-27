@@ -44,8 +44,9 @@ const News = [
 
 const Konzerte = [
 	//Datum: Jahr, Monat, Tag als: YYYY.MM.DD
+  //Daten korrigiert bis zum nächten Kommentar! (27.7.2023)
 	{
-		datum: "2023.10.12",
+		datum: "2023.12.10",
 		Startzeit: "20:00",
 		Titel: "Peterchens Mondfahrt",
 		Location: "tba",
@@ -53,7 +54,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.03.12",
+		datum: "2023.12.03",
 		Startzeit: "20:00",
 		Titel: "Antonia Hausmann & Volker Heuken",
 		Location: "tba",
@@ -61,7 +62,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.27.11",
+		datum: "2023.11.27",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Kofferfabrik",
@@ -69,7 +70,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.26.11",
+		datum: "2023.11.26",
 		Startzeit: "18:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Ars Musica",
@@ -77,7 +78,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.25.11",
+		datum: "2023.11.25",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Kulturbahnhof",
@@ -85,7 +86,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.24.11",
+		datum: "2023.11.24",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "BLECH",
@@ -93,7 +94,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.23.11",
+		datum: "2023.11.23",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "tba",
@@ -101,7 +102,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.22.11",
+		datum: "2023.11.22",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Saxstall",
@@ -109,7 +110,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.19.11",
+		datum: "2023.11.19",
 		Startzeit: "11:00 / 16:00",
 		Titel: "Peterchens Mondfahrt",
 		Location: "Neue Musik",
@@ -123,8 +124,9 @@ const Konzerte = [
 		Location: "Marthacafe",
 		Stadt: "Nürnberg",
 		link: "",
-	},{
-		datum: "2023.31.10",
+	},
+	{
+		datum: "2023.10.31",
 		Startzeit: "20:00",
 		Titel: "GEM: Requiem for a Dodo",
 		Location: "Kulturnhalle",
@@ -132,7 +134,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.08.10",
+		datum: "2023.10.08",
 		Startzeit: "20:00",
 		Titel: "Antonia Hausmann & Volker Heuken",
 		Location: "Mandau Jazzfestival",
@@ -140,7 +142,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.01.10",
+		datum: "2023.10.01",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Franz Mehlhose",
@@ -148,7 +150,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.17.09",
+		datum: "2023.09.17",
 		Startzeit: "16:00",
 		Titel: "Peterchens Mondfahrt",
 		Location: "Jazzfestival",
@@ -156,7 +158,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.08.09",
+		datum: "2023.09.08",
 		Startzeit: "20:00",
 		Titel: "Heuken/Stadtfeld/Heigenhuber",
 		Location: "LUX",
@@ -164,15 +166,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.21.08",
-		Startzeit: "20:00",
-		Titel: "Johannes Ludwig",
-		Location: "Zikaden Festival",
-		Stadt: "Nürnberg",
-		link: "",
-	},
-	{
-		datum: "2023.26.08",
+		datum: "2023.08.26",
 		Startzeit: "20:00",
 		Titel: "Philipp Rumsch Ensemble",
 		Location: "Industriesalon",
@@ -180,7 +174,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.23.08",
+		datum: "2023.08.23",
 		Startzeit: "20:00",
 		Titel: "Johannes Ludwig",
 		Location: "Zikaden Festival",
@@ -188,7 +182,7 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.22.08",
+		datum: "2023.08.22",
 		Startzeit: "20:00",
 		Titel: "Johannes Ludwig",
 		Location: "Zikaden Festival",
@@ -196,13 +190,14 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.21.08",
+		datum: "2023.08.21",
 		Startzeit: "20:00",
 		Titel: "Johannes Ludwig",
 		Location: "Zikaden Festival",
 		Stadt: "Nürnberg",
 		link: "",
 	},
+	//datumangaben hier drunter OK
 	{
 		datum: "2023.08.11",
 		Startzeit: "20:00",
@@ -226,21 +221,24 @@ const Konzerte = [
 		Location: "Jazzweekend, Thon-Dittmer Palais",
 		Stadt: "Regensburg",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.05.24",
 		Startzeit: "19:00",
 		Titel: "No further Noise",
 		Location: "Cafe Ino",
 		Stadt: "Leipzig",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.06.30",
 		Startzeit: "20:00",
 		Titel: "Antonia Hausmann & Volker Heuken",
 		Location: "Museumsnacht",
 		Stadt: "Altenburg",
 		link: "",
-	},{
+	},
+	{
 		datum: "2023.06.29",
 		Startzeit: "16:00",
 		Titel: "Philipp Rumsch Ensemble",
@@ -460,7 +458,6 @@ const Ensembles = [
 		description: `
     Antonias und Volkers Wege kreuzen sich seit Jahren immer wieder an verschiedenen Punkten ihres künstlerischen Schaffens. In unterschiedlichsten Besetzungen und Formationen treffen die beiden preisgekrönten Protagonisten der kreativen Leipziger Szene aufeinander. Jedoch nie so innig wie in diesem Projekt. Ihr ungewöhnliches Duo ist intim und furios zugleich, ist sanft und energiegeladen, es erzählt Geschichten und eröffnet Räume. 
     Die beiden verbinden ihre musikalischen Stimmen zu einer erstaunlich farbenreichen Sprache. Alle Ecken und Winkel ihrer kleinen Besetzung werden ausgeleuchtet und die Instrumente auf jeden erdenkliche Art modifiziert, um das größtmögliche Spektrum an Timbres und Ideen aus Vibraphon und Posaune herauskitzeln. Am Ende hört das Publikum jedoch eines: Tiefes Vertrauen in den Duo-Partner und eine langjährige Freundschaft.
-    
       `,
 		links: [
 			{
