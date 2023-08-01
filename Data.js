@@ -209,7 +209,7 @@ const Konzerte = [
 	{
 		datum: "2023.08.02",
 		Startzeit: "20:00",
-		Titel: "Nuduzo Makhathini",
+		Titel: "Nduduzo Makhathini",
 		Location: "Internationaler Jazzsommer",
 		Stadt: "Augsburg",
 		link: "",
