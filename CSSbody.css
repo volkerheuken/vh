@@ -339,7 +339,9 @@ footer:before {
 	background: hsla(var(--bgcMain) / 0.3);
 	cursor: pointer;
 }
-
+.pointer {
+	cursor: pointer;
+}
 /*----------------- FOOTER -----------------*/
 .cl_footer_hidables {
 	display: initial;

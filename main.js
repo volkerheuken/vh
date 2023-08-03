@@ -3,7 +3,7 @@ const globalValues = {
 	prevSection: "",
 	nextSection: null,
 	get defaultStart() {
-		const ds = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Ensembles";
+		const ds = !["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s)) ? "Home" : "Home";
 		return dbID(`idDiv_navBar_${ds}`);
 	},
 	navClick(site) {
@@ -18,8 +18,8 @@ function mainSetup() {
 	htmlAltTag();
 	createButtons(FooterButtons, "idDiv_footerCredits", 0.5);
 	createContactData();
+	createKonzerte(); // before "NEWS" für "nächstes Konzert" auf NEWS-Seite
 	createNews();
-	createKonzerte();
 	createEnsembles();
 	createDisko();
 	handleTabletChange(checkMediaQuery); // Initial check
@@ -93,7 +93,7 @@ function navClick(obj = null) {
 }
 
 function createNews() {
-	const parent = dbID("id_NewsListe");
+	let parent = dbID("id_NewsListe");
 	parent.innerHTML = "";
 	for (let news of News) {
 		const newsContainer = document.createElement("div");
@@ -115,7 +115,39 @@ function createNews() {
 		}
 		newsContainer.appendChild(text);
 	}
+
+	if (upcommingKonzertList.length == 0) return;
+	parent = dbID(`id_NewsKonzertvorschau`);
+	parent.innerHTML = "";
+
+	const newsContainer = document.createElement("div");
+	parent.appendChild(newsContainer);
+	const spacer = document.createElement("h2");
+	spacer.classList.add("cl_gridLine");
+	newsContainer.appendChild(spacer);
+	const title = document.createElement("h2");
+	title.textContent = "nächste Veranstaltung:";
+	title.classList.add("cl_konzertFullRow");
+	parent.appendChild(title);
+
+	let konzert = upcommingKonzertList[0];
+	const GigParent = document.createElement("p");
+	konzert.UTC = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
+	konzert.date = convertDate(konzert.UTC, true);
+	let startTime = konzert.Startzeit.length == 2 ? `${konzert.Startzeit} h` : konzert.Startzeit;
+	GigParent.innerHTML = konzert.date + " " + startTime + " / " + konzert.Titel + "<br>" + konzert.Location + " / " + konzert.Stadt;
+	if (konzert.UTC >= new Date() && konzert.link != undefined && konzert.link != "") {
+		GigParent.classList.add("pointer");
+		GigParent.title = `Öffnet den Reiter "Konzerte"`;
+		GigParent.onclick = () => {
+			// window.open(konzert.link);
+       globalValues.navClick("Konzerte");
+		};
+	}
+	parent.appendChild(GigParent);
 }
+
+let upcommingKonzertList = [];
 
 function createKonzerte() {
 	function checkUTC(UTC) {
@@ -126,7 +158,7 @@ function createKonzerte() {
 	parent.innerHTML = "";
 	let splitIndex = null;
 	let prevList = sortArrayByKey(Konzerte, "datum", false);
-	let upcommingList;
+	upcommingKonzertList = [];
 	for (const [index, konzert] of prevList.entries()) {
 		const d = new Date(Date.parse(konzert.datum.replace(/\./g, "/")));
 		if (checkUTC(d)) {
@@ -135,9 +167,9 @@ function createKonzerte() {
 		}
 	}
 	if (splitIndex != null) {
-		upcommingList = prevList.splice(splitIndex);
+		upcommingKonzertList = prevList.splice(splitIndex);
 		// upcomming shows
-		konzertEntry(parent, upcommingList, true);
+		konzertEntry(parent, upcommingKonzertList, true);
 	} else {
 		const noShows = document.createElement("h2");
 		noShows.classList.add("cl_konzertFullRow");
@@ -321,6 +353,7 @@ function createButtons(btnsArr, parentID, size = null) {
 		} else {
 			linkBtn.src = `Images/Icons/i_${type}.svg`;
 		}
+		linkBtn.title = type === "order" ? `Öffnet eine neue Mail im\nStandard-Mailprogramm\nmit vorausgefülltem Text.` : `Öffnet die Website von "${firstLetterCap(type)}"`;
 		linkBtn.onclick = () => {
 			if (type === "order") {
 				window.location.href = `${Contact.mailRef}?subject=${"CD Bestellung"}&body=${encodeURI(link)}`;
@@ -413,6 +446,12 @@ function sortArrayByKey(arr, key, inverse = false) {
 			}
 		}
 	});
+}
+
+function firstLetterCap(s) {
+	if (s == "") return s;
+	if (typeof s != "string") return s;
+	return s[0].toUpperCase() + s.slice(1);
 }
 
 ColorScheme.darkmodeOn = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;

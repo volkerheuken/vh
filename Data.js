@@ -24,27 +24,20 @@ const Contact = {
 };
 
 const News = [
-	{
-		text: "",
-		get link() {
-			// bei link zu einer anderen seite das hier benutzen
-			return { url: "https://www.buchfunk.de/peterchens-mondfahrt/" };
-		},
-	},
 	// {
-	//   text: "",
-	//   get link() {
-	//     bei link auf VolkerHeuken.com das hier benutzen ("local" statt "url")
-	//     return {
-	//       local: "Disko"
-	//     };
-	//   }
+	// 	text: "TEST NEWS: hier könnten ihre News stehen wenn es welche gäbe",
+	// 	get link() {
+	// 		// bei link zu einer anderen Seite "URL" benutzen
+	// 		// bei link auf VolkerHeuken.com "local" benutzen
+	// 		return { url: "https://www.buchfunk.de/peterchens-mondfahrt/" };
+	// 		return { local: "Disko" };
+	// 	},
 	// },
 ];
 
 const Konzerte = [
 	//Datum: Jahr, Monat, Tag als: YYYY.MM.DD
-  //Daten korrigiert bis zum nächten Kommentar! (27.7.2023)
+	//Daten korrigiert bis zum nächten Kommentar! (27.7.2023)
 	{
 		datum: "2023.12.10",
 		Startzeit: "20:00",
@@ -139,7 +132,7 @@ const Konzerte = [
 		Titel: "Antonia Hausmann & Volker Heuken",
 		Location: "Mandau Jazzfestival",
 		Stadt: "Rumburk, CZ",
-		link: "",
+		link: "https://www.mandavajazz.cz/de/duo-hausmann-heuken-d",
 	},
 	{
 		datum: "2023.10.01",
@@ -163,9 +156,10 @@ const Konzerte = [
 		Titel: "Heuken/Stadtfeld/Heigenhuber",
 		Location: "LUX",
 		Stadt: "Leipzig",
-		link: "",
+		link: "https://www.instagram.com/luxleipzig/",
 	},
 	{
+    // keine Daten im Industriesalon gefunden- verlegt in den Jazzkeller?
 		datum: "2023.08.26",
 		Startzeit: "20:00",
 		Titel: "Philipp Rumsch Ensemble",
@@ -179,7 +173,7 @@ const Konzerte = [
 		Titel: "Johannes Ludwig",
 		Location: "Zikaden Festival",
 		Stadt: "Nürnberg",
-		link: "",
+		link: "http://www.kunstvereinkohlenhof.de/matrix/zikaden-metropolmusik-e-v/?parent=13&c=1",
 	},
 	{
 		datum: "2023.08.22",
@@ -187,7 +181,7 @@ const Konzerte = [
 		Titel: "Johannes Ludwig",
 		Location: "Zikaden Festival",
 		Stadt: "Nürnberg",
-		link: "",
+		link: "http://www.kunstvereinkohlenhof.de/matrix/zikaden-metropolmusik-e-v/?parent=13&c=1",
 	},
 	{
 		datum: "2023.08.21",
@@ -195,7 +189,7 @@ const Konzerte = [
 		Titel: "Johannes Ludwig",
 		Location: "Zikaden Festival",
 		Stadt: "Nürnberg",
-		link: "",
+		link: "http://www.kunstvereinkohlenhof.de/matrix/zikaden-metropolmusik-e-v/?parent=13&c=1",
 	},
 	//datumangaben hier drunter OK
 	{
@@ -204,7 +198,7 @@ const Konzerte = [
 		Titel: "Hypochondrische Ängste",
 		Location: "Bezau Beats Festival",
 		Stadt: "Bezau, CH",
-		link: "",
+		link: "https://bezaubeatz.at/program/2023/hypochondrische_aengste",
 	},
 	{
 		datum: "2023.08.02",
@@ -212,7 +206,7 @@ const Konzerte = [
 		Titel: "Nduduzo Makhathini",
 		Location: "Internationaler Jazzsommer",
 		Stadt: "Augsburg",
-		link: "",
+		link: "https://augsburger-jazzsommer.de/2-8-nduduzo-makhathini-plays-augsburg/",
 	},
 	{
 		datum: "2023.07.16",
