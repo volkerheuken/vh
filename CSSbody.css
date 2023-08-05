@@ -199,6 +199,7 @@ button {
 	cursor: pointer;
 	vertical-align: middle;
 
+	min-width: var(--UIWidth8);
 	max-width: var(--UIWidth16);
 	transition: all var(--trT-short) ease-in-out;
 }

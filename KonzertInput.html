@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="de">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="language" content="de">
+  <meta name="copyright" content="© Volker Heuken">
+
+  <title>Volker Heuken - KonzertInput</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="hsl(0, 0%, 99%)">
+  <meta name="msapplication-TileColor" content="hsl(60, 0%, 99%)">
+  <meta name="theme-color" content="hsl(0, 0%, 99%)" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="hsl(60, 0%, 10%)" media="(prefers-color-scheme: dark)">
+
+  <link href="CSSbody.css" rel="stylesheet" type="text/css">
+  <script src="KonzertData.js"></script>
+  <script src="Data.js"></script>
+  <script src="KonzertInput.js"></script>
+</head>
+
+<body>
+  <section class="cl_section_vertical section_width_2">
+  <div>How to use: <br>
+    - Konzerte NEU eintragen: einfach eintragen und dann "Eintragen" drücken.<br>
+    - Konzerte ÄNDERN: auf das Datum des Konzerts klicken und dann wie bei neuen Konzerten auf "Eintragen" klicken <br>
+    - Konzert LÖSCHEN: auf den Titel des Konzerts klicken <br>
+    <br>
+    Wenn nichts eingetragen ist wird automatisch "tba" eingetragen.<br>
+    Wenn alle Änderungen eingetragen sind auf "Datei speichern" klicken.<br>
+    Diese Datei  aus dem Downloadordner in den Ordner "VH" (wo die Website liegt) verschieben und die darin liegende Datei überschreiben.<br>
+  </div>
+  <div class="cl_konzertGrid" id="Input" uiAlign="center top" position="sticky">
+  </div>
+    <div class="cl_konzertGrid" id="Konzerte" uiAlign="center top">
+    </div>
+  </section>
+
+</body>
+
+</html>
