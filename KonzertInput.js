@@ -3,6 +3,10 @@ const idNameList = ["Startzeit", "Titel", "Location", "Stadt", "link"];
 window.onload = loadKonzerte;
 
 function loadKonzerte() {
+	if (!["local", "127.0.0.1"].some((s) => window.location.hostname.includes(s))) {
+		dbID("howTo").textContent = "";
+		return;
+	}
 	KonzertList();
 }
 
