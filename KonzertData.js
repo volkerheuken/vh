@@ -8,11 +8,19 @@ const Konzerte = [
 		link: "",
 	},
 	{
-		datum: "2023.12.03",
+		datum: "2023.12.02",
 		Startzeit: "20:00",
 		Titel: "Antonia Hausmann & Volker Heuken",
 		Location: "tba",
-		Stadt: "Herrnhut",
+		Stadt: "Klaasdorf",
+		link: "",
+	},
+	{
+		datum: "2023.12.03",
+		Startzeit: "20:00",
+		Titel: "Antonia Hausmann & Volker Heuken",
+		Location: "Cafe Bubu",
+		Stadt: "Leipzig",
 		link: "",
 	},
 	{
@@ -51,8 +59,8 @@ const Konzerte = [
 		datum: "2023.11.23",
 		Startzeit: "20:00",
 		Titel: "Volker Heuken Sextett",
-		Location: "tba",
-		Stadt: "",
+		Location: "Other Music Academy",
+		Stadt: "Weimar",
 		link: "",
 	},
 	{
@@ -61,6 +69,14 @@ const Konzerte = [
 		Titel: "Volker Heuken Sextett",
 		Location: "Saxstall",
 		Stadt: "Pohrsdorf",
+		link: "",
+	},
+	{
+		datum: "2023.11.20",
+		Startzeit: "19:30",
+		Titel: "Mondayboxx",
+		Location: "Westflügel",
+		Stadt: "Leipzig",
 		link: "",
 	},
 	{

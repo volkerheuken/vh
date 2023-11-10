@@ -29,7 +29,6 @@ function htmlAltTag() {
 	setAlt("trash");
 	setAlt("oAdd");
 	setAlt("oSub");
-
 	function setAlt(name) {
 		const obj = dbCL(`img_${name}`, null);
 		for (let imgObj of obj) {
@@ -101,13 +100,18 @@ function createNews() {
 		const spacer = document.createElement("h2");
 		spacer.classList.add("cl_gridLine");
 		newsContainer.appendChild(spacer);
-
+		let dateText = "";
+		if (news.hasOwnProperty("datum") && news.datum != "") {
+			const d = new Date(Date.parse(news.datum.replace(/\./g, "/")));
+			dateText = `(${convertDate(d, true)})`;
+		}
 		const text = document.createElement("span");
-		text.textContent = news.text;
+		text.innerHTML = `${news.text} ${dateText}`;
 		text.classList.add("cl_newsGrid_text");
 		if (news.hasOwnProperty("link") && news.link != "") {
 			text.classList.add("cl_newsGrid_link");
-			text.onclick = () => {
+      text.title = `Öffnet den Reiter "Disko"`;
+    text.onclick = () => {
 				const type = Object.keys(news.link)[0];
 				if (type === "local") globalValues.navClick(news.link.local);
 				if (type === "url") window.open(news.link.url);
@@ -141,7 +145,7 @@ function createNews() {
 		GigParent.title = `Öffnet den Reiter "Konzerte"`;
 		GigParent.onclick = () => {
 			// window.open(konzert.link);
-       globalValues.navClick("Konzerte");
+			globalValues.navClick("Konzerte");
 		};
 	}
 	parent.appendChild(GigParent);
@@ -231,7 +235,8 @@ function createDisko() {
 	//container for all Cards, they overlay
 	const cardContainer = dbID(`id_Disko_Cards`);
 	cardContainer.innerHTML = "";
-	const diskoListe = sortArrayByKey(Disko, "datum", true);
+	// const diskoListe = sortArrayByKey(Disko, "datum", true);
+	const diskoListe = Disko;
 	for (const [index, data] of diskoListe.entries()) {
 		// create images with container
 		const diskoPreviewContainer = document.createElement("div");
@@ -256,7 +261,7 @@ function createDisko() {
 		diskoPreview.appendChild(diskoPreviewContainer);
 	}
 	//activate first Card
-	const randIndex = Math.floor(Math.random() * Disko.length);
+	const randIndex = 0; //Math.floor(Math.random() * Disko.length);
 	dbID(`id_diskoCard_card${randIndex}`).classList.add("cl_cardDiskoActive");
 }
 
