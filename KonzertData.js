@@ -49,7 +49,7 @@ const Konzerte = [
 	},
 	{
 		datum: "2023.11.24",
-		Startzeit: "20:00",
+		Startzeit: "19:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "BLECH",
 		Stadt: "Halle",
@@ -65,7 +65,7 @@ const Konzerte = [
 	},
 	{
 		datum: "2023.11.22",
-		Startzeit: "20:00",
+		Startzeit: "17:00",
 		Titel: "Volker Heuken Sextett",
 		Location: "Saxstall",
 		Stadt: "Pohrsdorf",

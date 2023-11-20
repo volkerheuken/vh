@@ -128,6 +128,62 @@ const Ensembles = [
 ];
 
 const Disko = [
+	// {
+	// 	title: `Volker Heuken Sextett\nDeep Field`,
+	// 	datum: "2023",
+	// 	picName: "D_DeepField.jpg",
+	// 	cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
+	// 	description: `Erschienen 2023 auf LP in limitierter Auflage und CD.`,
+	// 	links: [
+	// 		{
+	// 			type: "order",
+	// 			link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der LP / CD "DeepField".\n`,
+	// 		},
+	// 	],
+	// },
+	{
+		title: `Volker Heuken Sextett\nSiblings`,
+		datum: "2019",
+		picName: "D_Siblings.png",
+		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
+		description: `Erschienen 2019 beim Label "Float Music" aus Köln. Aufgenommen im Dezember 2018 beim BR Studio Franken.`,
+		links: [
+			{
+				type: "order",
+				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Siblings".\n`,
+			},
+		],
+	},
+	{
+		title: `Volker Heuken Sextett\nPortugal`,
+		datum: "2016",
+		picName: "D_Portugal.png",
+		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
+		description: `
+      Erschienen 2016 beim Label 11 in Nürnberg. Aufgenommen im April 2016 im realistic sound Studio in München.
+      `,
+		links: [
+			{
+				type: "order",
+				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Portugal".\n`,
+			},
+		],
+	},
+	{
+		title: `Peterchens Mondfahrt\nJazz für Kids`,
+		datum: "2022",
+		picName: "peterchens_mondfahrt.jpg",
+		cast: ["Stefan Kaminsky - Sprecher", "Damian dalla Torre - sax, flute", "Volker Heuken - vibraphon", "Carl Wittig - bass", "Johannes Koch - drums"],
+		description: `
+      Erschienen 2022 beim Buchfunk in Leipzig. Ein Hörspiel für Kinder, das entstanden ist aus dem Live-Programm "Peterchens Mondfahrt" für die Leipziger Jazztage 2019.
+      Regie führte Fritz Dittmann, Stefan Kaminsky und Volker Heuken.`,
+		links: [
+			{
+				type: "link",
+				link: "https://www.buchfunk.de/peterchens-mondfahrt/",
+			},
+		],
+	},
 	{
 		title: `Volker Heuken\nShepherd Moon`,
 		datum: "2020",
@@ -139,7 +195,7 @@ const Disko = [
 		links: [
 			{
 				type: "order",
-				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Shepherd Moon".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`,
+				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Shepherd Moon".\n`,
 			},
 		],
 	},
@@ -157,50 +213,6 @@ const Disko = [
 		],
 	},
 	{
-		title: `Volker Heuken Sextett\nSiblings`,
-		datum: "2019",
-		picName: "D_Siblings.png",
-		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
-		description: `Erschienen 2019 beim Label "Float Music" aus Köln. Aufgenommen im Dezember 2018 beim BR Studio Franken.`,
-		links: [
-			{
-				type: "order",
-				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Siblings".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`,
-			},
-		],
-	},
-	{
-		title: `Volker Heuken Sextett\nPortugal`,
-		datum: "2016",
-		picName: "D_Portugal.png",
-		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
-		description: `
-      Erschienen 2016 beim Label 11 in Nürnberg. Aufgenommen im April 2016 im realistic sound Studio in München.
-      `,
-		links: [
-			{
-				type: "order",
-				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Portugal".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`,
-			},
-		],
-	},
-	{
-		title: `Peterchens Mondfahrt\nJazz für Kids`,
-		datum: "2022",
-		picName: "peterchens_mondfahrt.jpg",
-		cast: ["Stefan Kaminsky - Sprecher", "Damian dalla Torre - sax, flute", "Volker Heuken - vibraphon", "Carl Wittig - bass", "Johannes Koch - drums"],
-		description: `
-      Erschienen 2022 beim Buchfunk in Leipzig. Ein Hörspiel für Kinder, das entstanden ist aus dem Live-Programm "Peterchens Mondfahrt" für die Leipziger Jazztage 2019.
-      Regie führte Fritz Dittmann, Stefan Kaminsky und Volker Heuken.`,
-		links: [
-			{
-				type: "link",
-				link: "https://www.buchfunk.de/peterchens-mondfahrt/",
-				// link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "Peterchens Mondfahrt".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`
-			},
-		],
-	},
-	{
 		title: `LAMA Life`,
 		datum: "2016",
 		picName: "D_Lama.png",
@@ -209,7 +221,7 @@ const Disko = [
 		links: [
 			{
 				type: "order",
-				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "LAMA Life".\n\nMeine Adresse lautet:\nName:\nStrasse:\nOrt:\n\nGruß`,
+				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der CD "LAMA Life".\n`,
 			},
 		],
 	},
