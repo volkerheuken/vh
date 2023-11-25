@@ -1,3 +1,9 @@
+/* cool wäre auch eine kombination zb
+ - aus Helvetica oder Neue Haas Grotesk -  Überschriften
+ - und Georgia - fließtext
+ 
+ Da wäre georgia zb für fließtexte und überschriften mit neue haas oder helvetica. das könnte ich mir auch vorstlelen */
+
 :root {
 	/* Farben */
 	--bgcMain: 20 5% 75%;
@@ -28,6 +34,8 @@
 	--imgSize: 1.25rem;
 	--UIRadius: 0.2rem;
 	--filter: 1;
+	--imgShadow: 1px 1px 5px;
+
 	/* Borders */
 	--UIBorderThin: 0.042rem solid hsl(var(--bgcMain));
 	--UIBorderThick: 0.067rem solid hsl(var(--bgcMain));
@@ -42,10 +50,12 @@
 	--fw-500: 500;
 	--fw-600: 600;
 
+	--fontHeader: Helvetica;
+	--fontText: Georgia;
+
 	--UIHeight1: 1.5rem;
 	--UIHeight2: calc(var(--UIHeight1) * 2);
 	--UIHeight3: calc(var(--UIHeight1) * 3);
-
 	--UIWidth1: calc(var(--UIHeight1) * 1);
 	--UIWidth2: calc(var(--UIHeight1) * 2);
 	--UIWidth3: calc(var(--UIHeight1) * 3);
@@ -124,6 +134,8 @@
 	font-weight: 600;
 }
 
+/* ----------------- BODY ----------------- */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -138,12 +150,15 @@
 }
 
 body {
-	font-family: "PTSerif", "HKGrotesk", arial;
+	/* font-family:  "PTSerif", "HKGrotesk", Arial; */
+	/* line-height: 1.48; PTSerif */
+	/* font-family: Georgia; */
+	/* font-family: Helvetica; */
+	font-family: var(--fontText);
 	font-size: var(--fs-Base);
 	font-weight: var(--fw-Base);
-	line-height: 1.48;
-	letter-spacing: 0.05rem;
-
+	line-height: 1.25;
+	letter-spacing: 0.06rem;
 	display: -webkit-box;
 	display: flex;
 	background-color: hsl(var(--bgcBackground));
@@ -156,6 +171,7 @@ body {
 }
 
 h1 {
+	font-family: var(--fontHeader);
 	font-size: var(--fs-Medium);
 	font-weight: var(--fw-Base);
 	text-align: center;
@@ -163,6 +179,7 @@ h1 {
 }
 
 h2 {
+	font-family: var(--fontHeader);
 	font-size: var(--fs-Medium);
 	font-weight: var(--fw-Base);
 	text-align: center;
@@ -170,6 +187,7 @@ h2 {
 }
 
 h3 {
+	font-family: var(--fontHeader);
 	font-size: var(--fs-Medium);
 	font-weight: var(--fw-Base);
 	text-align: justify;
@@ -178,52 +196,7 @@ h3 {
 
 div,
 a {
-	/* font-size: var(--fs-Base);
-	font-weight: var(--fw-Base); */
-	/* border: none; */
 	color: hsl(var(--txtBackground));
-}
-
-input,
-select,
-button {
-	font-family: "PTSerif", "HKGrotesk", arial;
-	font-size: var(--fs-Base);
-	font-weight: var(--fw-Base);
-	height: var(--UIHeight1);
-	text-decoration: none;
-	background-color: hsl(var(--bgcButton));
-	color: hsl(var(--txtButton));
-	border: var(--UIBorderThin);
-	border-radius: var(--UIRadius);
-	cursor: pointer;
-	vertical-align: middle;
-
-	min-width: var(--UIWidth8);
-	max-width: var(--UIWidth16);
-	transition: all var(--trT-short) ease-in-out;
-}
-
-select {
-	text-indent: var(--padding);
-	border-right: var(--UIBorderThick);
-	border-bottom: var(--UIBorderThick);
-	-o-text-overflow: ellipsis;
-	text-overflow: ellipsis;
-}
-select:disabled {
-	background-color: hsl(var(--bgcMain) / 0.1);
-	color: hsl(var(--txtMain));
-	cursor: default;
-}
-
-input:hover,
-select:hover,
-button:hover {
-	background-color: hsl(var(--bgcMain) / 0.9);
-	color: hsl(var(--txtMain));
-	transition-duration: 0.1s;
-	transition-delay: 0s;
 }
 
 p {
@@ -246,6 +219,7 @@ img {
 
 /*-----------------NAVBAR -----------------*/
 nav {
+	font-family: var(--fontHeader);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -278,6 +252,7 @@ nav:after {
 }
 
 footer {
+	font-family: var(--fontHeader);
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -353,6 +328,7 @@ footer:before {
 	grid-gap: var(--cardGap);
 	grid-auto-flow: column;
 	background: hsla(var(--bgcMain) / 0.7);
+	filter: invert(var(--filter));
 	-webkit-box-pack: center;
 	justify-content: center;
 	cursor: pointer;
@@ -540,6 +516,10 @@ section[hidden] {
 	align-items: center;
 }
 
+.cl_cardImage {
+	box-shadow: var(--imgShadow);
+}
+
 .cl_diskoPreview {
 	-webkit-transition: all var(--trT-short) ease-in-out;
 	-o-transition: all var(--trT-short) ease-in-out;
@@ -556,6 +536,7 @@ section[hidden] {
 .cl_diskoPreviewImg {
 	aspect-ratio: 1.28;
 	object-fit: cover;
+	box-shadow: var(--imgShadow);
 }
 
 .cl_Disko_CardGrid {
@@ -816,4 +797,8 @@ section[hidden] {
 
 [uiAlign~="bottom"] {
 	align-items: flex-end;
+}
+
+[uiKhage~="Home"] {
+	box-shadow: var(--imgShadow);
 }

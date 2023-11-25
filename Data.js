@@ -33,9 +33,13 @@ const News = [
 	// 		return { local: "Disko" };
 	// 	},
 	// },
+	{
+		text: "RELEASE! Mein neues Album DEEP FIELD ist seit dem 10.11.2023 auf CD, LP und den bekannten Streamingdiensten (Apple Music, Spotify, Amazon Music...) zu hören!",
+		get link() {
+			return { local: "Disko" };
+		},
+	},
 ];
-
-// Konzerte sind jetzt in eigener Datei: "KonzertData.js"
 
 const Ensembles = [
 	{
@@ -56,7 +60,7 @@ const Ensembles = [
 			},
 			{
 				type: "amazon",
-				link: "https://www.amazon.de/Siblings-Volker-Heuken-Sextett/dp/B07XV71C1X/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=volker+heuken+sextett&qid=1579020409&sr=8-1",
+				link: "https://www.amazon.de/s?i=popular&rh=p_32%3AVolker+Heuken+Sextett&ref=dp_byline_sr_music_1",
 			},
 		],
 	},
@@ -128,25 +132,33 @@ const Ensembles = [
 ];
 
 const Disko = [
-	// {
-	// 	title: `Volker Heuken Sextett\nDeep Field`,
-	// 	datum: "2023",
-	// 	picName: "D_DeepField.jpg",
-	// 	cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
-	// 	description: `Erschienen 2023 auf LP in limitierter Auflage und CD.`,
-	// 	links: [
-	// 		{
-	// 			type: "order",
-	// 			link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der LP / CD "DeepField".\n`,
-	// 		},
-	// 	],
-	// },
+	{
+		title: `Volker Heuken Sextett\nDeep Field`,
+		datum: "2023",
+		picName: "D_DeepField.jpg",
+		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
+		description: `Erschienen 2023 beim Label XJAZZ! Music in Berlin. Aufgenommen im Januar 2023 im RecPublica Studios in Lubrza.`,
+		links: [
+			{
+				type: "order",
+				link: `Hallo Volker,\n\nich hätte gerne ein Exemplar der LP / CD "DeepField".\n`,
+			},
+			{
+				type: "spotify",
+				link: "https://open.spotify.com/intl-de/album/2KLJxRkGGfNMdRJt7Ua9yD",
+			},
+			{
+				type: "AppleMusic",
+				link: "https://music.apple.com/de/album/deep-field/1707218172",
+			},
+		],
+	},
 	{
 		title: `Volker Heuken Sextett\nSiblings`,
 		datum: "2019",
 		picName: "D_Siblings.png",
 		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
-		description: `Erschienen 2019 beim Label "Float Music" aus Köln. Aufgenommen im Dezember 2018 beim BR Studio Franken.`,
+		description: `Erschienen 2019 beim Label Float Music in Köln. Aufgenommen im Dezember 2018 beim BR Studio Franken.`,
 		links: [
 			{
 				type: "order",
@@ -159,9 +171,7 @@ const Disko = [
 		datum: "2016",
 		picName: "D_Portugal.png",
 		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
-		description: `
-      Erschienen 2016 beim Label 11 in Nürnberg. Aufgenommen im April 2016 im realistic sound Studio in München.
-      `,
+		description: `Erschienen 2016 beim Label 11 in Nürnberg. Aufgenommen im April 2016 im realistic sound Studio in München.`,
 		links: [
 			{
 				type: "order",

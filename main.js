@@ -92,11 +92,11 @@ function navClick(obj = null) {
 }
 
 function createNews() {
-	let parent = dbID("id_NewsListe");
-	parent.innerHTML = "";
+	let parentListe = dbID("id_NewsListe");
+	parentListe.innerHTML = "";
 	for (let news of News) {
 		const newsContainer = document.createElement("div");
-		parent.appendChild(newsContainer);
+		parentListe.appendChild(newsContainer);
 		const spacer = document.createElement("h2");
 		spacer.classList.add("cl_gridLine");
 		newsContainer.appendChild(spacer);
@@ -121,18 +121,18 @@ function createNews() {
 	}
 
 	if (upcommingKonzertList.length == 0) return;
-	parent = dbID(`id_NewsKonzertvorschau`);
-	parent.innerHTML = "";
-
+	const parentPreview = dbID(`id_NewsKonzertvorschau`);
+	parentPreview.innerHTML = "";
 	const newsContainer = document.createElement("div");
-	parent.appendChild(newsContainer);
+	parentPreview.appendChild(newsContainer);
 	const spacer = document.createElement("h2");
 	spacer.classList.add("cl_gridLine");
-	newsContainer.appendChild(spacer);
+	// parentPreview.appendChild(spacer);
+	parentListe.appendChild(spacer);
 	const title = document.createElement("h2");
 	title.textContent = "nächste Veranstaltung:";
 	title.classList.add("cl_konzertFullRow");
-	parent.appendChild(title);
+	parentPreview.appendChild(title);
 
 	let konzert = upcommingKonzertList[0];
 	const GigParent = document.createElement("p");
@@ -148,7 +148,7 @@ function createNews() {
 			globalValues.navClick("Konzerte");
 		};
 	}
-	parent.appendChild(GigParent);
+	parentPreview.appendChild(GigParent);
 }
 
 let upcommingKonzertList = [];
