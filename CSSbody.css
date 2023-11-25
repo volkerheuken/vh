@@ -412,7 +412,7 @@ section[hidden] {
 .cl_section_vertical {
 	display: grid;
 	height: fit-content;
-	grid-template-columns: auto;
+	grid-template-rows: auto;
 	grid-gap: var(--cardGap);
 	-webkit-box-pack: center;
 	justify-content: center;
