@@ -34,7 +34,7 @@ const News = [
 	// 	},
 	// },
 	{
-		text: "RELEASE! Mein neues Album DEEP FIELD ist seit dem 10.11.2023 auf CD, LP und den bekannten Streamingdiensten (Apple Music, Spotify, Amazon Music...) zu hören!",
+		text: "Mein neues Album DEEP FIELD (XJAZZ) ist seit dem 10.11.2023 offiziell released. Vinyl und CD sind ab sofort bei mir bestellbar und es ist auf allen Streamingdiensten hörbar!",
 		get link() {
 			return { local: "Disko" };
 		},
@@ -57,10 +57,6 @@ const Ensembles = [
 			{
 				type: "spotify",
 				link: "https://open.spotify.com/artist/7pv0ZlsoLsO02h38vM8wVq",
-			},
-			{
-				type: "amazon",
-				link: "https://www.amazon.de/s?i=popular&rh=p_32%3AVolker+Heuken+Sextett&ref=dp_byline_sr_music_1",
 			},
 		],
 	},
@@ -136,7 +132,7 @@ const Disko = [
 		title: `Volker Heuken Sextett\nDeep Field`,
 		datum: "2023",
 		picName: "D_DeepField.jpg",
-		cast: ["Julian Bossert - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
+		cast: ["Christopher Kunz - alt", "Antonia Hausmann - posaune", "Volker Heuken - vibraphon", "Lukas Grossmann - piano", "Alex Bayer - bass", "Jan F. Brill - drums"],
 		description: `Erschienen 2023 beim Label XJAZZ! Music in Berlin. Aufgenommen im Januar 2023 im RecPublica Studios in Lubrza.`,
 		links: [
 			{
